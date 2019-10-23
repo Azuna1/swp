@@ -7,6 +7,11 @@ Alte Java version deinstallieren
  - Windows - programme entfernen -> Java
 
 Installation:
+Download der Tools:
+https://drive.google.com/open?id=1vlLa5k-M-2eGmJ86695S9jzHU9-Q6VLE
+https://drive.google.com/open?id=1Ik5W-Y7OWfprw7Oqiw93y6soXZgaPm_p
+https://drive.google.com/open?id=1XQZt3jiSlcandPewYXtlkvLAJJJJaPbD
+
 jdk-13_windows-x64_bin.exe ausführen und installieren.
 
 Windows suche -> "path" -> system umgebungsvariablen -> umgebungsvariablen
@@ -55,3 +60,7 @@ Eclipse -> Einstellungen -> Vaadin
 Checkbox bei "Automatische Widget compilation" (aktiviert automatische updates über maven)
 
 
+In Eclipse -> Datei -> Import -> Maven -> Existing Maven project
+den ordner "myportal" aus dem GIT auswählen
+Warten bis Eclipse fertig ist (status unten rechts in eclipse)
+Rechtsclick auf das projekt -> Run As -> Run on server -> wildfly auswählen
