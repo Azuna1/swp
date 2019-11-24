@@ -14,7 +14,7 @@ https://drive.google.com/open?id=1XQZt3jiSlcandPewYXtlkvLAJJJJaPbD
 
 jdk-13_windows-x64_bin.exe ausführen und installieren.
 
-Windows suche -> "path" -> system umgebungsvariablen -> umgebungsvariablen
+Windows suche -> "systemumgebungs" -> system umgebungsvariablen -> umgebungsvariablen
 unter Systemvariablen den eintrag "PATH" editieren und den pfad zur java JDK angeben (C:\Program Files\Java\jdk-13\bin)
 Windows neu starten
 
@@ -64,3 +64,9 @@ In Eclipse -> Datei -> Import -> Maven -> Existing Maven project
 den ordner "myportal" aus dem GIT auswählen
 Warten bis Eclipse fertig ist (status unten rechts in eclipse)
 Rechtsclick auf das projekt -> Run As -> Run on server -> wildfly auswählen
+
+Windows suche -> "systemumgebungs" -> system umgebungsvariablen -> umgebungsvariablen
+unter Systemvariablen den eintrag "JBOSS_HOME" anlegen und den pfad zur Wildfly installtion angeben (G:\Programme\wildfly-18.0.0.Final)
+Im wildfly order /bin die datei jboss-cli.xml öffnen und in zeile 6 die "urn:jboss:cli:3.4" zu "urn:jboss:cli:3.3" ändern
+
+Windows neu starten
