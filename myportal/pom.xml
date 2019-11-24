@@ -201,14 +201,11 @@
                 	</goals>
                 	<configuration>
                 		<commands>
-                			<command>
-                				if (outcome==success) of module add --name=org.mariadb
+                			<command> module add --name=org.mariadb
                 						--dependencies=javax.api,javax.transaction.api
                 						--resources=${project.build.directory}${file.separator}${project.artifactId}-${project.version}${file.separator}WEB-INF\lib\mariadb-java-client-2.5.1.jar
-                				else
-                					echo module maybe already installed
-                				end-if
                 			</command>
+                			<command>/subsystem=datasources/jdbc-driver=mariadb:add(driver-name="mariadb",driver-module-name="org.mariadb", driver-class-name="org.mariadb.jdbc.Driver")</command>
                 		</commands>
                 	</configuration>
                 	
