@@ -186,11 +186,16 @@
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>2.0.1.Final</version>
+                <configuration>
+                	<groupId>mysql</groupId>
+               		<artifactId>mysql-connector-java</artifactId>
+               		<fileName>mariadb-java-client-2.5.1.jar</fileName>
+               </configuration>
                 <executions>
-                    
+                    <!-- add mysql datasource -->
                     <execution>
                         <id>add-datasource</id>
-                        <phase>package</phase>
+                        <phase>install</phase>
                         <goals>
                             <goal>add-resource</goal>
                         </goals>
@@ -201,11 +206,11 @@
                                     <properties>                         
                                         <jndi-name>java:jboss/mariadbDS</jndi-name>
                                         <connection-url>jdbc:mysql://mariadb.recodesystems.com:3306/mariadbDS</connection-url> 
-                                        <driver></driver>                  
+                                        <driver-name>mariadb</driver-name>                
                                         <driver-class>org.mariadb.jdbc.Driver</driver-class>
                                         <enabled>true</enabled>       
-                                        <security.user-name>${mysql.db.user}</security.user-name>
-                                        <security.password>${mysql.db.password}</security.password>
+                                        <security.user-name>swp</security.user-name>
+                                        <security.password>swppassword</security.password>
                                         <pool-name>mariadbDS</pool-name>
                                     </properties>
                                     
