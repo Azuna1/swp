@@ -72,3 +72,7 @@ unter Systemvariablen den eintrag "JBOSS_HOME" anlegen und den pfad zur Wildfly 
 Im wildfly order /bin die datei jboss-cli.xml öffnen und in zeile 6 die "urn:jboss:cli:3.4" zu "urn:jboss:cli:3.3" ändern
 
 Windows neu starten
+
+
+######### Ab hier neu!!! ###########
+

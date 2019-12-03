@@ -109,7 +109,17 @@
           <groupId>org.mariadb.jdbc</groupId>
           <artifactId>mariadb-java-client</artifactId>
           <version>2.5.1</version>
-      </dependency>
+      	</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-core</artifactId>
+    <version>5.3.12.Final</version>
+</dependency>
+		
+ 
+      
     </dependencies>
 
     <build>
@@ -182,63 +192,7 @@
                         <!--                    <downloadRoot>http://myproxy.example.org/nodejs/</downloadRoot>-->
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <version>2.0.1.Final</version>
-<!--                 <configuration> -->
-<!--                 	<groupId>mysql</groupId> -->
-<!--                		<artifactId>mysql-connector-java</artifactId> -->
-<!--                		<fileName>mariadb-java-client-2.5.1.jar</fileName> -->
-<!--                </configuration> -->
-                <executions>
-                
-                	<execution>
-                	<id>configure</id>
-                	<phase>install</phase>
-                	<goals>
-                		<goal>execute-commands</goal>
-                	</goals>
-                	<configuration>
-                		<commands>
-                			<command> module add --name=org.mariadb
-                						--dependencies=javax.api,javax.transaction.api
-                						--resources=${project.build.directory}${file.separator}${project.artifactId}-${project.version}${file.separator}WEB-INF\lib\mariadb-java-client-2.5.1.jar
-                			</command>
-                			<command>/subsystem=datasources/jdbc-driver=mariadb:add(driver-name="mariadb",driver-module-name="org.mariadb", driver-class-name="org.mariadb.jdbc.Driver")</command>
-                		</commands>
-                	</configuration>
-                	
-                	</execution>
-                    <!-- add mysql datasource -->
-                    <execution>
-                        <id>add-datasource</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>add-resource</goal>
-                        </goals>
-                        <configuration>
-                            <address>subsystem=datasources,data-source=java:jboss/datasource/mariadbds</address>
-                            <resources>
-                                <resource>                                    
-                                    <properties>                         
-                                        <jndi-name>java:jboss/mariadbDS</jndi-name>
-                                        <connection-url>jdbc:mysql://mariadb.recodesystems.com:3306/mariadbDS</connection-url> 
-                                        <driver-name>mariadb</driver-name>                
-                                        <driver-class>org.mariadb.jdbc.Driver</driver-class>
-                                        <enabled>true</enabled>       
-                                        <security.user-name>swp</security.user-name>
-                                        <security.password>swppassword</security.password>
-                                        <pool-name>mariadbDS</pool-name>
-                                        
-                                    </properties>
-                                    
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+            
         </plugins>
     </build>
 
