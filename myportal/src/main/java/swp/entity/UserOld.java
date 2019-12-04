@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.PersistenceContext;
 
 @Entity
-public class User {
+public class UserOld {
 	
 	
 	private Integer id;	
