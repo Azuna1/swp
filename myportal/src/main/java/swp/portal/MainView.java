@@ -6,7 +6,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
 
-import swp.entity.UserDAO;
+import swp.dao.UserDAO;
 
 /**
  * The main view contains a button and a click listener.
