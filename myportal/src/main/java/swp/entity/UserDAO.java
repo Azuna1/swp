@@ -10,17 +10,17 @@ public class UserDAO {
 	 
 	public static void doit()
 	{
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("swpDB");
-		EntityManager entityManager = factory.createEntityManager();
+		//EntityManagerFactory factory = Persistence.createEntityManagerFactory("swpDB");
+		//EntityManager entityManager = factory.createEntityManager();
 		
-		entityManager.getTransaction().begin();
+		//entityManager.getTransaction().begin();
 		
 		User newUser = new User();
 		newUser.setFullname("mytest boy");
-		entityManager.persist(newUser);
-		entityManager.getTransaction().commit();
-		entityManager.close();
-		factory.close();
+		//entityManager.persist(newUser);
+		//entityManager.getTransaction().commit();
+		//entityManager.close();
+		//factory.close();
 	}
 	
 
