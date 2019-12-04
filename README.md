@@ -65,14 +65,17 @@ den ordner "myportal" aus dem GIT auswählen
 Warten bis Eclipse fertig ist (status unten rechts in eclipse)
 Rechtsclick auf das projekt -> Run As -> Run on server -> wildfly auswählen
 
-######### Ab hier neu!!! ###########
-
-Windows suche -> "systemumgebungs" -> system umgebungsvariablen -> umgebungsvariablen
-unter Systemvariablen den eintrag "JBOSS_HOME" anlegen und den pfad zur Wildfly installtion angeben (G:\Programme\wildfly-18.0.0.Final)
-Im wildfly order /bin die datei jboss-cli.xml öffnen und in zeile 6 die "urn:jboss:cli:3.4" zu "urn:jboss:cli:3.3" ändern
-
-Windows neu starten
-
 
 ######### Ab hier neu!!! ###########
+Eclipse schließen!!
+Git pull ( update)
 
+Den Ordner "org" nach Wildfly/modules/ kopieren
+Die datei standalone.xml nach Wildfly/standalone/configuration/ kopieren
+
+Eclipse starten
+Rechtsclick aufs projekt -> Run As -> Maven clean
+Rechtsclick aufs projekt -> Run As -> Maven install
+Wildfly starten
+Projekt innerhalb von wildfly starten (Im servers tab)
+Im browser nach http://localhost:8080/my-portal-1.0-SNAPSHOT/ navigieren und einen "click me" button sehen
