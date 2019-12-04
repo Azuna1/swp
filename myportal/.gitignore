@@ -14,6 +14,7 @@
 
 # The following files are generated/updated by vaadin-maven-plugin
 node_modules/
+node/
 
 # Browser drivers for local integration tests
 drivers/
@@ -21,3 +22,5 @@ drivers/
 error-screenshots/
 
 webpack.generated.js
+webpack.config.js
+.tern-project
