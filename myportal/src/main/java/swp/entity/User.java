@@ -1,11 +1,18 @@
 package swp.entity;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Access(AccessType.FIELD)
+@Table(name="user")
 public class User {
 	
-	
+	@Id
+	/*Primary Key ist matrikelNr?*/
 	String matrikelNr;
 	String username;
 	String passwort;

@@ -1,4 +1,4 @@
-package swp.dao;
+package swp.usecase;
 
 public class WarenkorbManager {
 

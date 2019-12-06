@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 
 @Entity
+/* Keine Speicherung von Warenkorb in der DB*/
 public class Warenkorb {
 
 	int artikelanzahl;

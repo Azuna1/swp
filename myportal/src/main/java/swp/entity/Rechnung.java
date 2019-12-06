@@ -2,16 +2,23 @@ package swp.entity;
 
 import java.util.Date;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Entity
+@Access(AccessType.FIELD)
+@Table(name="rechnung")
 public class Rechnung {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@SequenceGenerator(name="rechnungs_id", sequenceName="SEQ_RECHNUNGS_ID", allocationSize = 1)
 	int rechnungsnr;
 	boolean istBezahlt;
 	String matrikelNr;

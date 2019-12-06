@@ -1,15 +1,21 @@
 package swp.entity;
 
+import javax.persistence.Access;
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Access(AccessType.FIELD)
+@Table(name="geraet")
 public class Geraet {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@SequenceGenerator(name="geraete_id", sequenceName="SEQ_GERAET_ID", allocationSize = 1)
 	int geraeteid;
 	String beschreibung;
 	String kategorie;
