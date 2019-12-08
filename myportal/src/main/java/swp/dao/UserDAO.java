@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import swp.entity.User;
-import swp.entity.UserOld;
+
 
 
 public class UserDAO extends GenericDAO<User>{
@@ -18,7 +18,7 @@ public class UserDAO extends GenericDAO<User>{
     	System.out.println("Username: "+username);
     	parameters.put("username", username);
 
-    	return super.findOneResult(User.FIND_BY_NAME, parameters);
+    	return super.findOneResult(User.FIND_BY_MATRIKELNR, parameters);
     }
 	 
 	public static void doit()
@@ -28,8 +28,8 @@ public class UserDAO extends GenericDAO<User>{
 		
 		//entityManager.getTransaction().begin();
 		
-		UserOld newUser = new UserOld();
-		newUser.setFullname("mytest boy");
+		//UserOld newUser = new UserOld();
+		//newUser.setFullname("mytest boy");
 		//entityManager.persist(newUser);
 		//entityManager.getTransaction().commit();
 		//entityManager.close();

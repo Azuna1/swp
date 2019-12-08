@@ -12,9 +12,10 @@ import javax.persistence.Table;
 
 @Entity
 @Access(AccessType.FIELD)
-@NamedQuery(name="User.findUserByName", query="select u from User u where u.username = :username")
 @NamedQuery(name="User.findUserByMatrikelNr", query="select u from User u where u.matrikelNr = :matrikelNr")
 public class User {
+	
+	public static final String FIND_BY_MATRIKELNR = "User.findUserByName";
 	
 	@Id
 	@Column(unique = true)
