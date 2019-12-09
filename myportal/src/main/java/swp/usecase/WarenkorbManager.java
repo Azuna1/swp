@@ -2,11 +2,22 @@ package swp.usecase;
 
 public class WarenkorbManager implements IWarenkorbManager {
 
-	public void kaufen() {
+	
+	@Override
+	public void rmFromWarenkorb() {
+		// TODO Auto-generated method stub
 		
 	}
-	
-	public void editWarenkorb() {
+
+	@Override
+	public void kaufen() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addToWarenkorb() {
+		// TODO Auto-generated method stub
 		
 	}
 }
