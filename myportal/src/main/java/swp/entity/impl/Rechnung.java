@@ -34,7 +34,7 @@ public class Rechnung implements Serializable {
 	{
 		RechnungTO rechnungTO = new RechnungTO();
 		rechnungTO.setRechnungsID(this.getRechnungsID());
-		rechnungTO.setIstBezahlt(this.isIstBezahlt());
+		rechnungTO.setIstBezahlt(this.getIstBezahlt());
 		rechnungTO.setMatrikelNr(this.getMatrikelNr());
 		rechnungTO.setRechnungsbetrag(this.getRechnungsbetrag());
 		rechnungTO.setRechnungsdatum(this.getRechnungsdatum());
@@ -44,9 +44,8 @@ public class Rechnung implements Serializable {
 		return rechnungTO;
 	}
 	
-	public Rechnung(int rechnungsID, boolean istBezahlt, String matrikelNr, double rechnungsbetrag, Date rechnungsdatum,
+	public Rechnung(boolean istBezahlt, String matrikelNr, double rechnungsbetrag, Date rechnungsdatum,
 			String username, Geraet geraete) {
-		this.rechnungsID = rechnungsID;
 		this.istBezahlt = istBezahlt;
 		this.matrikelNr = matrikelNr;
 		this.rechnungsbetrag = rechnungsbetrag;
@@ -61,7 +60,7 @@ public class Rechnung implements Serializable {
 	public void setRechnungsID(int rechnungsID) {
 		this.rechnungsID = rechnungsID;
 	}
-	public boolean isIstBezahlt() {
+	public boolean getIstBezahlt() {
 		return istBezahlt;
 	}
 	public void setIstBezahlt(boolean istBezahlt) {

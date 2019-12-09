@@ -1,14 +1,15 @@
 package swp.entity.impl;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-/* Keine Speicherung von Warenkorb in der DB*/
-public class Warenkorb {
+public class Warenkorb implements Serializable {
 
+	private static final long serialVersionUID = 301122L;
 	@Id
 	int warenkorbID;
 	int artikelanzahl;
