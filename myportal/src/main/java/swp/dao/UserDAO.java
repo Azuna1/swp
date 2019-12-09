@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import swp.entity.UserOld;
+import swp.entity.impl.User;
 
 public class UserDAO {
 	
@@ -17,7 +17,7 @@ public class UserDAO {
 		
 		//entityManager.getTransaction().begin();
 		
-		UserOld newUser = new UserOld();
+		User newUser = new User();
 		newUser.setFullname("mytest boy");
 		//entityManager.persist(newUser);
 		//entityManager.getTransaction().commit();

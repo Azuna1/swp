@@ -1,4 +1,4 @@
-package swp.entity;
+package swp.entity.impl;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -18,6 +18,7 @@ public class User {
 	String passwort;
 	
 	public User () {}
+	
 	public User(String matrikelNr, String username, String passwort) {
 		super();
 		this.matrikelNr = matrikelNr;
@@ -41,6 +42,11 @@ public class User {
 	}
 	public void setPasswort(String passwort) {
 		this.passwort = passwort;
+	}
+
+	public void setFullname(String string) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

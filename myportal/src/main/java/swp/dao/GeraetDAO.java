@@ -2,8 +2,10 @@ package swp.dao;
 
 import java.util.List;
 
-import swp.entity.Geraet;
+import swp.entity.GeraetTO;
+import swp.entity.impl.Geraet;
 
+//@Stateless
 public class GeraetDAO {
 
 	public void createGeraet(Geraet aGeraet) {
@@ -26,7 +28,7 @@ public class GeraetDAO {
 		return null;
 	}
 
-	public void editGeraet(Geraet geraet) {
+	public void editGeraet(GeraetTO geraetTO) {
 		// TODO Auto-generated method stub
 		
 	}

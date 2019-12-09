@@ -1,4 +1,4 @@
-package swp.entity;
+package swp.entity.impl;
 
 import java.util.Date;
 

@@ -1,9 +1,11 @@
-package swp.usecase;
+package swp.usecase.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import swp.dao.GeraetDAO;
-import swp.entity.Geraet;
+import swp.entity.GeraetTO;
+import swp.entity.impl.Geraet;
+import swp.usecase.IGeraeteManager;
 
 //@Stateless
 public class GeraeteManager implements IGeraeteManager {
@@ -31,16 +33,16 @@ public class GeraeteManager implements IGeraeteManager {
 	}
 
 	@Override
-	public List<Geraet> getAllGeraete() {
+	public List<GeraetTO> getAllGeraete() {
 		List<Geraet> aList = geraetDAO.getAllGeraete();
-		List<Geraet> returnList = new ArrayList<Geraet>();
-		for (Geraet aGeraet : aList) returnList.add(aGeraet);
+		List<GeraetTO> returnList = new ArrayList<GeraetTO>();
+		for (Geraet aGeraet : aList) returnList.add(aGeraet.toGeraetTO());
 		return returnList;
 	}
 
 	@Override
-	public void editGeraet(Geraet geraet) {
-		geraetDAO.editGeraet(geraet);
+	public void editGeraet(GeraetTO geraetTO) {
+		geraetDAO.editGeraet(geraetTO);
 		
 	}
 }
