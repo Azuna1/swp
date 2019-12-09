@@ -17,7 +17,7 @@ public class User {
 	String username;
 	String passwort;
 	
-	
+	public User () {}
 	public User(String matrikelNr, String username, String passwort) {
 		super();
 		this.matrikelNr = matrikelNr;
