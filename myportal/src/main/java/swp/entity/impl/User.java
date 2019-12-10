@@ -4,26 +4,24 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 @Access(AccessType.FIELD)
-@Table(name="user")
 public class User {
 	
-	@Id
 	/*Primary Key ist matrikelNr?*/
+	@Id
 	String matrikelNr;
 	String username;
-	String passwort;
+	String password;
 	
 	public User () {}
 	
-	public User(String matrikelNr, String username, String passwort) {
+	public User(String matrikelNr, String username, String password) {
 		super();
 		this.matrikelNr = matrikelNr;
 		this.username = username;
-		this.passwort = passwort;
+		this.password = password;
 	}
 	public String getMatrikelNr() {
 		return matrikelNr;
@@ -37,11 +35,11 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getPasswort() {
-		return passwort;
+	public String getPassword() {
+		return password;
 	}
-	public void setPasswort(String passwort) {
-		this.passwort = passwort;
+	public void setPasswort(String password) {
+		this.password = password;
 	}
 
 	public void setFullname(String string) {

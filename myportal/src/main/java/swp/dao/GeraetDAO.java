@@ -1,36 +1,29 @@
 package swp.dao;
 
-import java.util.List;
 
 import swp.entity.GeraetTO;
 import swp.entity.impl.Geraet;
 
 //@Stateless
-public class GeraetDAO {
+public class GeraetDAO extends GenericDAO<Geraet> {
 
-	public void createGeraet(Geraet aGeraet) {
-		// TODO Auto-generated method stub
-		
+	public GeraetDAO(){
+		super(Geraet.class);
 	}
 
 	public void deleteGeraet(Geraet aGeraet) {
-		// TODO Auto-generated method stub
+		super.delete(aGeraet.getGeraeteID(), Geraet.class);
 		
 	}
 
-	public Geraet find(int geraetId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<Geraet> getAllGeraete() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void editGeraet(GeraetTO geraetTO) {
-		// TODO Auto-generated method stub
-		
+	public Geraet editGeraet(GeraetTO aGeraetTO) {
+		Geraet aGeraet = super.find(aGeraetTO.getGeraeteID());
+		aGeraet.setBeschreibung(aGeraetTO.getBeschreibung());
+		aGeraet.setKategorie(aGeraetTO.getKategorie());
+		aGeraet.setPreis(aGeraetTO.getPreis());
+		aGeraet.setGeraetename(aGeraetTO.getGeraetename());
+		return super.update(aGeraet);	
+	
 	}
 
 }

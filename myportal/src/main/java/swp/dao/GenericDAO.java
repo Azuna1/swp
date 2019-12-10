@@ -11,7 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 
 public abstract class GenericDAO<T> {
 
-	/*private final String UNIT_NAME = "HA2_TimoHehnen_EJB_Musiker";
+	private final String UNIT_NAME = "EJB_Geraet";
 	
 	@PersistenceContext(unitName=UNIT_NAME)
 	private EntityManager em;
@@ -94,6 +94,6 @@ public abstract class GenericDAO<T> {
 			query.setParameter(entry.getKey(),  entry.getValue());
 		}
 	}
-	*/
+	
 	
 }

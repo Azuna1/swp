@@ -3,10 +3,13 @@ package swp.entity.impl;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
+@Access(AccessType.FIELD)
 public class Warenkorb implements Serializable {
 
 	private static final long serialVersionUID = 301122L;

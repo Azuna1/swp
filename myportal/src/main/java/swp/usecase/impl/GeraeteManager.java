@@ -17,7 +17,7 @@ public class GeraeteManager implements IGeraeteManager {
 	public void createGeraet(String beschreibung, String kategorie, double preis, String geraetename) 
 	{
 		Geraet aGeraet = new Geraet(beschreibung, kategorie, preis, geraetename);
-		geraetDAO.createGeraet(aGeraet);
+		geraetDAO.save(aGeraet);
 		
 	}
 
@@ -34,7 +34,7 @@ public class GeraeteManager implements IGeraeteManager {
 
 	@Override
 	public List<GeraetTO> getAllGeraete() {
-		List<Geraet> aList = geraetDAO.getAllGeraete();
+		List<Geraet> aList = geraetDAO.findAll();
 		List<GeraetTO> returnList = new ArrayList<GeraetTO>();
 		for (Geraet aGeraet : aList) returnList.add(aGeraet.toGeraetTO());
 		return returnList;
