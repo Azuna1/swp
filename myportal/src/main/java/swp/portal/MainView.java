@@ -39,9 +39,9 @@ public class MainView extends VerticalLayout {
         add(tf1, tf2, tf3, tf4);
         /*
         String var1 = tf1.getValue();
-        String var2 = tf1.getValue();
-        double var3 = Double.valueOf(tf1.getValue());
-        String var4 = tf1.getValue();
+        String var2 = tf2.getValue();
+        double var3 = Double.valueOf(tf3.getValue());
+        String var4 = tf4.getValue();
         */
         
         String var1="0",var2="0",var4="0";

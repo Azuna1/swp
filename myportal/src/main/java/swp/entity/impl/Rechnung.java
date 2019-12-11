@@ -1,6 +1,7 @@
 package swp.entity.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.Access;
@@ -26,6 +27,8 @@ public class Rechnung implements Serializable {
 	double rechnungsbetrag;
 	Date rechnungsdatum;
 	String username;
+	//Liste mit ids von Geräten
+	//ArrayList<Geraet> listeGeraete = new ArrayList<Geraet>();
 	Geraet geraete;
 	
 	public Rechnung() {}

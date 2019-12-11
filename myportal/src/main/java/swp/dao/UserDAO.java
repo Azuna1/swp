@@ -3,7 +3,7 @@ package swp.dao;
 import java.util.HashMap;
 import java.util.Map;
 
-import swp.entity.User;
+import swp.entity.impl.User;
 
 
 
