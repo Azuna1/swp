@@ -1,50 +1,59 @@
-package swp.entity.impl;
+package swp.entity;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @Entity
 @Access(AccessType.FIELD)
+@NamedQuery(name="User.findUserByMatrikelNr", query="select u from User u where u.matrikelNr = :matrikelNr")
 public class User {
 	
-	/*Primary Key ist matrikelNr?*/
+	public static final String FIND_BY_MATRIKELNR = "User.findUserByName";
+	
 	@Id
-	String matrikelNr;
-	String username;
-	String password;
+	@Column(unique = true)
+	/*Primary Key ist matrikelNr?*/
+	private String matrikelNr;
+	private String username;
+	private String passwort;
 	
-	public User () {}
-	
-	public User(String matrikelNr, String username, String password) {
-		super();
+
+	public User() {}
+	public User(String matrikelNr, String username, String passwort) {	
 		this.matrikelNr = matrikelNr;
 		this.username = username;
-		this.password = password;
+		this.passwort = passwort;
 	}
+	
 	public String getMatrikelNr() {
 		return matrikelNr;
 	}
+	
 	public void setMatrikelNr(String matrikelNr) {
 		this.matrikelNr = matrikelNr;
 	}
+	
 	public String getUsername() {
 		return username;
 	}
+	
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getPassword() {
-		return password;
+	
+	public String getPasswort() {
+		return passwort;
 	}
-	public void setPasswort(String password) {
-		this.password = password;
-	}
-
-	public void setFullname(String string) {
-		// TODO Auto-generated method stub
-		
+	
+	public void setPasswort(String passwort) {
+		this.passwort = passwort;
 	}
 	
 	

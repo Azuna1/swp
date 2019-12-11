@@ -1,14 +1,25 @@
 package swp.dao;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.util.HashMap;
+import java.util.Map;
 
-import swp.entity.impl.User;
+import swp.entity.User;
 
-public class UserDAO {
+
+
+public class UserDAO extends GenericDAO<User>{
 	
-	
+	public UserDAO() {
+    	super(User.class);
+    }
+
+    public User findUserByName(String username) {
+    	Map<String, Object> parameters = new HashMap<String, Object>();
+    	System.out.println("Username: "+username);
+    	parameters.put("username", username);
+
+    	return super.findOneResult(User.FIND_BY_MATRIKELNR, parameters);
+    }
 	 
 	public static void doit()
 	{
@@ -17,8 +28,8 @@ public class UserDAO {
 		
 		//entityManager.getTransaction().begin();
 		
-		User newUser = new User();
-		newUser.setFullname("mytest boy");
+		//UserOld newUser = new UserOld();
+		//newUser.setFullname("mytest boy");
 		//entityManager.persist(newUser);
 		//entityManager.getTransaction().commit();
 		//entityManager.close();
