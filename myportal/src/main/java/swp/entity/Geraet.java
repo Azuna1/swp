@@ -16,16 +16,15 @@ public class Geraet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@SequenceGenerator(name="geraete_id", sequenceName="SEQ_GERAET_ID", allocationSize = 1)
-	int geraeteid;
+	int geraeteID;
 	String beschreibung;
 	String kategorie;
 	double preis;
 	String geraetename;
 	
-	
-	public Geraet(int geraeteid, String beschreibung, String kategorie, double preis, String geraetename) {
+	public Geraet () {}
+	public Geraet(String beschreibung, String kategorie, double preis, String geraetename) {
 		super();
-		this.geraeteid = geraeteid;
 		this.beschreibung = beschreibung;
 		this.kategorie = kategorie;
 		this.preis = preis;
@@ -33,10 +32,10 @@ public class Geraet {
 	}
 	
 	public int getGeraeteid() {
-		return geraeteid;
+		return geraeteID;
 	}
-	public void setGeraeteid(int geraeteid) {
-		this.geraeteid = geraeteid;
+	public void setGeraeteid(int geraeteID) {
+		this.geraeteID = geraeteID;
 	}
 	public String getBeschreibung() {
 		return beschreibung;

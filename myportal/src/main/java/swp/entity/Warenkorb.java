@@ -3,17 +3,22 @@ package swp.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 /* Keine Speicherung von Warenkorb in der DB*/
 public class Warenkorb {
 
+	@Id
+	int warenkorbID;
 	int artikelanzahl;
 	Date erstellungsdatum;
 	Date frist;
 	Geraet geraete;
 	Rechnung rechnungen;
 	
+	
+	public Warenkorb() {}
 	public Warenkorb(int artikelanzahl, Date erstellungsdatum, Date frist, Geraet geraete, Rechnung rechnungen) {
 		super();
 		this.artikelanzahl = artikelanzahl;

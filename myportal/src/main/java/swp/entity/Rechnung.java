@@ -9,17 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 @Entity
 @Access(AccessType.FIELD)
-@Table(name="rechnung")
 public class Rechnung {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@SequenceGenerator(name="rechnungs_id", sequenceName="SEQ_RECHNUNGS_ID", allocationSize = 1)
-	int rechnungsnr;
+	int rechnungsID;
 	boolean istBezahlt;
 	String matrikelNr;
 	double rechnungsbetrag;
@@ -27,10 +25,11 @@ public class Rechnung {
 	String username;
 	Geraet geraete;
 	
-	public Rechnung(int rechnungsnr, boolean istBezahlt, String matrikelNr, double rechnungsbetrag, Date rechnungsdatum,
+	public Rechnung() {}
+	
+	public Rechnung(int rechnungsID, boolean istBezahlt, String matrikelNr, double rechnungsbetrag, Date rechnungsdatum,
 			String username, Geraet geraete) {
-		super();
-		this.rechnungsnr = rechnungsnr;
+		this.rechnungsID = rechnungsID;
 		this.istBezahlt = istBezahlt;
 		this.matrikelNr = matrikelNr;
 		this.rechnungsbetrag = rechnungsbetrag;
@@ -40,10 +39,10 @@ public class Rechnung {
 	}
 	
 	public int getRechnungsnr() {
-		return rechnungsnr;
+		return rechnungsID;
 	}
-	public void setRechnungsnr(int rechnungsnr) {
-		this.rechnungsnr = rechnungsnr;
+	public void setRechnungsnr(int rechnungsID) {
+		this.rechnungsID = rechnungsID;
 	}
 	public boolean isIstBezahlt() {
 		return istBezahlt;

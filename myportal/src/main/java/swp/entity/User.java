@@ -23,8 +23,15 @@ public class User {
 	private String username;
 	private String passwort;
 	
+<<<<<<< .mine
 	public User() {}
 	public User(String matrikelNr, String username, String passwort) {		
+
+=======
+	public User () {}
+	public User(String matrikelNr, String username, String passwort) {
+		super();
+>>>>>>> .theirs
 		this.matrikelNr = matrikelNr;
 		this.username = username;
 		this.passwort = passwort;
