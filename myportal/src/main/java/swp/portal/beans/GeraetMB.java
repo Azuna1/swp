@@ -1,4 +1,4 @@
-package swp.portal;
+package swp.portal.beans;
 
 import java.io.Serializable;
 

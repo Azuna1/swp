@@ -11,6 +11,8 @@ import com.vaadin.flow.server.PWA;
 
 import antlr.debug.Event;
 import swp.dao.UserDAO;
+import swp.portal.beans.GeraetMB;
+import swp.portal.beans.MessageBean;
 import swp.usecase.impl.GeraeteManager;
 
 /**
@@ -19,7 +21,7 @@ import swp.usecase.impl.GeraeteManager;
 
 
 @Route("")
-@PWA(name = "Project Base for Vaadin Flow with CDI", shortName = "Project Base")
+@PWA(name = "Project Base", shortName = "Project Base")
 public class MainView extends VerticalLayout {
 
 	@Inject

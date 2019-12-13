@@ -23,7 +23,7 @@ class VaDesign extends PolymerElement {
   margin: -100px 10px;
   box-sizing: border-box;"></vaadin-password-field>
  <vaadin-button theme="primary" style="padding: 6px 40px;   margin: 120px 50px;  box-sizing: border-box;">
-  Login
+   Login 
  </vaadin-button>
 </vaadin-vertical-layout>
 `;

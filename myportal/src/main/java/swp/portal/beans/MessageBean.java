@@ -1,4 +1,4 @@
-package swp.portal;
+package swp.portal.beans;
 
 import com.vaadin.cdi.annotation.VaadinSessionScoped;
 
