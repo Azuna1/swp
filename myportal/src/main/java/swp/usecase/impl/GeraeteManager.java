@@ -2,21 +2,27 @@ package swp.usecase.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
 import swp.dao.GeraetDAO;
 import swp.entity.GeraetTO;
 import swp.entity.impl.Geraet;
 import swp.usecase.IGeraeteManager;
 
-//@Stateless
+@Stateless
 public class GeraeteManager implements IGeraeteManager {
 
-	//@Inject 
+	@Inject 
 	GeraetDAO geraetDAO; 
 	
 	@Override
 	public void createGeraet(String beschreibung, String kategorie, double preis, String geraetename) 
 	{
 		Geraet aGeraet = new Geraet(beschreibung, kategorie, preis, geraetename);
+		System.out.println(geraetDAO == null);;
+		System.out.println(aGeraet == null);;
 		geraetDAO.save(aGeraet);
 		
 	}

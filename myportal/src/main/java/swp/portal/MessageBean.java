@@ -2,6 +2,9 @@ package swp.portal;
 
 import com.vaadin.cdi.annotation.VaadinSessionScoped;
 
+import swp.entity.impl.Geraet;
+import swp.usecase.impl.GeraeteManager;
+
 /**
  * Data provider bean scoped for each user session.
  */
@@ -17,4 +20,7 @@ public class MessageBean {
     public String getMessage() {
         return new StringBuilder("Message requested ").append(++counter).append(" times.").toString();
     }
+    
+	
+    
 }

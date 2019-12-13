@@ -1,14 +1,17 @@
 package swp.dao;
 
 
+import javax.ejb.Stateless;
+
 import swp.entity.GeraetTO;
 import swp.entity.impl.Geraet;
 
-//@Stateless
+@Stateless
 public class GeraetDAO extends GenericDAO<Geraet> {
 
-	public GeraetDAO(){
+	public GeraetDAO(){		
 		super(Geraet.class);
+		System.out.print("dao created");
 	}
 
 	public void deleteGeraet(Geraet aGeraet) {
