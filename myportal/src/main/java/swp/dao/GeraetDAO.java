@@ -11,7 +11,7 @@ public class GeraetDAO extends GenericDAO<Geraet> {
 
 	public GeraetDAO(){		
 		super(Geraet.class);
-		System.out.print("dao created");
+		
 	}
 
 	public void deleteGeraet(Geraet aGeraet) {

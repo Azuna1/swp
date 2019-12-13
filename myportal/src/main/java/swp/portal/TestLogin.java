@@ -1,6 +1,15 @@
 package swp.portal;
 
 import com.vaadin.flow.templatemodel.TemplateModel;
+
+import java.util.Hashtable;
+
+import javax.naming.AuthenticationException;
+import javax.naming.Context;
+import javax.naming.NamingException;
+import javax.naming.directory.DirContext;
+import javax.naming.ldap.InitialLdapContext;
+
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
@@ -41,6 +50,36 @@ public class TestLogin extends PolymerTemplate<TestLogin.TestLoginModel> {
     public void login(LoginEvent event) { 
     	Notification.show("User: " + event.getUsername() + " tried to login with password: " + event.getPassword());
     	System.out.println("User: " + event.getUsername() + " tried to login with password: " + event.getPassword());
+    	
+    	
+    	//String principalName = "cn=testuser3, ou=People, dc=recodesystems, dc=com";
+    	String principalName = "cn=" + event.getUsername() + ", ou=People, dc=recodesystems, dc=com";
+    	
+    	
+    	Hashtable<String, String> env = new Hashtable<String, String>();
+    	env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+    	env.put(Context.PROVIDER_URL, "ldap://ldap.recodesystems.com");
+    	env.put(Context.SECURITY_AUTHENTICATION, "simple");
+    	env.put(Context.SECURITY_PRINCIPAL, principalName);
+    	env.put(Context.SECURITY_CREDENTIALS, event.getPassword());
+
+    	try {
+    	            //Connect with ldap
+    	            new InitialLdapContext(env, null);  
+
+    	            //Connection succeeded
+    	            System.out.println("Login succeeded!");
+    	        } catch (NamingException e) {
+
+    	            //Connection failed
+    	            System.out.println("Login failed!");
+    	            e.printStackTrace();
+    	        }  
+    	
+    	
+    	
+    	
+    	
     	
     }
 
