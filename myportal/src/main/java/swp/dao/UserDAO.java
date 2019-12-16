@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package swp.dao;
 
 import java.util.HashMap;
@@ -39,18 +38,3 @@ public class UserDAO extends GenericDAO<User>{
 	
 
 }
-=======
-package swp.dao;
-
-import javax.ejb.Stateless;
-import swp.entity.impl.User;
-
-@Stateless
-public class UserDAO extends GenericDAO<User>{
-	
-	public  UserDAO(){		
-		super(User.class);		
-	}
-
-}
->>>>>>> develop

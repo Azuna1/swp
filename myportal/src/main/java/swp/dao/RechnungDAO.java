@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-package swp.dao;
 
-//@Stateless
-public class RechnungDAO {
 
-}
-=======
 package swp.dao;
 
 import javax.ejb.Stateless;
@@ -14,4 +8,4 @@ import javax.ejb.Stateless;
 public class RechnungDAO {
 
 }
->>>>>>> develop
+

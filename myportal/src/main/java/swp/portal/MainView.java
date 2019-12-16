@@ -38,29 +38,28 @@ public class MainView extends VerticalLayout {
                 event -> Notification.show( messageBean.getMessage()));
         add(button);
         
-        //TesField für Create Geraete
+//        //TesField fï¿½r Create Geraete
+//        
+//        
+//    	
+//        TextField tf1 = new TextField ("Beschreibung");
+//        TextField tf2 = new TextField("Kategorie");
+//        TextField tf3 = new TextField("Preis");
+//        TextField tf4 = new TextField("Geraetename");
+//        add(tf1, tf2, tf3, tf4);
+//         
+//        
+//        Button buttonTest = new Button("testy Send",
+//                event -> geraetMB.createGeraet(tf1.getValue(),tf2.getValue(),Double.valueOf(tf3.getValue()),tf4.getValue()));
+//        add(buttonTest);
+//        
         
-        
-    	
-        TextField tf1 = new TextField ("Beschreibung");
-        TextField tf2 = new TextField("Kategorie");
-        TextField tf3 = new TextField("Preis");
-        TextField tf4 = new TextField("Geraetename");
-        add(tf1, tf2, tf3, tf4);
-        
-     // Mail Testing Zone ^-^
+        // Mail Testing Zone ^-^
         TextField tf1 = new TextField ("Message");
         add(tf1);
         MailManager mailManager = new MailManager();
         String message;
         message=tf1.getValue();
-        
-        
-        
-        
-        Button buttonTest = new Button("testy Send",
-                event -> geraetMB.createGeraet(tf1.getValue(),tf2.getValue(),Double.valueOf(tf3.getValue()),tf4.getValue()));
-        add(buttonTest);
         
         
         Button b1 = new Button("Login on SMTP",
