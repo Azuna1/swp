@@ -1,12 +1,15 @@
 package swp.usecase.impl;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
 import swp.dao.RechnungDAO;
 import swp.usecase.IRechnungsManager;
 
-//@Stateless
+@Stateless
 public class RechnungsManager implements IRechnungsManager {
 
-	//@Inject
+	@Inject
 	RechnungDAO rechnungDAO;
 	
 	@Override

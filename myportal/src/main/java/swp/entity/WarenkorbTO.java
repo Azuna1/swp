@@ -1,9 +1,8 @@
 package swp.entity;
-
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import swp.entity.impl.Geraet;
-import swp.entity.impl.Rechnung;
 import swp.entity.impl.Warenkorb;
 
 public class WarenkorbTO implements Serializable {
@@ -13,18 +12,26 @@ public class WarenkorbTO implements Serializable {
 	int artikelanzahl;
 	Date erstellungsdatum;
 	Date frist;
-	Geraet geraete;
-	Rechnung rechnungen;
+	ArrayList<GeraetTO> geraeteToList = new ArrayList<GeraetTO>();
 	
 	public WarenkorbTO () {}
 	
 	public Warenkorb toWarenkorb( ) {
-		Warenkorb warenkorb = new Warenkorb(this.getArtikelanzahl(),this.getErstellungsdatum(),this.getFrist(),
-				this.getGeraete(),this.getRechnungen());
+		Warenkorb warenkorb = new Warenkorb(this.getArtikelanzahl(),
+				this.getErstellungsdatum(),
+				this.getFrist(),
+				this.toGeraeteList(geraeteToList));
 		return warenkorb;
 	}
 	
-
+	public ArrayList<Geraet> toGeraeteList(ArrayList<GeraetTO> toList) {
+		ArrayList<Geraet> tempArrayList = new ArrayList<Geraet>();
+		for(GeraetTO g : toList ) {
+			tempArrayList.add(g.toGeraet());
+		}
+		return tempArrayList;
+	}
+	
 	public int getWarenkorbID() {
 		return warenkorbID;
 	}
@@ -57,21 +64,15 @@ public class WarenkorbTO implements Serializable {
 		this.frist = frist;
 	}
 
-	public Geraet getGeraete() {
-		return geraete;
+	public ArrayList<GeraetTO> getGeraete() {
+		return geraeteToList;
 	}
 
-	public void setGeraete(Geraet geraete) {
-		this.geraete = geraete;
+	public void setGeraete(ArrayList<GeraetTO> geraete) {
+		this.geraeteToList = geraete;
 	}
 
-	public Rechnung getRechnungen() {
-		return rechnungen;
-	}
-
-	public void setRechnungen(Rechnung rechnungen) {
-		this.rechnungen = rechnungen;
-	}
+	
 	
 	
 }

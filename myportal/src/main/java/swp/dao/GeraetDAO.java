@@ -23,7 +23,6 @@ public class GeraetDAO extends GenericDAO<Geraet> {
 		aGeraet.setPreis(aGeraetTO.getPreis());
 		aGeraet.setGeraetename(aGeraetTO.getGeraetename());
 		return super.update(aGeraet);	
-	
 	}
 
 }

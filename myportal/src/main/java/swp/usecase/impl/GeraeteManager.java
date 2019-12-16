@@ -2,15 +2,19 @@ package swp.usecase.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
 import swp.dao.GeraetDAO;
 import swp.entity.GeraetTO;
 import swp.entity.impl.Geraet;
 import swp.usecase.IGeraeteManager;
 
-//@Stateless
+@Stateless
 public class GeraeteManager implements IGeraeteManager {
 
-	//@Inject 
+	@Inject 
 	GeraetDAO geraetDAO; 
 	
 	@Override

@@ -1,12 +1,15 @@
 package swp.usecase.impl;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
 import swp.dao.WarenkorbDAO;
 import swp.usecase.IWarenkorbManager;
 
-//@Stateless
+@Stateless
 public class WarenkorbManager implements IWarenkorbManager {
 
-	//@Inject
+	@Inject
 	WarenkorbDAO warenkorbDAO;
 	
 	@Override

@@ -2,6 +2,8 @@ package swp.usecase.impl;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.Properties;
+
+import javax.ejb.Stateless;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -11,7 +13,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-//@Stateless
+@Stateless
 public class MailManager {
 
 	protected Session mailSession;	
@@ -24,11 +26,9 @@ public class MailManager {
 	
 	String host ="smtp.gmail.com";
 	String port="465"; //SSL Port
-	//String port="587"; //TLS Port
 	
 	Properties props = new Properties();
 	props.put("mail.smtp.auth","true");
-	//props.put("mail.smtp.starttls.enable","true");
 	props.put("mail.smtp.socketFactory.port",port);
 	props.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
 	props.put("mail.smtp.host",host);

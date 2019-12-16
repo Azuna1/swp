@@ -1,6 +1,7 @@
 package swp.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 import swp.entity.impl.Geraet;
@@ -15,13 +16,13 @@ public class RechnungTO implements Serializable {
 	double rechnungsbetrag;
 	Date rechnungsdatum;
 	String username;
-	Geraet geraete;
+	ArrayList<String> artikel = new ArrayList<String>();
 	
 	public RechnungTO() {}
 	
 	public Rechnung toRechnung() {
 		Rechnung rechnung = new Rechnung( this.getIstBezahlt(),this.getMatrikelNr(),this.getRechnungsbetrag(),
-				this.getRechnungsdatum(),this.getUsername(),this.getGeraete());
+				this.getRechnungsdatum(),this.getUsername(),this.artikel);
 		return rechnung;
 		
 	}
@@ -62,11 +63,13 @@ public class RechnungTO implements Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public Geraet getGeraete() {
-		return geraete;
+
+	public ArrayList<String> getArtikel() {
+		return artikel;
 	}
-	public void setGeraete(Geraet geraete) {
-		this.geraete = geraete;
+
+	public void setArtikel(ArrayList<String> artikel) {
+		this.artikel = artikel;
 	}
 	
 	
