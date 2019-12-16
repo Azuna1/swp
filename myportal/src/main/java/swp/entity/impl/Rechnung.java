@@ -3,7 +3,6 @@ package swp.entity.impl;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
@@ -27,9 +26,7 @@ public class Rechnung implements Serializable {
 	double rechnungsbetrag;
 	Date rechnungsdatum;
 	String username;
-	//Liste mit ids von Geräten
-	//ArrayList<Geraet> listeGeraete = new ArrayList<Geraet>();
-	Geraet geraete;
+	ArrayList<String> artikel = new ArrayList<String>();
 	
 	public Rechnung() {}
 	
@@ -42,19 +39,18 @@ public class Rechnung implements Serializable {
 		rechnungTO.setRechnungsbetrag(this.getRechnungsbetrag());
 		rechnungTO.setRechnungsdatum(this.getRechnungsdatum());
 		rechnungTO.setUsername(this.getUsername());
-		rechnungTO.setGeraete(this.getGeraete());
-		
+		rechnungTO.setArtikel(this.getArtikel());
 		return rechnungTO;
 	}
 	
 	public Rechnung(boolean istBezahlt, String matrikelNr, double rechnungsbetrag, Date rechnungsdatum,
-			String username, Geraet geraete) {
+			String username, ArrayList<String> artikel) {
 		this.istBezahlt = istBezahlt;
 		this.matrikelNr = matrikelNr;
 		this.rechnungsbetrag = rechnungsbetrag;
 		this.rechnungsdatum = rechnungsdatum;
 		this.username = username;
-		this.geraete = geraete;
+		this.artikel = artikel;
 	}
 	
 	public int getRechnungsID() {
@@ -93,12 +89,15 @@ public class Rechnung implements Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public Geraet getGeraete() {
-		return geraete;
+
+	public ArrayList<String> getArtikel() {
+		return artikel;
 	}
-	public void setGeraete(Geraet geraete) {
-		this.geraete = geraete;
+
+	public void setArtikel(ArrayList<String> artikel) {
+		this.artikel = artikel;
 	}
+	
 	
 	
 }

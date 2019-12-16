@@ -1,3 +1,4 @@
+
 package swp.dao;
 
 
@@ -30,3 +31,4 @@ public class GeraetDAO extends GenericDAO<Geraet> {
 	}
 
 }
+

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 import '@vaadin/vaadin-button/src/vaadin-button.js';
@@ -58,3 +59,40 @@ class ApArtikleerstellen extends PolymerElement {
 }
 
 customElements.define(ApArtikleerstellen.is, ApArtikleerstellen);
+=======
+import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
+
+/**
+ * `ap-artikleerstellen`
+ *
+ * ApArtikleerstellen element.
+ *
+ * @customElement
+ * @polymer
+ */
+class ApArtikleerstellen extends PolymerElement {
+
+    static get template() {
+        return html`
+            <style include="shared-styles">
+                :host {
+                    display: block;
+                    height: 100%;
+                }
+            </style>
+        `;
+    }
+
+    static get is() {
+        return 'ap-artikleerstellen';
+    }
+
+    static get properties() {
+        return {
+            // Declare your properties here.
+        };
+    }
+}
+
+customElements.define(ApArtikleerstellen.is, ApArtikleerstellen);
+>>>>>>> c7e410e265b6510fddbdd03c70538118932821f5

@@ -1,6 +1,7 @@
 package swp.entity.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.Access;
@@ -18,18 +19,16 @@ public class Warenkorb implements Serializable {
 	int artikelanzahl;
 	Date erstellungsdatum;
 	Date frist;
-	Geraet geraete;
-	Rechnung rechnungen;
+	ArrayList<Geraet> geraete = new ArrayList<Geraet>();
 	
 	
 	public Warenkorb() {}
-	public Warenkorb(int artikelanzahl, Date erstellungsdatum, Date frist, Geraet geraete, Rechnung rechnungen) {
-		super();
+	
+	public Warenkorb(int artikelanzahl, Date erstellungsdatum, Date frist, ArrayList<Geraet> geraete) {
 		this.artikelanzahl = artikelanzahl;
 		this.erstellungsdatum = erstellungsdatum;
 		this.frist = frist;
 		this.geraete = geraete;
-		this.rechnungen = rechnungen;
 	}
 	public int getArtikelanzahl() {
 		return artikelanzahl;
@@ -49,17 +48,11 @@ public class Warenkorb implements Serializable {
 	public void setFrist(Date frist) {
 		this.frist = frist;
 	}
-	public Geraet getGeraete() {
+	public ArrayList<Geraet> getGeraete() {
 		return geraete;
 	}
-	public void setGeraete(Geraet geraete) {
+	public void setGeraete(ArrayList<Geraet> geraete) {
 		this.geraete = geraete;
-	}
-	public Rechnung getRechnungen() {
-		return rechnungen;
-	}
-	public void setRechnungen(Rechnung rechnungen) {
-		this.rechnungen = rechnungen;
 	}
 	
 	

@@ -1,3 +1,5 @@
+
+
 package swp.dao;
 
 import javax.ejb.Stateless;
@@ -6,3 +8,4 @@ import javax.ejb.Stateless;
 public class RechnungDAO {
 
 }
+
