@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.mail.MessagingException;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
@@ -13,44 +14,39 @@ import com.vaadin.flow.server.PWA;
 
 import antlr.debug.Event;
 import swp.dao.UserDAO;
+import swp.portal.beans.GeraetMB;
+import swp.portal.beans.MessageBean;
 import swp.usecase.impl.GeraeteManager;
 import swp.usecase.impl.MailManager;
 
 /**
  * The main view contains a button and a click listener.
  */
+
+
 @Route("")
-@PWA(name = "Project Base for Vaadin Flow with CDI", shortName = "Project Base")
+@PWA(name = "Project Base", shortName = "Project Base")
 public class MainView extends VerticalLayout {
 
 	@Inject
     private MessageBean messageBean;
+	@Inject 
+	private GeraetMB geraetMB;
 	
     public MainView() {
-//        Button button = new Button("Click me",
-//                event -> UserDAO.doit());
-//        add(button);
+        Button button = new Button("Click me",
+                event -> Notification.show( messageBean.getMessage()));
+        add(button);
         
-        //TesField fÃ¼r Create Geraete
+        //TesField für Create Geraete
         
-//        //@Inject
-//    	GeraeteManager geraeteManager = new GeraeteManager();
-//    	
-//        TextField tf1 = new TextField ("Beschreibung");
-//        TextField tf2 = new TextField("Kategorie");
-//        TextField tf3 = new TextField("Preis");
-//        TextField tf4 = new TextField("Geraetename");
-//        add(tf1, tf2, tf3, tf4);
-//        
-//        String var1 = tf1.getValue();
-//        String var2 = tf2.getValue();
-//        double var3 = Double.valueOf(tf3.getValue());
-//        String var4 = tf4.getValue();
-//        
-//        Button buttonTest = new Button("testy Send",
-//                event -> geraeteManager.createGeraet(var1,var2,var3,var4));
-//        add(buttonTest);
-//     
+        
+    	
+        TextField tf1 = new TextField ("Beschreibung");
+        TextField tf2 = new TextField("Kategorie");
+        TextField tf3 = new TextField("Preis");
+        TextField tf4 = new TextField("Geraetename");
+        add(tf1, tf2, tf3, tf4);
         
      // Mail Testing Zone ^-^
         TextField tf1 = new TextField ("Message");
@@ -59,7 +55,12 @@ public class MainView extends VerticalLayout {
         String message;
         message=tf1.getValue();
         
-      //Login aufm SMTP von Google
+        
+        
+        
+        Button buttonTest = new Button("testy Send",
+                event -> geraetMB.createGeraet(tf1.getValue(),tf2.getValue(),Double.valueOf(tf3.getValue()),tf4.getValue()));
+        add(buttonTest);
         
         
         Button b1 = new Button("Login on SMTP",

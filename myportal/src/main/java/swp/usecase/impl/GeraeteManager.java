@@ -21,6 +21,8 @@ public class GeraeteManager implements IGeraeteManager {
 	public void createGeraet(String beschreibung, String kategorie, double preis, String geraetename) 
 	{
 		Geraet aGeraet = new Geraet(beschreibung, kategorie, preis, geraetename);
+		System.out.println(geraetDAO == null);;
+		System.out.println(aGeraet == null);;
 		geraetDAO.save(aGeraet);
 		
 	}
