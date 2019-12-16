@@ -1,11 +1,11 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
-import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 import '@vaadin/vaadin-combo-box/src/vaadin-combo-box.js';
 import '@vaadin/vaadin-text-field/src/vaadin-text-field.js';
 import '@polymer/iron-icon/iron-icon.js';
+import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
 import './agp-menu.js';
 
-class TestMenu extends PolymerElement {
+class AgpShopView extends PolymerElement {
 
     static get template() {
         return html`
@@ -15,18 +15,18 @@ class TestMenu extends PolymerElement {
                     height: 100%;
                 }
             </style>
-<vaadin-horizontal-layout id="vaadinHorizontalLayout" style="width: 100%; height: 100%;">
- <agp-menu id="vaadinMenu"></agp-menu>
+<vaadin-vertical-layout id="vaadinVerticalLayout" style="width: 100%; height: 100%;">
+ <agp-menu id="agpMenu" style="width:100%;height:10%;"></agp-menu>
  <vaadin-combo-box id="vaadinComboBox"></vaadin-combo-box>
  <vaadin-text-field placeholder="Search" id="vaadinTextField">
   <iron-icon icon="lumo:search" slot="prefix"></iron-icon>
  </vaadin-text-field>
-</vaadin-horizontal-layout>
+</vaadin-vertical-layout>
 `;
     }
 
     static get is() {
-        return 'test-menu';
+        return 'agp-shop-view';
     }
 
     static get properties() {
@@ -36,4 +36,4 @@ class TestMenu extends PolymerElement {
     }
 }
 
-customElements.define(TestMenu.is, TestMenu);
+customElements.define(AgpShopView.is, AgpShopView);

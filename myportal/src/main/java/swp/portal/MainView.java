@@ -20,7 +20,7 @@ import swp.usecase.impl.GeraeteManager;
  */
 
 
-@Route("")
+@Route("1")
 @PWA(name = "Project Base", shortName = "Project Base")
 public class MainView extends VerticalLayout {
 

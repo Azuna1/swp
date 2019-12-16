@@ -19,7 +19,7 @@ import swp.portal.TestMenu;
  */
 @Tag("test-sample-view")
 @JsModule("./src/test-sample-view.js")
-@Route("sample")
+@Route("sample1")
 public class TestSampleView extends PolymerTemplate<TestSampleView.TestSampleViewModel> {
 
     @Id("testLogin")
