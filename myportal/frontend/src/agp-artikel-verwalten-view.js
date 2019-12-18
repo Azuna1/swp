@@ -14,7 +14,7 @@ class AgpArtikelVerwaltenView extends PolymerElement {
                 }
             </style>
 <vaadin-vertical-layout style="width: 100%; height: 100%;" id="vaadinVerticalLayout">
- <agp-menu id="agpMenu"></agp-menu>
+ <agp-menu id="agpMenu" style="height:10%;"></agp-menu>
  <agp-artikel-verwalten id="agpArtikelVerwalten" style="width:50%;"></agp-artikel-verwalten>
 </vaadin-vertical-layout>
 `;

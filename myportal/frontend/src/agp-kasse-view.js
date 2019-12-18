@@ -14,7 +14,7 @@ class AgpKasseView extends PolymerElement {
                 }
             </style>
 <vaadin-vertical-layout style="width: 100%; height: 100%;" id="vaadinVerticalLayout">
- <agp-menu id="agpMenu"></agp-menu>
+ <agp-menu id="agpMenu" style="height:10%;"></agp-menu>
  <agp-kasse id="agpKasse" style="width:50%;"></agp-kasse>
 </vaadin-vertical-layout>
 `;
