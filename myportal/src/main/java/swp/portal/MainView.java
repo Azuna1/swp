@@ -24,7 +24,7 @@ import swp.usecase.impl.MailManager;
  */
 
 @Route("")
-@PWA(name = "Project Base", shortName = "Project Base")
+@PWA(name = "Altgeräte Portal", shortName = "Altgeräte Portal")
 public class MainView extends VerticalLayout {
 
 	@Inject

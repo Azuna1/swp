@@ -1,6 +1,10 @@
 package swp.portal;
 
 import com.vaadin.flow.templatemodel.TemplateModel;
+
+import javax.inject.Inject;
+
+import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -11,6 +15,7 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import swp.portal.AgpMenu;
+import swp.portal.beans.UserMB;
 
 /**
  * A Designer generated component for the agp-shop-view template.
@@ -36,17 +41,15 @@ public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> {
 	@Id("agpShopListe")
 	private AgpShopListe agpShopListe;
 
-
-
-
 	/**
      * Creates a new AgpShopView.
      */
     public AgpShopView() {
         // You can initialise any data required for the connected UI components here.
-        
-    	
+
     }
+    
+
 
     /**
      * This model binds properties between AgpShopView and agp-shop-view
