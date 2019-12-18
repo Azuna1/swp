@@ -35,6 +35,16 @@ public class AgpMenu extends PolymerTemplate<AgpMenu.AgpMenuModel> {
     	MenuItem kasse = vaadinMenuBar.addItem("Kasse"); 
     	MenuItem logout = vaadinMenuBar.addItem("Logout");
     	
+//    	MenuItems fuer den Admin
+//    	vaadinMenuBarAdmin.setOpenOnHover(true);
+//    	MenuItem shop = vaadinMenuBarAdmin.addItem("Shop");    	
+//    	MenuItem warenkorb = vaadinMenuBarAdmin.addItem("Warenkorb");
+//    	MenuItem artikelErstellen = vaadinMenuBarAdmin.addItem("Artikel Erstellen");
+//    	MenuItem artikelVerwalten = vaadinMenuBarAdmin.addItem("Artikel Verwalten"); 
+//    	MenuItem bestellungenVerwalten = vaadinMenuBarAdmin.addItem("Bestellungen Verwalten");
+//    	MenuItem settings = vaadinMenuBarAdmin.addItem("Settings");
+//    	MenuItem logout = vaadinMenuBarAdmin.addItem("Logout");
+    	
     	
 //    	SubMenu shopSub = shop.getSubMenu();
 //    	shopSub.addItem("fancy");

@@ -20,11 +20,8 @@ import com.vaadin.flow.router.Route;
  */
 @Tag("agp-warenkorb")
 @JsModule("./src/agp-warenkorb.js")
-@Route("warenkorb")
 public class AgpWarenkorb extends PolymerTemplate<AgpWarenkorb.AgpWarenkorbModel> {
 
-	@Id("agpMenu")
-	private AgpMenu agpMenu;
 	@Id("vaadinVerticalLayout")
 	private VerticalLayout vaadinVerticalLayout;
 	@Id("vaadinGrid")
@@ -33,6 +30,8 @@ public class AgpWarenkorb extends PolymerTemplate<AgpWarenkorb.AgpWarenkorbModel
 	private Button buttonKaufen;
 	@Id("labelGesamtPreis")
 	private Label labelGesamtPreis;
+	@Id("labelGesamtPreisWert")
+	private Label labelGesamtPreisWert;
 	
     public AgpWarenkorb() {
         // You can initialise any data required for the connected UI components here.

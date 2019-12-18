@@ -1,6 +1,5 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
-import './agp-menu-admin.js';
 import '@vaadin/vaadin-text-field/src/vaadin-text-field.js';
 import '@vaadin/vaadin-combo-box/src/vaadin-combo-box.js';
 import '@vaadin/vaadin-text-field/src/vaadin-text-area.js';
@@ -17,7 +16,6 @@ class AgpArtikelErstellen extends PolymerElement {
                 }
             </style>
 <vaadin-vertical-layout style="width: 100%; height: 100%;" id="vaadinVerticalLayout">
- <agp-menu-admin id="vaadinMenuBarAdmin" style="width:100%;height:10%;"></agp-menu-admin>
  <vaadin-text-field label="" placeholder="Artikelname" id="textFieldArtikelname"></vaadin-text-field>
  <vaadin-combo-box id="comboBoxKategorie" placeholder="Kategorie"></vaadin-combo-box>
  <vaadin-combo-box id="comboBoxAnzahl" placeholder="Anzahl"></vaadin-combo-box>

@@ -19,12 +19,9 @@ import com.vaadin.flow.router.Route;
  */
 @Tag("agp-kasse")
 @JsModule("./src/agp-kasse.js")
-@Route("kasse")
 public class AgpKasse extends PolymerTemplate<AgpKasse.AgpKasseModel> {
 
 	
-	@Id("agpMenu")
-	private AgpMenu agpMenu;
 	@Id("vaadinVerticalLayout")
 	private VerticalLayout vaadinVerticalLayout;
 	@Id("labelRechnungsnummer")
@@ -41,6 +38,8 @@ public class AgpKasse extends PolymerTemplate<AgpKasse.AgpKasseModel> {
 	private Label labelGesamtpreis;
 	@Id("buttonBestellen")
 	private Button buttonBestellen;
+	@Id("labelUeberweisung")
+	private Label labelUeberweisung;
 	
 	
     /**

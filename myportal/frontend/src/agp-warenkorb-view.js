@@ -1,8 +1,9 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
-import '@vaadin/vaadin-grid/src/vaadin-grid.js';
+import './agp-warenkorb.js';
+import './agp-menu.js';
 
-class AgpBestellungenVerwalten extends PolymerElement {
+class AgpWarenkorbView extends PolymerElement {
 
     static get template() {
         return html`
@@ -13,13 +14,14 @@ class AgpBestellungenVerwalten extends PolymerElement {
                 }
             </style>
 <vaadin-vertical-layout style="width: 100%; height: 100%;" id="vaadinVerticalLayout">
- <vaadin-grid id="gridBestellungen"></vaadin-grid>
+ <agp-menu id="agpMenu"></agp-menu>
+ <agp-warenkorb id="agpWarenkorb" style="width:100%;"></agp-warenkorb>
 </vaadin-vertical-layout>
 `;
     }
 
     static get is() {
-        return 'agp-bestellungen-verwalten';
+        return 'agp-warenkorb-view';
     }
 
     static get properties() {
@@ -29,4 +31,4 @@ class AgpBestellungenVerwalten extends PolymerElement {
     }
 }
 
-customElements.define(AgpBestellungenVerwalten.is, AgpBestellungenVerwalten);
+customElements.define(AgpWarenkorbView.is, AgpWarenkorbView);

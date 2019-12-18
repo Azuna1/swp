@@ -2,7 +2,6 @@ import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
 import '@vaadin/vaadin-grid/src/vaadin-grid.js';
 import '@vaadin/vaadin-button/src/vaadin-button.js';
-import './agp-menu.js';
 
 class AgpKasse extends PolymerElement {
 
@@ -15,7 +14,6 @@ class AgpKasse extends PolymerElement {
                 }
             </style>
 <vaadin-vertical-layout style="width: 100%; height: 100%;" id="vaadinVerticalLayout">
- <agp-menu id="agpMenu"></agp-menu>
  <label id="labelRechnungsnummer">Rechnungsnummer:</label>
  <label id="labelMatrikelnummer">Matrikelnummer:</label>
  <label id="labelName">Name:</label>
@@ -23,8 +21,9 @@ class AgpKasse extends PolymerElement {
  <vaadin-grid id="gridArtikelliste"></vaadin-grid>
  <label id="labelGesamtpreis">Gesamtpreis:</label>
  <vaadin-button theme="tertiary" id="buttonBestellen">
-  Verbindlich bestellen
+   Verbindlich bestellen 
  </vaadin-button>
+ <label id="labelUeberweisung">Überweisungstext</label>
 </vaadin-vertical-layout>
 `;
     }

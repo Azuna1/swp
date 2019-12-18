@@ -25,7 +25,6 @@ import com.vaadin.flow.router.Route;
  */
 @Tag("agp-login")
 @JsModule("./src/agp-login.js")
-@Route("")
 public class AgpLogin extends PolymerTemplate<AgpLogin.AgpLoginModel> {
 
     @Id("vaadinLoginForm")

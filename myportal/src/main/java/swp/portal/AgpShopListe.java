@@ -5,6 +5,7 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
@@ -19,20 +20,20 @@ import com.vaadin.flow.router.Route;
  */
 @Tag("agp-shop-liste")
 @JsModule("./src/agp-shop-liste.js")
-@Route("shopListe")
 public class AgpShopListe extends PolymerTemplate<AgpShopListe.AgpShopListeModel> {
 
 	@Id("vaadinVerticalLayout")
 	private VerticalLayout vaadinVerticalLayout;
 	
-	@Id("vaadinSplitLayout1")
-	private SplitLayout vaadinSplitLayout1;
+	@Id("vaadinHorizontalLayout1")
+	private HorizontalLayout horizontalLayout1;
 	
-	@Id("vaadinSplitLayout2")
-	private SplitLayout vaadinSplitLayout2;
+	@Id("vaadinHorizontalLayout2")
+	private HorizontalLayout horizontalLayout2;
 	
-	@Id("vaadinSplitLayout3")
-	private SplitLayout vaadinSplitLayout3;
+	@Id("vaadinHorizontalLayout3")
+	private HorizontalLayout horizontalLayout3;
+	
 	
 	@Id("labelName")
 	private Label labelName;

@@ -20,11 +20,9 @@ import com.vaadin.flow.router.Route;
  */
 @Tag("agp-artikel-erstellen")
 @JsModule("./src/agp-artikel-erstellen.js")
-@Route("artikelErstellen")
 public class AgpArtikelErstellen extends PolymerTemplate<AgpArtikelErstellen.AgpArtikelErstellenModel> {
 
-	@Id("vaadinMenuBarAdmin")
-	private AgpMenuAdmin agpMenuAdmin;
+
 	@Id("vaadinVerticalLayout")
 	private VerticalLayout vaadinVerticalLayout;
 	@Id("textFieldArtikelname")

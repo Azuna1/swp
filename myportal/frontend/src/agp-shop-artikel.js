@@ -1,10 +1,9 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
-import '@vaadin/vaadin-grid/src/vaadin-grid.js';
-import '@vaadin/vaadin-button/src/vaadin-button.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
+import '@vaadin/vaadin-button/src/vaadin-button.js';
 
-class AgpWarenkorb extends PolymerElement {
+class AgpShopArtikel extends PolymerElement {
 
     static get template() {
         return html`
@@ -15,20 +14,24 @@ class AgpWarenkorb extends PolymerElement {
                 }
             </style>
 <vaadin-vertical-layout style="width: 100%; height: 100%;" id="vaadinVerticalLayout">
- <vaadin-grid id="vaadinGrid"></vaadin-grid>
- <vaadin-horizontal-layout theme="spacing">
-  <label id="labelGesamtPreis">Gesamtpreis:</label>
-  <label id="labelGesamtPreisWert">Gesamtpreis Wert</label>
+ <vaadin-horizontal-layout theme="spacing" id="vaadinHorizontalLayout1">
+  <label id="labelArtikelname">Artikelname:</label>
+  <label id="labelArtikelnameWert">Wert</label>
  </vaadin-horizontal-layout>
- <vaadin-button theme="tertiary" id="buttonKaufen">
-   Jetzt kaufen 
+ <vaadin-horizontal-layout theme="spacing" id="vaadinHorizontalLayout2">
+  <label id="labelPreis">Preis:</label>
+  <label id="labelPreisWert">Preis</label>
+ </vaadin-horizontal-layout>
+ <vaadin-button theme="tertiary" id="buttonWarenkorb">
+   in den Warenkorb 
  </vaadin-button>
+ <label id="labelBeschreibung">Beschreibung</label>
 </vaadin-vertical-layout>
 `;
     }
 
     static get is() {
-        return 'agp-warenkorb';
+        return 'agp-shop-artikel';
     }
 
     static get properties() {
@@ -38,4 +41,4 @@ class AgpWarenkorb extends PolymerElement {
     }
 }
 
-customElements.define(AgpWarenkorb.is, AgpWarenkorb);
+customElements.define(AgpShopArtikel.is, AgpShopArtikel);
