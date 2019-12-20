@@ -1,6 +1,13 @@
 package swp.portal;
 
 import com.vaadin.flow.templatemodel.TemplateModel;
+
+import swp.portal.beans.SystemMB;
+
+import java.util.Collection;
+
+import javax.inject.Inject;
+
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -11,6 +18,8 @@ import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Route;
 
 /**
@@ -21,7 +30,7 @@ import com.vaadin.flow.router.Route;
  */
 @Tag("agp-settings")
 @JsModule("./src/agp-settings.js")
-public class AgpSettings extends PolymerTemplate<AgpSettings.AgpSettingsModel> {
+public class AgpSettings extends PolymerTemplate<AgpSettings.AgpSettingsModel> implements BeforeEnterObserver {
 
 	@Id("textAreaEingegangen")
 	private TextArea textAreaEingegangen;
@@ -32,7 +41,7 @@ public class AgpSettings extends PolymerTemplate<AgpSettings.AgpSettingsModel> {
 	@Id("textAreaKunde")
 	private TextArea textAreaKunde;
 	@Id("comboBoxLoeschen")
-	private ComboBox comboBoxLoeschen;
+	private ComboBox<String> comboBoxLoeschen;
 	@Id("buttonLoeschen")
 	private Button buttonLoeschen;
 	@Id("textFieldHinzufuegen")
@@ -43,10 +52,23 @@ public class AgpSettings extends PolymerTemplate<AgpSettings.AgpSettingsModel> {
 	private Button buttonSpeichern;
 	
 	
+	@Inject
+	SystemMB systemMB;
+	
     public AgpSettings() {
         // You can initialise any data required for the connected UI components here.
+    	
+    	buttonHinzufuegen.addClickListener(e -> systemMB.createKategorie(textFieldHinzufuegen.getValue()));
+    	buttonLoeschen.addClickListener(e -> systemMB.deleteKategorie(comboBoxLoeschen.getValue()));
     }
 
+    @Override
+	public void beforeEnter(BeforeEnterEvent event) {
+		comboBoxLoeschen.setItems(systemMB.getKategories());
+		
+	}
+    
+    
     /**
      * This model binds properties between AgpSettings and agp-settings
      */

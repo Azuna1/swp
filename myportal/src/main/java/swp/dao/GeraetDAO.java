@@ -16,7 +16,7 @@ public class GeraetDAO extends GenericDAO<Geraet> {
 	}
 
 	public void deleteGeraet(Geraet aGeraet) {
-		super.delete(aGeraet.getGeraeteID(), Geraet.class);
+		super.delete(aGeraet.getGeraeteID());
 		
 	}
 

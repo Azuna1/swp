@@ -13,7 +13,6 @@ import javax.persistence.SequenceGenerator;
 import swp.entity.RechnungTO;
 
 @Entity
-@Access(AccessType.FIELD)
 public class Rechnung implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

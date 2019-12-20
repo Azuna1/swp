@@ -1,19 +1,23 @@
 package swp.entity.impl;
 
-import javax.persistence.Access;
 import java.io.Serializable;
-import javax.persistence.*;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
 import swp.entity.GeraetTO;
 
 @Entity
-@Access(AccessType.FIELD)
 public class Geraet implements Serializable {
-	private static final long serialVersionUID = 1573731303828865952L;
 	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@SequenceGenerator(name="geraete_id", sequenceName="SEQ_GERAET_ID", allocationSize = 1)

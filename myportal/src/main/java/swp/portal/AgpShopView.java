@@ -28,7 +28,7 @@ import swp.portal.beans.UserMB;
  */
 @Tag("agp-shop-view")
 @JsModule("./src/agp-shop-view.js")
-@Route("Shop")
+@Route("")
 public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> {
 	
 	@Id("agpMenu")

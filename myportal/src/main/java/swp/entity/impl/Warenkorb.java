@@ -10,10 +10,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-@Access(AccessType.FIELD)
 public class Warenkorb implements Serializable {
 
-	private static final long serialVersionUID = 301122L;
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	int warenkorbID;
 	int artikelanzahl;

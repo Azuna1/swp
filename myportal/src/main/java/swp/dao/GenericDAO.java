@@ -38,8 +38,8 @@ public abstract class GenericDAO<T> {
 		 return entityManager.merge(entity);
 	}
 	
-	protected boolean delete(Object id, Class<T> classe){
-		T entityToBeRemoved = entityManager.getReference(classe, id);
+	public boolean delete(Object id){
+		T entityToBeRemoved = entityManager.getReference(entityClass, id);
 		try {
 			entityManager.remove(entityToBeRemoved);
 			return true;
@@ -49,7 +49,7 @@ public abstract class GenericDAO<T> {
 		}
 	}
 	
-	public T find(int entityId) {
+	public T find(Object entityId) {
 		return entityManager.find(entityClass, entityId);
 	}
 	

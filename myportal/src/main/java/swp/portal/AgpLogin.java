@@ -75,7 +75,7 @@ public class AgpLogin extends PolymerTemplate<AgpLogin.AgpLoginModel> {
 				// just for easier testing
 		userMB.setLoggedIn(true);
 		userMB.setAdmin(true);	
-		UI.getCurrent().navigate("Shop");
+		UI.getCurrent().navigate("");
 //		
 //
 //		try {

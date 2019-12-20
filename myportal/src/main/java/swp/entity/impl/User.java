@@ -1,60 +1,36 @@
 package swp.entity.impl;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+
 
 @Entity
-@Access(AccessType.FIELD)
-@NamedQuery(name="User.findUserByMatrikelNr", query="select u from User u where u.matrikelNr = :matrikelNr")
-public class User {
+public class User implements Serializable{
 	
-	public static final String FIND_BY_MATRIKELNR = "User.findUserByName";
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(unique = true)
-	/*Primary Key ist matrikelNr?*/
-	private String matrikelNr;
-	private String username;
-	private String passwort;
+	
+	private String name;
 	
 
 	public User() {}
-	public User(String matrikelNr, String username, String passwort) {	
-		this.matrikelNr = matrikelNr;
-		this.username = username;
-		this.passwort = passwort;
+	public User(String username) {	
+		this.name = username;
 	}
 	
-	public String getMatrikelNr() {
-		return matrikelNr;
-	}
-	
-	public void setMatrikelNr(String matrikelNr) {
-		this.matrikelNr = matrikelNr;
-	}
 	
 	public String getUsername() {
-		return username;
+		return name;
 	}
 	
-	public void setUsername(String username) {
-		this.username = username;
-	}
 	
-	public String getPasswort() {
-		return passwort;
-	}
-	
-	public void setPasswort(String passwort) {
-		this.passwort = passwort;
-	}
 	
 	
 }
