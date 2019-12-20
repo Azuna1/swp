@@ -11,13 +11,20 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Route;
+
+import swp.entity.GeraetTO;
 import swp.portal.AgpMenu;
+import swp.portal.beans.GeraetMB;
+import swp.portal.beans.SystemMB;
 import swp.portal.beans.UserMB;
 
 /**
@@ -29,42 +36,125 @@ import swp.portal.beans.UserMB;
 @Tag("agp-shop-view")
 @JsModule("./src/agp-shop-view.js")
 @Route("")
-public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> {
+public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel>  implements BeforeEnterObserver {
 	
 	@Id("agpMenu")
 	private AgpMenu agpMenu;
 	@Id("textFieldSuchen")
 	private TextField textFieldSuchen;
 	@Id("comboBoxFilter")
-	private ComboBox comboBoxFilter;
+	private ComboBox<String> comboBoxFilter;
 	@Id("layoutArtikel")
 	private VerticalLayout layoutArtikel;
-	//private ArrayList<AgpShopArtikel> artikelList = new ArrayList<>();
+	private ArrayList<AgpShopArtikel> artikelList = new ArrayList<>();
+	private ArrayList<HorizontalLayout> layoutList = new ArrayList<>();
+	
+	@Inject
+	GeraetMB geraetMB;
+	@Inject
+	SystemMB systemMB;
+	@Inject
+	UserMB userMB;
+	
 	/**
      * Creates a new AgpShopView.
      */
     public AgpShopView() {
         // You can initialise any data required for the connected UI components here.
-    	
-    	//sample for adding artikel
-    	HorizontalLayout x = new HorizontalLayout();
-    	x.getStyle().set("justify-content", "space-evenly");
-    	x.getStyle().set("width", "100%");
-    	x.add( new AgpShopArtikel(),new AgpShopArtikel(),new AgpShopArtikel());
-    	layoutArtikel.add( x);
-    	
-    	HorizontalLayout y = new HorizontalLayout();
-    	y.getStyle().set("justify-content", "space-evenly");
-    	y.getStyle().set("width", "100%");
-    	y.add( new AgpShopArtikel(),new AgpShopArtikel());
-    	layoutArtikel.add( y);
+    	comboBoxFilter.addValueChangeListener(e -> {
+    		Notification.show("filter changed: " + comboBoxFilter.getValue());    		
+    		showFiltered(comboBoxFilter.getValue());
+    		
+    	});
     	
     	
-
-
-
+    	
     }
     
+    private void deleteAll() {
+    	
+    	for (HorizontalLayout layout : layoutList) {    	
+			layout.removeAll();	
+		}			
+		
+		layoutList.clear();
+		artikelList.clear();
+    }
+    
+    private void showFiltered(String compare)
+    {
+    	if (compare == null)
+    		return;
+    	int i = 0;
+		HorizontalLayout x = null;
+		AgpShopArtikel artikel;
+		deleteAll();
+		
+		x = new HorizontalLayout();
+		
+		x.getStyle().set("justify-content", "center");
+    	x.getStyle().set("width", "100%");
+    	x.getStyle().set("theme", "spacing");
+    	layoutArtikel.add( x);	
+		
+		for (GeraetTO gTO : geraetMB.getAllGeraete()) {			
+			if (i == 3) {
+				x = new HorizontalLayout();
+				x.getStyle().set("justify-content", "center");
+				x.getStyle().set("width", "100%");
+				x.getStyle().set("theme", "spacing");
+		    	layoutArtikel.add( x);	
+		    	i = 0;
+			}
+			
+			if(gTO.getKategorie().contentEquals(compare) || compare.contentEquals("")) {
+				artikel = new AgpShopArtikel();
+				artikelList.add(artikel);
+				artikel.setArtikelID(gTO.getGeraeteID());
+				artikel.setBeschreibung(gTO.getBeschreibung());
+				artikel.setName(gTO.getGeraetename());
+				artikel.setPreis(gTO.getPreis());
+				artikel.setKategorie(gTO.getKategorie());
+				artikel.setUserMB(userMB);
+				
+				x.add(artikel);
+				i++;			
+			}
+			
+		}		
+    }
+    
+    @Override
+	public void beforeEnter(BeforeEnterEvent event) {
+    	comboBoxFilter.setItems(systemMB.getKategories());
+    	deleteAll();
+    	showFiltered("");
+//		int i = 0;
+//		HorizontalLayout x = null;
+//		AgpShopArtikel artikel;
+//		
+//		for (GeraetTO gTO : geraetMB.getAllGeraete()) {
+//			if (i == 3)
+//				i = 0;
+//			if (i == 0) {
+//				x = new HorizontalLayout();
+//				x.getStyle().set("justify-content", "space-evenly");
+//		    	x.getStyle().set("width", "100%");
+//		    	layoutArtikel.add( x);		    	
+//			}
+//			artikel = new AgpShopArtikel();
+//			artikelList.add(artikel);
+//			artikel.setArtikelID(gTO.getGeraeteID());
+//			artikel.setBeschreibung(gTO.getBeschreibung());
+//			artikel.setName(gTO.getGeraetename());
+//			artikel.setPreis(gTO.getPreis());
+//			artikel.setKategorie(gTO.getKategorie());
+//			
+//			x.add(artikel);
+//			i++;
+//		}		
+		
+	}
 
 
     /**

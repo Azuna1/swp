@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import swp.dao.GeraetDAO;
+import swp.entity.EmailTO;
 import swp.entity.GeraetTO;
 import swp.entity.impl.Geraet;
 import swp.usecase.IGeraeteManager;
@@ -50,5 +51,11 @@ public class GeraeteManager implements IGeraeteManager {
 	public void editGeraet(GeraetTO geraetTO) {
 		geraetDAO.editGeraet(geraetTO);
 		
+	}
+
+	@Override
+	public GeraetTO getGeraet(int id) {
+		Geraet g = geraetDAO.find(id);		
+		return (g == null) ? null : g.toGeraetTO();
 	}
 }

@@ -11,4 +11,5 @@ public interface IGeraeteManager {
 	public boolean deleteGeraet(int geraetID);
 	public List<GeraetTO> getAllGeraete();
 	public void editGeraet (GeraetTO geraetTO);
+	public GeraetTO getGeraet(int id);
 }

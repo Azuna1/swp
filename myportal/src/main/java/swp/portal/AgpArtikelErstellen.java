@@ -3,7 +3,11 @@ package swp.portal;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
 import swp.portal.beans.GeraetMB;
+import swp.portal.beans.SystemMB;
 import swp.usecase.IGeraeteManager;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.inject.Inject;
 
@@ -54,19 +58,25 @@ public class AgpArtikelErstellen extends PolymerTemplate<AgpArtikelErstellen.Agp
 	
 	@Inject
 	IGeraeteManager geraetManager;
+	
+	@Inject
+	SystemMB systemMB;
     /**
      * Creates a new AgpArtikelErstellen.
      */
     public AgpArtikelErstellen() {
         // You can initialise any data required for the connected UI components here.
-    	buttonSpeichern.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-    	buttonLoeschen.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+//    	buttonSpeichern.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+//    	buttonLoeschen.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
     	
+    	Collection<Integer> col = new ArrayList<Integer>();
     	for (int i = 0; i <= 100; i++)
-    		comboBoxAnzahl.setItems(i);
+    		col.add(i);
+    	
+    	comboBoxAnzahl.setItems(col);
     	
     	buttonSpeichern.addClickListener(event -> {
-    		for (int i = 0; i < comboBoxAnzahl.getValue();i++)
+    		for (int i = 0; i < comboBoxAnzahl.getValue(); i++)
     			geraetMB.createGeraet(textAreaArtikelbeschreibung.getValue(), comboBoxKategorie.getValue(), Double.valueOf(textFieldPreis.getValue()), textFieldArtikelname.getValue());
     	});
     	
@@ -77,11 +87,14 @@ public class AgpArtikelErstellen extends PolymerTemplate<AgpArtikelErstellen.Agp
     		textFieldArtikelname.setValue("");
     		comboBoxAnzahl.setValue(0);
     	});
+    	
+    	
     }
 
     @Override
 	public void beforeEnter(BeforeEnterEvent event) {
 		//TODO kategorien füllen
+    	comboBoxKategorie.setItems(systemMB.getKategories());
 		
 	}
     

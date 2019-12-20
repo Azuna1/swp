@@ -13,8 +13,9 @@ public class WarenkorbManager implements IWarenkorbManager {
 	WarenkorbDAO warenkorbDAO;
 	
 	@Override
-	public void rmFromWarenkorb() {
+	public void deleteFromWarenkorb(int geraetID) {
 		// TODO Auto-generated method stub
+		warenkorbDAO.delete(geraetID);
 		
 	}
 
@@ -25,8 +26,9 @@ public class WarenkorbManager implements IWarenkorbManager {
 	}
 
 	@Override
-	public void addToWarenkorb() {
+	public void addToWarenkorb(int geraetID) {
 		// TODO Auto-generated method stub
+		
 		
 	}
 }

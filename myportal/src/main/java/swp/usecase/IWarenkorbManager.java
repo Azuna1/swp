@@ -4,6 +4,6 @@ package swp.usecase;
 public interface IWarenkorbManager {
 	
 	public void kaufen();
-	public void addToWarenkorb();
-	public void rmFromWarenkorb();
+	public void addToWarenkorb(int id);
+	public void deleteFromWarenkorb(int id);
 }

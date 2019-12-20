@@ -11,8 +11,6 @@ public class EmailDAO extends GenericDAO<Email>{
 		super(Email.class);
 	}
 	
-	public void deleteEmail(Email mail) {
-		super.delete(mail.getName());
-	}
+	
 
 }

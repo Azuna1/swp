@@ -12,6 +12,9 @@ class AgpShopArtikel extends PolymerElement {
                     display: block;
                     height: 100%;
                 }
+                :host([hidden]) {
+  					display: none !important;
+				}
             </style>
 <vaadin-vertical-layout style="width:350px; height: 300px; border:1px dotted hsl(214, 90%, 52%);">
  <vaadin-horizontal-layout style="width: 100%; height: 20%;" theme="margin">
@@ -30,8 +33,8 @@ class AgpShopArtikel extends PolymerElement {
   <vaadin-button theme="primary" id="buttonWarenkorb" style="flex-shrink: 0; width 100%; align-self: center;">
     Zum Warenkorb Hinzufügen 
   </vaadin-button>
-  <vaadin-button theme="primary" id="vaadinButton" style="align-self: center;">
-   Details
+  <vaadin-button theme="primary" id="buttonDetail" style="align-self: center;">
+    Details 
   </vaadin-button>
  </vaadin-horizontal-layout>
 </vaadin-vertical-layout>

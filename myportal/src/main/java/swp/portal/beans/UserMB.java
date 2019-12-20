@@ -1,6 +1,14 @@
 package swp.portal.beans;
 
+import java.util.ArrayList;
+
+import javax.inject.Inject;
+
 import com.vaadin.cdi.annotation.VaadinSessionScoped;
+
+import swp.entity.GeraetTO;
+
+
 
 @VaadinSessionScoped
 public class UserMB {
@@ -11,7 +19,28 @@ public class UserMB {
 	private String surname;
 	private int matrikelNr;
 	private String email;
-
+	private ArrayList<Integer> warenkorb = new ArrayList<>();
+	
+	@Inject
+	GeraetMB geraetMB;
+	
+	public ArrayList<GeraetTO> getWarenkorb()
+	{
+		ArrayList<GeraetTO> list = new ArrayList<>();
+		for(int i : warenkorb) {
+			GeraetTO gTO = geraetMB.getGeraet(i);
+			if(gTO != null)
+				list.add(gTO);
+		}
+		return list;
+	}
+	public void addToWarenkorb(int id) {
+		warenkorb.add(id);
+	}
+	
+	public void removeFromWarenkorb(Integer id) {
+		warenkorb.remove(id);
+	}
 	
 	public boolean isAdmin() {
 		return isAdmin;

@@ -1,18 +1,19 @@
 package swp.portal;
 
 import com.vaadin.flow.templatemodel.TemplateModel;
+
+import swp.portal.beans.GeraetMB;
+import swp.portal.beans.UserMB;
+
+import javax.inject.Inject;
+
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
-import com.vaadin.flow.component.textfield.TextArea;
-import com.vaadin.flow.router.Route;
-import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.grid.Grid.Column;
 
 /**
  * A Designer generated component for the agp-shop-artikel template.
@@ -24,14 +25,12 @@ import com.vaadin.flow.component.grid.Grid.Column;
 @JsModule("./src/agp-shop-artikel.js")
 public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtikelModel> {
 	
-	
-	
-	
-	
+		
 	@Id("buttonWarenkorb")
 	private Button buttonWarenkorb;	
 
 	private int artikelID;
+	private String kategorie;
 
 	@Id("textBeschreibung")
 	private Label textBeschreibung;
@@ -42,14 +41,25 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 	@Id("textName")
 	private Label textName;
 
-	@Id("vaadinButton")
-	private Button vaadinButton;
+	@Id("buttonDetail")
+	private Button buttonDetail;
+	
+	private UserMB userMB;
 
 	public AgpShopArtikel() {
         // You can initialise any data required for the connected UI components here.
-		textName.setText("name");
-		textPreis.setText("22€");
-		textBeschreibung.setText("beschreibung");    
+		buttonWarenkorb.addClickListener(e -> {
+			Notification.show(String.format("%d",this.getArtikelID()));	
+			userMB.addToWarenkorb(this.getArtikelID());
+		});
+		buttonDetail.addClickListener(e -> {
+			Notification.show(String.format("%d",this.getArtikelID()));
+		});
+		  
+	}
+	
+	public void setUserMB(UserMB userMB) {
+		this.userMB = userMB;
 	}
 	
 	public String getName() {
@@ -62,7 +72,7 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 		return Double.parseDouble(this.textPreis.getText());
 	}
 	public void setPreis(double preis) {
-		this.textPreis.setText(Double.toString(preis));
+		this.textPreis.setText(String.format("%.2f",preis));
 	}
 	public String getBeschreibung() {
 		return textBeschreibung.getText();
@@ -77,7 +87,17 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 		this.artikelID = id;
 	}
 
-    /**
+    public String getKategorie() {
+		return kategorie;
+	}
+
+
+
+	public void setKategorie(String kategorie) {
+		this.kategorie = kategorie;
+	}
+
+	/**
      * This model binds properties between AgpShopArtikel and agp-shop-artikel
      */
     public interface AgpShopArtikelModel extends TemplateModel {

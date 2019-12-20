@@ -25,7 +25,7 @@ class AgpShopView extends PolymerElement {
  </vaadin-text-field>
  <vaadin-combo-box id="comboBoxFilter" placeholder="Filter"></vaadin-combo-box>
 </vaadin-horizontal-layout>
-<vaadin-vertical-layout id="layoutArtikel" style="width: 100%; height: 100%;" theme="margin"></vaadin-vertical-layout>
+<vaadin-vertical-layout id="layoutArtikel" style="width: 100%; height: 85%;" theme=""></vaadin-vertical-layout>
 `;
     }
 
