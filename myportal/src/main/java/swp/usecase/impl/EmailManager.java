@@ -44,6 +44,10 @@ public class EmailManager implements IEmailManager{
 	@Override
 	public void editEmail(String name, String toEmail, String message) {
 		Email mail = emailDAO.find(name);
+		if(mail == null) {
+			createEmail(name,toEmail,message);
+			return;
+		}
 		mail.setToEmail(toEmail);
 		mail.setMessage(message);
 		emailDAO.update(mail);
@@ -53,7 +57,7 @@ public class EmailManager implements IEmailManager{
 	@Override
 	public EmailTO getEmail(String name) {		
 		Email mail = emailDAO.find(name);
-		return mail.toEmailTO();
+		return (mail  == null) ? new EmailTO() : mail.toEmailTO();
 		
 	}
 

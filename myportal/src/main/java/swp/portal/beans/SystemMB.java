@@ -24,9 +24,37 @@ public class SystemMB {
 	@Inject
 	IKategorieManager kategorieManager;
 	@Inject
-	IUserManager userManager;
+	IUserManager userManager;	
 	
-	private ArrayList<EmailTO> emailTOs = new ArrayList<>();
+	
+	private String mailSchulte = "Rechnung beglichen";
+	private String mailSchulteEmail = "sendmeamailswp2019@gmail.com"; 	//TODO dummy email
+	private String mailKundeAbholbereit = "Einkauf bereit zur Abholung";
+	private String mailFIBU = "Neuer Auftrag";
+	private String mailFIBUEmail = "sendmeamailswp2019@gmail.com";		//TODO dummy email
+	private String mailKunde = "Vielen Dank für ihren Einkauf";
+	
+	public void updateEmails(String msgSchulte, String msgKundeAbholbereit, String msgFIBU, String msgKunde) {
+
+		emailManager.editEmail(mailSchulte, mailSchulteEmail, msgSchulte);
+		emailManager.editEmail(mailFIBU, mailFIBUEmail, msgFIBU);
+		emailManager.editEmail(mailKundeAbholbereit, "" , msgKundeAbholbereit);
+		emailManager.editEmail(mailKunde,"" , msgKunde);
+		
+	}
+	
+	public String getEmailSchulte() {
+		return emailManager.getEmail(mailSchulte).getMessage();
+	}
+	public String getEmailKundeAbholbereit() {
+		return emailManager.getEmail(mailKundeAbholbereit).getMessage();
+	}
+	public String getEmailFIBU() {
+		return emailManager.getEmail(mailFIBU).getMessage();
+	}
+	public String getEmailKunde() {
+		return emailManager.getEmail(mailKunde).getMessage();
+	}
 	
 	public Collection<String> getKategories() {
 		Collection<String> col = new ArrayList<String>();
@@ -43,5 +71,6 @@ public class SystemMB {
 	public void deleteKategorie(String name) {
 		kategorieManager.deleteKategorie(name);
 	}
+
 
 }

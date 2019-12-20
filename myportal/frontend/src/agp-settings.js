@@ -21,6 +21,9 @@ class AgpSettings extends PolymerElement {
  <vaadin-text-area label="Abholbereit E-Mail (an Kunde)" id="textAreaAbholen" style="width:50%;"></vaadin-text-area>
  <vaadin-text-area label="E-Mail an Buchhaltung" id="textAreaBuchhaltung" style="width:50%;"></vaadin-text-area>
  <vaadin-text-area label="E-Mail an Kunde" id="textAreaKunde" style="width:50%;"></vaadin-text-area>
+ <vaadin-button theme="Primary" id="buttonSpeichern" style="align-self: center;">
+  Emaileinstellungen Speichern
+ </vaadin-button>
  <vaadin-horizontal-layout theme="spacing" id="vaadinHorizontalLayout">
   <vaadin-combo-box id="comboBoxLoeschen" placeholder="Kategorie löschen"></vaadin-combo-box>
   <vaadin-button theme="Primary" id="buttonLoeschen" content="" style="flex-grow: 0; width: 120px; flex-shrink: 0;" width="">
@@ -33,9 +36,6 @@ class AgpSettings extends PolymerElement {
     Hinzufügen 
   </vaadin-button>
  </vaadin-horizontal-layout>
- <vaadin-button theme="Primary" id="buttonSpeichern" style="align-self: center;">
-   Einstellungen Speichern 
- </vaadin-button>
 </vaadin-vertical-layout>
 `;
     }

@@ -8,9 +8,9 @@ public class EmailTO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String name;
-	private String toEmail;
-	private String message;
+	private String name = "";
+	private String toEmail = "";
+	private String message = "";
 	
 	public EmailTO() {}
 	public EmailTO(String name, String toEmail, String message)
@@ -28,13 +28,13 @@ public class EmailTO implements Serializable {
 		this.toEmail = toEmail;
 	}
 	public String getMessage() {
-		return message;
+		return this.message;
 	}
 	public void setMessage(String message) {
 		this.message = message;
 	}
 	public String getName() {
-		return name;
+		return this.name;
 	}
 	public void setName(String name) {
 		this.name = name;
