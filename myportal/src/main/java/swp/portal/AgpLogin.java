@@ -55,8 +55,13 @@ public class AgpLogin extends PolymerTemplate<AgpLogin.AgpLoginModel> {
 	}
 
 	public void login(LoginEvent event) {
+		//TODO
+		// just for easier testing
+		
+		//testuser2:gJalvqQlCOhi
+		
 		//Notification.show("User: " + event.getUsername() + " tried to login");
-		// String principalName = "cn=testuser3, ou=People, dc=recodesystems, dc=com";
+		// String principalName = "cn=testuser2, ou=People, dc=recodesystems, dc=com";
 		String principalName = "cn=" + event.getUsername() + ", ou=People, dc=recodesystems, dc=com";
 
 		Hashtable<String, String> env = new Hashtable<String, String>();
@@ -65,32 +70,39 @@ public class AgpLogin extends PolymerTemplate<AgpLogin.AgpLoginModel> {
 		env.put(Context.SECURITY_AUTHENTICATION, "simple");
 		env.put(Context.SECURITY_PRINCIPAL, principalName);
 		env.put(Context.SECURITY_CREDENTIALS, event.getPassword());
-
-		try {
-			// Connect with ldap
-			new InitialLdapContext(env, null);
-
-			userMB.setLoggedIn(true);
-			
-			// dummy way to have an admin
-			if (event.getUsername().contentEquals("testuser2")) {
-				userMB.setAdmin(true);				
-			}
-
-			// Auth succeeded
-			System.out.println("Login succeeded!");
-			UI.getCurrent().navigate("Shop");
-			
-		} catch (AuthenticationException er) {
-			System.out.println("Login failed!");
-			vaadinLoginForm.setEnabled(true);
-			Notification.show("User: " + event.getUsername() + " failed to login");
-		} catch (NamingException e) {
-
-			// Connection failed			
-			e.printStackTrace();
-			vaadinLoginForm.setEnabled(true);
-		}
+		
+		//TODO
+				// just for easier testing
+		userMB.setLoggedIn(true);
+		userMB.setAdmin(true);	
+		UI.getCurrent().navigate("Shop");
+//		
+//
+//		try {
+//			// Connect with ldap
+//			new InitialLdapContext(env, null);
+//
+//			userMB.setLoggedIn(true);
+//			
+//			// dummy way to have an admin
+//			if (event.getUsername().contentEquals("testuser2")) {
+//				userMB.setAdmin(true);				
+//			}
+//
+//			// Auth succeeded
+//			System.out.println("Login succeeded!");
+//			UI.getCurrent().navigate("Shop");
+//			
+//		} catch (AuthenticationException er) {
+//			System.out.println("Login failed!");
+//			vaadinLoginForm.setEnabled(true);
+//			Notification.show("User: " + event.getUsername() + " failed to login");
+//		} catch (NamingException e) {
+//
+//			// Connection failed			
+//			e.printStackTrace();
+//			vaadinLoginForm.setEnabled(true);
+//		}
 
 	}
 }

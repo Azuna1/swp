@@ -7,6 +7,9 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.Label;
 
 /**
  * A Designer generated component for the agp-warenkorb-view template.
@@ -19,14 +22,15 @@ import com.vaadin.flow.router.Route;
 @Route("Warenkorb")
 public class AgpWarenkorbView extends PolymerTemplate<AgpWarenkorbView.AgpWarenkorbViewModel> {
 
-	@Id("vaadinVerticalLayout")
-	private VerticalLayout vaadinVerticalLayout;
 	@Id("agpMenu")
 	private AgpMenu agpMenu;
-	@Id("agpWarenkorb")
-	private AgpWarenkorb agpWarenkorb;
-	
-    public AgpWarenkorbView() {
+	@Id("vaadinGrid")
+	private Grid vaadinGrid;
+	@Id("buttonKaufen")
+	private Button buttonKaufen;
+	@Id("textSumme")
+	private Label textSumme;
+	public AgpWarenkorbView() {
         // You can initialise any data required for the connected UI components here.
     }
 

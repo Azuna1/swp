@@ -2,10 +2,13 @@ package swp.portal;
 
 import com.vaadin.flow.templatemodel.TemplateModel;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -28,24 +31,37 @@ import swp.portal.beans.UserMB;
 @Route("Shop")
 public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> {
 	
-	@Id("vaadinVerticalLayout")
-	private VerticalLayout vaadinVerticalLayout;
 	@Id("agpMenu")
 	private AgpMenu agpMenu;
-	@Id("vaadinHorizontalLayout")
-	private HorizontalLayout vaadinHorizontalLayout;
 	@Id("textFieldSuchen")
 	private TextField textFieldSuchen;
 	@Id("comboBoxFilter")
 	private ComboBox comboBoxFilter;
-	@Id("agpShopListe")
-	private AgpShopListe agpShopListe;
-
+	@Id("layoutArtikel")
+	private VerticalLayout layoutArtikel;
+	//private ArrayList<AgpShopArtikel> artikelList = new ArrayList<>();
 	/**
      * Creates a new AgpShopView.
      */
     public AgpShopView() {
         // You can initialise any data required for the connected UI components here.
+    	
+    	//sample for adding artikel
+    	HorizontalLayout x = new HorizontalLayout();
+    	x.getStyle().set("justify-content", "space-evenly");
+    	x.getStyle().set("width", "100%");
+    	x.add( new AgpShopArtikel(),new AgpShopArtikel(),new AgpShopArtikel());
+    	layoutArtikel.add( x);
+    	
+    	HorizontalLayout y = new HorizontalLayout();
+    	y.getStyle().set("justify-content", "space-evenly");
+    	y.getStyle().set("width", "100%");
+    	y.add( new AgpShopArtikel(),new AgpShopArtikel());
+    	layoutArtikel.add( y);
+    	
+    	
+
+
 
     }
     

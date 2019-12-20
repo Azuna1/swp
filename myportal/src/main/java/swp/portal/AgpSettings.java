@@ -23,8 +23,6 @@ import com.vaadin.flow.router.Route;
 @JsModule("./src/agp-settings.js")
 public class AgpSettings extends PolymerTemplate<AgpSettings.AgpSettingsModel> {
 
-	@Id("vaadinVerticalLayout")
-	private VerticalLayout vaadinVerticalLayout;
 	@Id("textAreaEingegangen")
 	private TextArea textAreaEingegangen;
 	@Id("textAreaAbholen")
@@ -33,14 +31,10 @@ public class AgpSettings extends PolymerTemplate<AgpSettings.AgpSettingsModel> {
 	private TextArea textAreaBuchhaltung;
 	@Id("textAreaKunde")
 	private TextArea textAreaKunde;
-	@Id("vaadinHorizontalLayout")
-	private HorizontalLayout vaadinHorizontalLayout;
 	@Id("comboBoxLoeschen")
 	private ComboBox comboBoxLoeschen;
 	@Id("buttonLoeschen")
 	private Button buttonLoeschen;
-	@Id("vaadinHorizontalLayout1")
-	private HorizontalLayout vaadinHorizontalLayout1;
 	@Id("textFieldHinzufuegen")
 	private TextField textFieldHinzufuegen;
 	@Id("buttonHinzufuegen")

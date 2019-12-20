@@ -19,8 +19,7 @@ import com.vaadin.flow.router.Route;
 @Route("ArtikelErstellen")
 public class AgpArtikelErstellenView extends PolymerTemplate<AgpArtikelErstellenView.AgpArtikelErstellenViewModel> {
 
-	@Id("vaadinVerticalLayout")
-	private VerticalLayout vaadinVerticalLayout;
+	
 	@Id("agpMenu")
 	private AgpMenu agpMenu;
 	@Id("agpArtikelErstellen")

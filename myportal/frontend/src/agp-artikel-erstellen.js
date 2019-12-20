@@ -3,6 +3,7 @@ import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
 import '@vaadin/vaadin-text-field/src/vaadin-text-field.js';
 import '@vaadin/vaadin-combo-box/src/vaadin-combo-box.js';
 import '@vaadin/vaadin-text-field/src/vaadin-text-area.js';
+import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 import '@vaadin/vaadin-button/src/vaadin-button.js';
 
 class AgpArtikelErstellen extends PolymerElement {
@@ -15,18 +16,20 @@ class AgpArtikelErstellen extends PolymerElement {
                     height: 100%;
                 }
             </style>
-<vaadin-vertical-layout style="width: 100%; height: 100%;" id="vaadinVerticalLayout">
- <vaadin-text-field label="" placeholder="Artikelname" id="textFieldArtikelname"></vaadin-text-field>
- <vaadin-combo-box id="comboBoxKategorie" placeholder="Kategorie"></vaadin-combo-box>
- <vaadin-combo-box id="comboBoxAnzahl" placeholder="Anzahl"></vaadin-combo-box>
- <vaadin-text-field label="" placeholder="Preis" id="textFieldPreis"></vaadin-text-field>
- <vaadin-text-area label="Artikelbeschreibung" id="textAreaArtikelbeschreibung"></vaadin-text-area>
- <vaadin-button theme="tertiary" id="buttonSpeichern">
-   Speichern 
- </vaadin-button>
- <vaadin-button theme="tertiary" id="buttonLoeschen">
-   Loeschen 
- </vaadin-button>
+<vaadin-vertical-layout style="width: 100%; height: 100%; align-items: center;" id="vaadinVerticalLayout">
+ <vaadin-text-field label="" placeholder="Artikelname" id="textFieldArtikelname" style="width: 250px;"></vaadin-text-field>
+ <vaadin-combo-box id="comboBoxKategorie" placeholder="Kategorie" style="width: 250px;"></vaadin-combo-box>
+ <vaadin-combo-box id="comboBoxAnzahl" placeholder="Anzahl" style="width: 250px;"></vaadin-combo-box>
+ <vaadin-text-field label="" placeholder="Preis" id="textFieldPreis" style="width: 250px;"></vaadin-text-field>
+ <vaadin-text-area label="Artikelbeschreibung" id="textAreaArtikelbeschreibung" style="width: 250px;"></vaadin-text-area>
+ <vaadin-horizontal-layout style="width: 250px; height: 100%; justify-content: space-evenly;">
+  <vaadin-button theme="Primary" id="buttonSpeichern">
+    Speichern 
+  </vaadin-button>
+  <vaadin-button theme="Primary" id="buttonLoeschen">
+    Loeschen 
+  </vaadin-button>
+ </vaadin-horizontal-layout>
 </vaadin-vertical-layout>
 `;
     }

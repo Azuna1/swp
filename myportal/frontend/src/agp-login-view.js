@@ -1,5 +1,5 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
-import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
+import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 import './agp-login.js';
 
 class AgpLoginView extends PolymerElement {
@@ -12,9 +12,9 @@ class AgpLoginView extends PolymerElement {
                     height: 100%;
                 }
             </style>
-<vaadin-vertical-layout style="width: 100%; height: 100%;" id="vaadinVerticalLayout">
+<vaadin-horizontal-layout style="width: 100%; height: 100%; justify-content: center;">
  <agp-login id="agpLogin"></agp-login>
-</vaadin-vertical-layout>
+</vaadin-horizontal-layout>
 `;
     }
 

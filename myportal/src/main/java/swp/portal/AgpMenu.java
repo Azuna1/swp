@@ -49,7 +49,7 @@ public class AgpMenu extends PolymerTemplate<AgpMenu.AgpMenuModel> implements Be
 		MenuItem warenkorb = vaadinMenuBar.addItem("Warenkorb", e -> UI.getCurrent().navigate("Warenkorb"));
 		MenuItem bestellungenVerwalten = vaadinMenuBar.addItem("Bestellungen Verwalten",
 				e -> UI.getCurrent().navigate("BestellungenVerwalten"));
-		MenuItem kasse = vaadinMenuBar.addItem("Kasse", e -> UI.getCurrent().navigate("Kasse"));
+		//MenuItem kasse = vaadinMenuBar.addItem("Kasse", e -> UI.getCurrent().navigate("Kasse"));
 
 		artikelErstellen = vaadinMenuBar.addItem("Artikel Erstellen",
 				e -> UI.getCurrent().navigate("ArtikelErstellen"));

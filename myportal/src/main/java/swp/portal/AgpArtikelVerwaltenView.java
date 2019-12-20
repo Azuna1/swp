@@ -8,7 +8,7 @@ import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.Route;
 import swp.portal.AgpMenu;
-import swp.portal.AgpArtikelVerwalten;
+
 
 /**
  * A Designer generated component for the agp-artikel-verwalten-view template.
@@ -21,15 +21,8 @@ import swp.portal.AgpArtikelVerwalten;
 @Route("ArtikelVerwalten")
 public class AgpArtikelVerwaltenView extends PolymerTemplate<AgpArtikelVerwaltenView.AgpArtikelVerwaltenViewModel> {
 
-	@Id("vaadinVerticalLayout")
-	private VerticalLayout vaadinVerticalLayout;
 	@Id("agpMenu")
 	private AgpMenu agpMenu;
-	@Id("agpArtikelVerwalten")
-	private AgpArtikelVerwalten agpArtikelVerwalten;
-
-	
-	
 	public AgpArtikelVerwaltenView() {
         // You can initialise any data required for the connected UI components here.
     }

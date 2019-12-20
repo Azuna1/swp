@@ -19,8 +19,6 @@ import com.vaadin.flow.router.Route;
 @Route("Login")
 public class AgpLoginView extends PolymerTemplate<AgpLoginView.AgpLoginViewModel> {
 
-	@Id("vaadinVerticalLayout")
-	private VerticalLayout vaadinVerticalLayout;
 	@Id("agpLogin")
 	private AgpLogin agpLogin;
 	

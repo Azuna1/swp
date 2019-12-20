@@ -19,13 +19,8 @@ import com.vaadin.flow.router.Route;
 @Route("BestellungenVerwalten")
 public class AgpBestellungenVerwaltenView extends PolymerTemplate<AgpBestellungenVerwaltenView.AgpBestellungenVerwaltenViewModel> {
 
-    @Id("vaadinVerticalLayout")
-    private VerticalLayout vaadinVerticalLayout;
     @Id("agpMenu")
     private AgpMenu agpMenu;
-    @Id("agpBestellungenVerwalten")
-    private AgpBestellungenVerwalten agpBestellungenVerwalten;
-	
     public AgpBestellungenVerwaltenView() {
         // You can initialise any data required for the connected UI components here.
     }

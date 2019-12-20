@@ -16,25 +16,25 @@ class AgpSettings extends PolymerElement {
                     height: 100%;
                 }
             </style>
-<vaadin-vertical-layout style="width: 100%; height: 100%;" id="vaadinVerticalLayout">
+<vaadin-vertical-layout style="width: 100%; height: 100%; align-items: center;" id="vaadinVerticalLayout">
  <vaadin-text-area label="Bestellung eingegangen  E-Mail (an Herrn Schulte)" id="textAreaEingegangen" style="width:50%;"></vaadin-text-area>
  <vaadin-text-area label="Abholbereit E-Mail (an Kunde)" id="textAreaAbholen" style="width:50%;"></vaadin-text-area>
  <vaadin-text-area label="E-Mail an Buchhaltung" id="textAreaBuchhaltung" style="width:50%;"></vaadin-text-area>
  <vaadin-text-area label="E-Mail an Kunde" id="textAreaKunde" style="width:50%;"></vaadin-text-area>
  <vaadin-horizontal-layout theme="spacing" id="vaadinHorizontalLayout">
   <vaadin-combo-box id="comboBoxLoeschen" placeholder="Kategorie löschen"></vaadin-combo-box>
-  <vaadin-button theme="tertiary" id="buttonLoeschen" content="">
-   Löschen
+  <vaadin-button theme="Primary" id="buttonLoeschen" content="" style="flex-grow: 0; width: 120px; flex-shrink: 0;" width="">
+    Löschen 
   </vaadin-button>
  </vaadin-horizontal-layout>
  <vaadin-horizontal-layout theme="spacing" id="vaadinHorizontalLayout1">
   <vaadin-text-field label="" placeholder="Kategorie hinzufügen" id="textFieldHinzufuegen"></vaadin-text-field>
-  <vaadin-button theme="tertiary" id="buttonHinzufuegen">
-   Hinzufügen 
+  <vaadin-button theme="Primary" id="buttonHinzufuegen" style="flex-grow: 0; width: 120px; flex-shrink: 0;">
+    Hinzufügen 
   </vaadin-button>
  </vaadin-horizontal-layout>
- <vaadin-button theme="tertiary" id="buttonSpeichern">
-  Einstellungen Speichern
+ <vaadin-button theme="Primary" id="buttonSpeichern" style="align-self: center;">
+   Einstellungen Speichern 
  </vaadin-button>
 </vaadin-vertical-layout>
 `;

@@ -19,8 +19,7 @@ import com.vaadin.flow.router.Route;
 @Route("Settings")
 public class AgpSettingsView extends PolymerTemplate<AgpSettingsView.AgpSettingsViewModel> {
 
-    @Id("vaadinVerticalLayout")
-    private VerticalLayout vaadinVerticalLayout;
+   
     @Id("agpMenu")
     private AgpMenu agpMenu;
     @Id("agpSettings")

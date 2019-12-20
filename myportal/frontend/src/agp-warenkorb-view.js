@@ -1,7 +1,10 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
-import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
-import './agp-warenkorb.js';
 import './agp-menu.js';
+import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
+import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
+import '@vaadin/vaadin-grid/src/vaadin-grid.js';
+import '@vaadin/vaadin-grid/src/vaadin-grid-column.js';
+import '@vaadin/vaadin-button/src/vaadin-button.js';
 
 class AgpWarenkorbView extends PolymerElement {
 
@@ -13,10 +16,29 @@ class AgpWarenkorbView extends PolymerElement {
                     height: 100%;
                 }
             </style>
-<vaadin-vertical-layout style="width: 100%; height: 100%;" id="vaadinVerticalLayout">
- <agp-menu id="agpMenu"></agp-menu>
- <agp-warenkorb id="agpWarenkorb" style="width:100%;"></agp-warenkorb>
-</vaadin-vertical-layout>
+<vaadin-horizontal-layout style="width: 100%; height: 10%; justify-content: center;">
+ <agp-menu id="agpMenu" style="height: 10%;"></agp-menu>
+</vaadin-horizontal-layout>
+<vaadin-horizontal-layout style="width: 100%; height: 100%; justify-content: center;">
+ <vaadin-vertical-layout style="width: 70%; height: 80%; align-items: center;" id="vaadinVerticalLayout" theme="margin">
+  <label style="align-self: flex-start;">Warenkorb:</label>
+  <vaadin-grid id="vaadinGrid" style="border: solid 1px;">
+   <vaadin-grid-column></vaadin-grid-column>
+   <vaadin-grid-column></vaadin-grid-column>
+   <vaadin-grid-column></vaadin-grid-column>
+   <vaadin-grid-column></vaadin-grid-column>
+  </vaadin-grid>
+  <vaadin-horizontal-layout style="justify-content: space-between; width: 100%;">
+   <div>
+    <label style="width:100px;" theme="">Summe:</label>
+    <label id="textSumme">Label</label>
+   </div>
+   <vaadin-button theme="primary" id="buttonKaufen">
+     Jetzt Kaufen 
+   </vaadin-button>
+  </vaadin-horizontal-layout>
+ </vaadin-vertical-layout>
+</vaadin-horizontal-layout>
 `;
     }
 
