@@ -17,21 +17,21 @@ class AgpShopArtikel extends PolymerElement {
 				}
             </style>
 <vaadin-vertical-layout style="width:350px; height: 300px; border:1px dotted hsl(214, 90%, 52%);">
- <vaadin-horizontal-layout style="width: 100%; height: 20%;" theme="margin">
+ <vaadin-horizontal-layout style="width: 90%; height: 20%;" theme="margin">
   <label style="width:120px;">Name:</label>
-  <label id="textName" style="flex-shrink: 0; flex-grow: 1;">Label</label>
+  <label id="textName" style="width:200px; height: 30px;">Label</label>
  </vaadin-horizontal-layout>
- <vaadin-horizontal-layout style="width: 100%; height: 20%; justify-content: flex-start; flex-shrink: 1;" theme="margin">
+ <vaadin-horizontal-layout style="width: 90%; height: 20%;" theme="margin">
   <label style="width:120px">Preis:</label>
-  <label id="textPreis" style="flex-grow: 1; flex-shrink: 0;">Label</label>
+  <label id="textPreis" style="width:200px; height: 30px;">Label</label>
  </vaadin-horizontal-layout>
- <vaadin-horizontal-layout style="width: 100%; height: 20%; justify-content: flex-start;" theme="margin">
+ <vaadin-horizontal-layout style="width: 90%; height: 20%;" theme="margin">
   <label style="width:120px">Beschreibung:</label>
-  <label id="textBeschreibung" style="flex-grow: 1; flex-shrink: 0;">Label</label>
+  <label id="textBeschreibung" style="width:200px; height: 30px;">Label</label>
  </vaadin-horizontal-layout>
- <vaadin-horizontal-layout style="width: 100%; height: 20%; justify-content: flex-start;" theme="margin">
+ <vaadin-horizontal-layout style="width: 90%; height: 20%;" theme="margin">
   <label style="width: 120px;">Kategorie:</label>
-  <label id="textKategorie">Label</label>
+  <label id="textKategorie" style="width:200px; height: 30px;">Label</label>
  </vaadin-horizontal-layout>
  <vaadin-horizontal-layout style="width: 100%; height: 100%; justify-content: space-evenly;">
   <vaadin-button theme="primary" id="buttonWarenkorb" style="flex-shrink: 0; width 100%; align-self: center;">

@@ -56,9 +56,10 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 		buttonWarenkorb.addClickListener(e -> {
 			if (userMB.isAdmin()) {				
 				UI.getCurrent().navigate("ArtikelBearbeiten/" + this.getArtikelID());
-			}
-			else
-				userMB.addToWarenkorb(this.getArtikelID());
+				return;
+			}			
+			userMB.addToWarenkorb(this.getArtikelID());
+			Notification.show("Artikel zum Warenkorb hinzugefügt!");
 		});
 		buttonDetail.addClickListener(e -> {
 			Notification.show(String.format("%d",this.getArtikelID()));
@@ -94,7 +95,7 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 		return textBeschreibung.getText();
 	}
 	public void setBeschreibung(String text) {
-		this.textBeschreibung.setText(text);
+		this.textBeschreibung.setText(String.format("%.50s",text));
 	}
 	public int getArtikelID() {
 		return this.artikelID;

@@ -2,7 +2,9 @@ package swp.portal;
 
 import com.vaadin.flow.templatemodel.TemplateModel;
 
+import swp.entity.EmailTO;
 import swp.portal.beans.SystemMB;
+import swp.portal.beans.UserMB;
 
 import java.util.Collection;
 
@@ -51,10 +53,31 @@ public class AgpSettings extends PolymerTemplate<AgpSettings.AgpSettingsModel> i
 	private Button buttonHinzufuegen;
 	@Id("buttonSpeichern")
 	private Button buttonSpeichern;
-	
+	@Id("buttonAdminAdd")
+	private Button buttonAdminAdd;
+	@Id("buttonAdminDelete")
+	private Button buttonAdminDelete;
+	@Id("comboBoxAdminDelete")
+	private ComboBox<String> comboBoxAdminDelete;
+	@Id("textFieldAdminName")
+	private TextField textFieldAdminName;
+	@Id("textFieldBetreffKauf")
+	private TextField textFieldBetreffKauf;
+	@Id("textFieldBetreffAbhol")
+	private TextField textFieldBetreffAbhol;
+	@Id("textFieldBetreffFIBU")
+	private TextField textFieldBetreffFIBU;
+	@Id("textFieldMailFIBU")
+	private TextField textFieldMailFIBU;
+	@Id("textFieldMailIT")
+	private TextField textFieldMailIT;
+	@Id("textFieldBetreffIT")
+	private TextField textFieldBetreffIT;
 	
 	@Inject
 	SystemMB systemMB;
+	@Inject
+	UserMB userMB;
 	
     public AgpSettings() {
         // You can initialise any data required for the connected UI components here.
@@ -63,14 +86,31 @@ public class AgpSettings extends PolymerTemplate<AgpSettings.AgpSettingsModel> i
     	buttonHinzufuegen.addClickListener(e -> {    		
     		systemMB.createKategorie(textFieldHinzufuegen.getValue());
     		comboBoxLoeschen.setItems(systemMB.getKategories());
+    		Notification.show("Gespeichert!");
     	});
     	buttonLoeschen.addClickListener(e -> {    		
     		systemMB.deleteKategorie(comboBoxLoeschen.getValue());
     		comboBoxLoeschen.setItems(systemMB.getKategories());
+    		Notification.show("Gespeichert!");
     	});
-    	buttonSpeichern.addClickListener(e -> {    		
-    		systemMB.updateEmails(textAreaEingegangen.getValue(), textAreaAbholen.getValue(), textAreaBuchhaltung.getValue(), textAreaKunde.getValue());
+    	buttonSpeichern.addClickListener(e -> {   
+    		//TODO alle felder
+    		systemMB.saveEmailFIBU(textFieldMailFIBU.getValue(), textFieldBetreffFIBU.getValue(), textAreaBuchhaltung.getValue());
+    		systemMB.saveEmailIT(textFieldMailIT.getValue(), textFieldBetreffIT.getValue(), textAreaEingegangen.getValue());
+    		systemMB.saveEmailKundeAbholung(textFieldBetreffAbhol.getValue(), textAreaAbholen.getValue());
+    		systemMB.saveEmailKundeEingang(textFieldBetreffKauf.getValue(), textAreaKunde.getValue());
     		Notification.show("Emaileinstellungen Gespeichert!");
+    	});
+    	
+    	buttonAdminAdd.addClickListener(e -> {
+    		systemMB.addAdmin(textFieldAdminName.getValue());
+    		comboBoxAdminDelete.setItems(systemMB.getAdmins());
+    		Notification.show("Gespeichert!");
+    	});
+    	buttonAdminDelete.addClickListener(e -> {
+    		systemMB.delAdmin(comboBoxAdminDelete.getValue());
+    		comboBoxAdminDelete.setItems(systemMB.getAdmins());
+    		Notification.show("Gespeichert!");
     	});
 
     }
@@ -78,10 +118,26 @@ public class AgpSettings extends PolymerTemplate<AgpSettings.AgpSettingsModel> i
     @Override
 	public void beforeEnter(BeforeEnterEvent event) {
 		comboBoxLoeschen.setItems(systemMB.getKategories());
-		textAreaEingegangen.setValue(systemMB.getEmailSchulte());
-		textAreaAbholen.setValue(systemMB.getEmailKundeAbholbereit());
-		textAreaBuchhaltung.setValue(systemMB.getEmailFIBU());
-		textAreaKunde.setValue(systemMB.getEmailKunde());		
+		EmailTO mail = systemMB.getEmailIT();
+		
+		textFieldMailIT.setValue(mail.getToEmail());
+		textFieldBetreffIT.setValue(mail.getSubject());
+		textAreaEingegangen.setValue(mail.getMessage());
+		
+		mail = systemMB.getEmailFIBU();
+		textFieldMailFIBU.setValue(mail.getToEmail());
+		textFieldBetreffFIBU.setValue(mail.getSubject());
+		textAreaBuchhaltung.setValue(mail.getMessage());
+		
+		mail = systemMB.getEmailKundeAbholung();	
+		textAreaAbholen.setValue(mail.getMessage());
+		textFieldBetreffAbhol.setValue(mail.getSubject());
+		
+		mail = systemMB.getEmailKundeEingang();
+		textFieldBetreffKauf.setValue(mail.getSubject());
+		textAreaKunde.setValue(mail.getMessage());	
+		
+		comboBoxAdminDelete.setItems(systemMB.getAdmins());
 	}
     
     

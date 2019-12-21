@@ -19,6 +19,7 @@ public class RechnungsManager implements IRechnungsManager {
 	@Inject
 	RechnungDAO rechnungDAO;
 
+
 	@Override
 	public List<RechnungTO> getAll() {
 		List<Rechnung> aList = rechnungDAO.findAll();
@@ -37,11 +38,13 @@ public class RechnungsManager implements IRechnungsManager {
 
 	@Override
 	public void createRechnung(String matrikelNr, String name, String surname, List<GeraetTO> artikel) {
-		Rechnung aRechnung = new Rechnung(matrikelNr, name, surname);
-		artikel.forEach(e -> {
+		Rechnung aRechnung = new Rechnung(matrikelNr, name, surname);		
+		
+		artikel.forEach(e -> {			
 			aRechnung.addArtikel(e.getGeraetename(), e.getPreis());
 		});
 		rechnungDAO.save(aRechnung);
+		
 
 	}
 

@@ -94,6 +94,7 @@ public class AgpLogin extends PolymerTemplate<AgpLogin.AgpLoginModel> {
 			userMB.setMatrikelNr(String.format("%d",new Random().nextInt()));
 			userMB.setName(String.format("Name%d",new Random().nextInt()));
 			userMB.setSurname(String.format("Surname%d",new Random().nextInt()));
+			userMB.setUsername(event.getUsername());
 
 			// Auth succeeded
 			System.out.println("Login succeeded!");

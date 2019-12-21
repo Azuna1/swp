@@ -1,9 +1,15 @@
 package swp.usecase.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import swp.dao.UserDAO;
+import swp.entity.RechnungTO;
+import swp.entity.UserTO;
+import swp.entity.impl.Rechnung;
 import swp.entity.impl.User;
 import swp.usecase.IUserManager;
 
@@ -23,13 +29,23 @@ public class UserManager implements IUserManager {
 	@Override
 	public boolean existUser(String name) {
 		// TODO Auto-generated method stub
-		return userDAO.find(name) == null;
+		
+		return userDAO.find(name) != null;
 	}
 
 	@Override
 	public void deleteUser(String name) {
 		userDAO.delete(name);
 		
+	}
+
+	@Override
+	public List<UserTO> getAll() {
+		List<User> aList = userDAO.findAll();
+		List<UserTO> returnList = new ArrayList<UserTO>();
+		for (User aUser : aList)
+			returnList.add(aUser.toUserTO());
+		return returnList;
 	}
 	
 
