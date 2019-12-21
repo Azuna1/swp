@@ -5,6 +5,7 @@ import com.vaadin.flow.templatemodel.TemplateModel;
 import swp.portal.beans.UserMB;
 
 import java.util.Hashtable;
+import java.util.Random;
 
 import javax.inject.Inject;
 import javax.naming.AuthenticationException;
@@ -73,36 +74,41 @@ public class AgpLogin extends PolymerTemplate<AgpLogin.AgpLoginModel> {
 		
 		//TODO
 				// just for easier testing
-		userMB.setLoggedIn(true);
-		userMB.setAdmin(true);	
-		UI.getCurrent().navigate("");
+//		userMB.setLoggedIn(true);
+//		userMB.setAdmin(true);	
+//		UI.getCurrent().navigate("");
 //		
 //
-//		try {
-//			// Connect with ldap
-//			new InitialLdapContext(env, null);
-//
-//			userMB.setLoggedIn(true);
-//			
-//			// dummy way to have an admin
-//			if (event.getUsername().contentEquals("testuser2")) {
-//				userMB.setAdmin(true);				
-//			}
-//
-//			// Auth succeeded
-//			System.out.println("Login succeeded!");
-//			UI.getCurrent().navigate("Shop");
-//			
-//		} catch (AuthenticationException er) {
-//			System.out.println("Login failed!");
-//			vaadinLoginForm.setEnabled(true);
-//			Notification.show("User: " + event.getUsername() + " failed to login");
-//		} catch (NamingException e) {
-//
-//			// Connection failed			
-//			e.printStackTrace();
-//			vaadinLoginForm.setEnabled(true);
-//		}
+		try {
+			// Connect with ldap
+			new InitialLdapContext(env, null);
+
+			userMB.setLoggedIn(true);
+			
+			//TODO
+			// this is just cause we dont have access to the original LDAP and its structure yet
+			if (event.getUsername().contentEquals("testuser2")) {
+				userMB.setAdmin(true);				
+			}
+			userMB.setEmail("sendmeamailswp2019@gmail.com");
+			userMB.setMatrikelNr(String.format("%d",new Random().nextInt()));
+			userMB.setName(String.format("Name%d",new Random().nextInt()));
+			userMB.setSurname(String.format("Surname%d",new Random().nextInt()));
+
+			// Auth succeeded
+			System.out.println("Login succeeded!");
+			UI.getCurrent().navigate("");
+			
+		} catch (AuthenticationException er) {
+			System.out.println("Login failed!");
+			vaadinLoginForm.setEnabled(true);
+			Notification.show("User: " + event.getUsername() + " failed to login");
+		} catch (NamingException e) {
+
+			// Connection failed			
+			e.printStackTrace();
+			vaadinLoginForm.setEnabled(true);
+		}
 
 	}
 }

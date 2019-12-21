@@ -1,12 +1,31 @@
 package swp.portal;
 
 import com.vaadin.flow.templatemodel.TemplateModel;
+
+import swp.entity.GeraetTO;
+import swp.entity.RechnungTO;
+import swp.portal.beans.SystemMB;
+import swp.portal.beans.UserMB;
+
+import java.util.ArrayList;
+import java.util.Locale;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.renderer.NumberRenderer;
+import com.vaadin.flow.component.grid.ColumnTextAlign;
+import com.vaadin.flow.component.grid.Grid;
 
 /**
  * A Designer generated component for the agp-bestellungen-verwalten-view template.
@@ -17,14 +36,60 @@ import com.vaadin.flow.router.Route;
 @Tag("agp-bestellungen-verwalten-view")
 @JsModule("./src/agp-bestellungen-verwalten-view.js")
 @Route("BestellungenVerwalten")
-public class AgpBestellungenVerwaltenView extends PolymerTemplate<AgpBestellungenVerwaltenView.AgpBestellungenVerwaltenViewModel> {
+public class AgpBestellungenVerwaltenView extends PolymerTemplate<AgpBestellungenVerwaltenView.AgpBestellungenVerwaltenViewModel> implements BeforeEnterObserver {
 
     @Id("agpMenu")
     private AgpMenu agpMenu;
-    public AgpBestellungenVerwaltenView() {
+	@Id("textFieldSearch")
+	private TextField textFieldSearch;
+	@Id("vaadinGrid")
+	private Grid<RechnungTO> vaadinGrid;
+	
+	@Inject
+	SystemMB systemMB;
+	@Inject
+	UserMB userMB;
+	
+	public AgpBestellungenVerwaltenView() {
         // You can initialise any data required for the connected UI components here.
+		vaadinGrid.addSelectionListener(e -> {
+			UI.getCurrent().navigate("RechnungView/" + e.getFirstSelectedItem().get().getRechnungsID());
+		});
     }
 
+	
+	@PostConstruct
+	private void prepare()
+	{
+		vaadinGrid.addColumn(RechnungTO::getRechnungsID).setHeader("Rechnungsnummer");
+		vaadinGrid.addColumn(RechnungTO::getRechnungsdatum).setHeader("Datum");
+		vaadinGrid.addColumn(RechnungTO::getName).setHeader("Vorname");
+		vaadinGrid.addColumn(RechnungTO::getSurname).setHeader("Nachname");
+		vaadinGrid.addColumn(RechnungTO::getIstBezahlt).setHeader("Bezahlt");
+		vaadinGrid.addColumn(new NumberRenderer<>(RechnungTO::getEndbetrag, "€ %(,.2f",Locale.GERMAN, "€ 0.00")).setHeader("Preis").setTextAlign(ColumnTextAlign.END);		
+	}
+	
+	private void fillGrid() {
+		ArrayList<RechnungTO> list = new ArrayList<>();
+		if(userMB.isAdmin())
+			 list = (ArrayList<RechnungTO>) systemMB.getRechnungen();
+		else			
+			 list = (ArrayList<RechnungTO>) systemMB.getRechnungenForUser(userMB.getMatrikelNr());
+		
+		System.out.println("list: " + list.size());
+		vaadinGrid.setItems(list);	
+
+		
+
+	}
+	
+	@Override
+	public void beforeEnter(BeforeEnterEvent event) {
+		fillGrid();
+		
+	}
+	
+	
     /**
      * This model binds properties between AgpBestellungenVerwaltenView and agp-bestellungen-verwalten-view
      */

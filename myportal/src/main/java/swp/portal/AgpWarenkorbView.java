@@ -3,6 +3,7 @@ package swp.portal;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
 import swp.entity.GeraetTO;
+import swp.portal.beans.SystemMB;
 import swp.portal.beans.UserMB;
 
 import java.util.ArrayList;
@@ -49,15 +50,22 @@ public class AgpWarenkorbView extends PolymerTemplate<AgpWarenkorbView.AgpWarenk
 	
 	@Inject
 	UserMB userMB;
+	@Inject
+	SystemMB systemMB;
+	
 	@Id("buttonRemoveArtikel")
 	private Button buttonRemoveArtikel;
 	
 	public AgpWarenkorbView() {
-        // You can initialise any data required for the connected UI components here.
-		//vaadinGrid.addThemeVariants(GridVariant.LUMO_NO_BORDER, GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
+
 		buttonRemoveArtikel.addClickListener(e -> {
 			vaadinGrid.getSelectionModel().getFirstSelectedItem().ifPresent(item -> userMB.removeFromWarenkorb(item.getGeraeteID()) );
 			fillGrid();
+		});
+		
+		buttonKaufen.addClickListener( e -> {
+			systemMB.createRechnung(userMB.getMatrikelNr(), userMB.getName(), userMB.getSurname(), userMB.getWarenkorb());
+
 		});
 		
     }
@@ -70,7 +78,7 @@ public class AgpWarenkorbView extends PolymerTemplate<AgpWarenkorbView.AgpWarenk
 	}
 	
 	private void fillGrid() {
-		ArrayList<GeraetTO> list = userMB.getWarenkorb();
+		ArrayList<GeraetTO> list = (ArrayList<GeraetTO>) userMB.getWarenkorb();
 		double summe = 0;
 		vaadinGrid.setItems(list);	
 		for(GeraetTO gTO : list)

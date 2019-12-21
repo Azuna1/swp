@@ -1,6 +1,7 @@
 package swp.portal.beans;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -17,14 +18,14 @@ public class UserMB {
 	private boolean isLoggedIn = false;
 	private String name;
 	private String surname;
-	private int matrikelNr;
+	private String matrikelNr;
 	private String email;
 	private ArrayList<Integer> warenkorb = new ArrayList<>();
 	
 	@Inject
 	GeraetMB geraetMB;
 	
-	public ArrayList<GeraetTO> getWarenkorb()
+	public List<GeraetTO> getWarenkorb()
 	{
 		ArrayList<GeraetTO> list = new ArrayList<>();
 		for(int i : warenkorb) {
@@ -68,11 +69,11 @@ public class UserMB {
 		this.name = name;
 	}
 
-	public int getMatrikelNr() {
+	public String getMatrikelNr() {
 		return matrikelNr;
 	}
 
-	public void setMatrikelNr(int matrikelNr) {
+	public void setMatrikelNr(String matrikelNr) {
 		this.matrikelNr = matrikelNr;
 	}
 

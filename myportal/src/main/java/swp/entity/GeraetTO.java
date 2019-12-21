@@ -7,24 +7,23 @@ import swp.entity.impl.Geraet;
 public class GeraetTO implements Serializable {
 
 	private static final long serialVersionUID = 3022L;
-	
+
 	int geraeteID;
 	String beschreibung;
 	String kategorie;
 	double preis;
 	String geraetename;
 	int anzahl;
-	
 
+	public GeraetTO() {
+	}
 
-	public GeraetTO() {}
-	
-	public Geraet toGeraet()
-	{
-		Geraet geraet = new Geraet(this.getBeschreibung(), this.getKategorie(), this.getPreis(), this.getGeraetename(), this.getAnzahl());
+	public Geraet toGeraet() {
+		Geraet geraet = new Geraet(this.getBeschreibung(), this.getKategorie(), this.getPreis(), this.getGeraetename(),
+				this.getAnzahl());
 		return geraet;
 	}
-	
+
 	public int getAnzahl() {
 		return anzahl;
 	}
@@ -32,7 +31,7 @@ public class GeraetTO implements Serializable {
 	public void setAnzahl(int anzahl) {
 		this.anzahl = anzahl;
 	}
-	
+
 	public int getGeraeteID() {
 		return geraeteID;
 	}
@@ -72,6 +71,5 @@ public class GeraetTO implements Serializable {
 	public void setGeraetename(String geraetename) {
 		this.geraetename = geraetename;
 	}
-	
-	
+
 }

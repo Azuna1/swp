@@ -26,6 +26,7 @@ import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.button.Button;
+import swp.portal.AgpMenu;
 
 /**
  * A Designer generated component for the agp-artikel-bearbeiten-view template.
@@ -61,6 +62,8 @@ public class AgpArtikelBearbeitenView extends PolymerTemplate<AgpArtikelBearbeit
 	SystemMB systemMB;
 	@Inject
 	UserMB userMB;
+	@Id("agpMenu")
+	private AgpMenu agpMenu;
 	/**
      * Creates a new AgpArtikelBearbeitenView.
      */

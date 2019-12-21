@@ -18,7 +18,7 @@ class AgpArtikelBearbeitenView extends PolymerElement {
                 }
             </style>
 <vaadin-horizontal-layout style="width: 100%; height: 10%; justify-content: center;">
- <agp-menu style="height:10%;"></agp-menu>
+ <agp-menu style="height:10%;" id="agpMenu"></agp-menu>
 </vaadin-horizontal-layout>
 <vaadin-horizontal-layout style="width: 100%; height: 100%; justify-content: center;">
  <vaadin-vertical-layout>
@@ -29,10 +29,10 @@ class AgpArtikelBearbeitenView extends PolymerElement {
   <vaadin-text-area label="Artikelbeschreibung" placeholder="Add detailed explanation" id="textAreaBeschreibung" style="width: 250px;"></vaadin-text-area>
   <vaadin-horizontal-layout style="width: 250px; height: 100%; justify-content: space-evenly;">
    <vaadin-button theme="primary" id="buttonSpeichern">
-    Speichern
+     Speichern 
    </vaadin-button>
    <vaadin-button theme="primary" id="buttonLoeschen">
-    Löschen
+     Löschen 
    </vaadin-button>
   </vaadin-horizontal-layout>
  </vaadin-vertical-layout>

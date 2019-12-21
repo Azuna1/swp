@@ -23,11 +23,11 @@ class AgpBestellungenVerwaltenView extends PolymerElement {
  <vaadin-vertical-layout style="width:70%; height: 90%; flex-shrink: 0;">
   <vaadin-horizontal-layout style="width: 100%;; justify-content: space-between;">
    <label style="align-self: flex-end;">Rechnungen:</label>
-   <vaadin-text-field placeholder="Search">
+   <vaadin-text-field placeholder="Search" id="textFieldSearch">
     <iron-icon icon="lumo:search" slot="prefix"></iron-icon>
    </vaadin-text-field>
   </vaadin-horizontal-layout>
-  <vaadin-grid style="border: 1px solid;"></vaadin-grid>
+  <vaadin-grid style="border: 1px solid;" id="vaadinGrid"></vaadin-grid>
  </vaadin-vertical-layout>
 </vaadin-horizontal-layout>
 `;

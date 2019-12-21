@@ -21,11 +21,8 @@ public class GeraeteManager implements IGeraeteManager {
 	@Override
 	public void createGeraet(String beschreibung, String kategorie, double preis, String geraetename, int anzahl) 
 	{
-		Geraet aGeraet = new Geraet(beschreibung, kategorie, preis, geraetename, anzahl);
-		System.out.println(geraetDAO == null);;
-		System.out.println(aGeraet == null);;
-		geraetDAO.save(aGeraet);
-		
+		Geraet aGeraet = new Geraet(beschreibung, kategorie, preis, geraetename, anzahl);		
+		geraetDAO.save(aGeraet);		
 	}
 
 	@Override
@@ -43,7 +40,8 @@ public class GeraeteManager implements IGeraeteManager {
 	public List<GeraetTO> getAllGeraete() {
 		List<Geraet> aList = geraetDAO.findAll();
 		List<GeraetTO> returnList = new ArrayList<GeraetTO>();
-		for (Geraet aGeraet : aList) returnList.add(aGeraet.toGeraetTO());
+		for (Geraet aGeraet : aList) 
+			returnList.add(aGeraet.toGeraetTO());
 		return returnList;
 	}
 
@@ -60,10 +58,8 @@ public class GeraeteManager implements IGeraeteManager {
 	}
 
 	@Override
-	public List<GeraetTO> getFilteredGeraete(String name, String kategorie) {
-		System.out.println("getFilteredGeraete name: " + name + " kat: " + kategorie);
+	public List<GeraetTO> getFilteredGeraete(String name, String kategorie) {		
 		List<Geraet> aList = geraetDAO.getFilteredGeraet(name, kategorie);
-		System.out.println("getFilteredGeraete aList Size: "+ aList.size());
 		List<GeraetTO> returnList = new ArrayList<GeraetTO>();
 		for (Geraet aGeraet : aList) returnList.add(aGeraet.toGeraetTO());
 		return returnList;
