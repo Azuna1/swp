@@ -29,8 +29,8 @@ public class EmailManager implements IEmailManager{
 	private Session mailSession;
 
 	@Override
-	public void createEmail(String name, String toEmail, String message) {
-		Email mail = new Email(name, toEmail, message);
+	public void createEmail(String name, String toEmail,String subject, String message) {
+		Email mail = new Email(name, toEmail, subject, message);
 		emailDAO.save(mail);
 		
 	}
@@ -42,13 +42,14 @@ public class EmailManager implements IEmailManager{
 	}
 
 	@Override
-	public void editEmail(String name, String toEmail, String message) {
+	public void editEmail(String name, String toEmail, String subject, String message) {
 		Email mail = emailDAO.find(name);
 		if(mail == null) {
-			createEmail(name,toEmail,message);
+			createEmail(name, toEmail, subject, message);
 			return;
 		}
 		mail.setToEmail(toEmail);
+		mail.setSubject(subject);
 		mail.setMessage(message);
 		emailDAO.update(mail);
 		

@@ -19,9 +19,9 @@ public class GeraeteManager implements IGeraeteManager {
 	GeraetDAO geraetDAO; 
 	
 	@Override
-	public void createGeraet(String beschreibung, String kategorie, double preis, String geraetename) 
+	public void createGeraet(String beschreibung, String kategorie, double preis, String geraetename, int anzahl) 
 	{
-		Geraet aGeraet = new Geraet(beschreibung, kategorie, preis, geraetename);
+		Geraet aGeraet = new Geraet(beschreibung, kategorie, preis, geraetename, anzahl);
 		System.out.println(geraetDAO == null);;
 		System.out.println(aGeraet == null);;
 		geraetDAO.save(aGeraet);
@@ -48,8 +48,8 @@ public class GeraeteManager implements IGeraeteManager {
 	}
 
 	@Override
-	public void editGeraet(GeraetTO geraetTO) {
-		geraetDAO.editGeraet(geraetTO);
+	public void editGeraet(GeraetTO gTO) {		
+		geraetDAO.editGeraet(gTO);
 		
 	}
 
@@ -57,5 +57,15 @@ public class GeraeteManager implements IGeraeteManager {
 	public GeraetTO getGeraet(int id) {
 		Geraet g = geraetDAO.find(id);		
 		return (g == null) ? null : g.toGeraetTO();
+	}
+
+	@Override
+	public List<GeraetTO> getFilteredGeraete(String name, String kategorie) {
+		System.out.println("getFilteredGeraete name: " + name + " kat: " + kategorie);
+		List<Geraet> aList = geraetDAO.getFilteredGeraet(name, kategorie);
+		System.out.println("getFilteredGeraete aList Size: "+ aList.size());
+		List<GeraetTO> returnList = new ArrayList<GeraetTO>();
+		for (Geraet aGeraet : aList) returnList.add(aGeraet.toGeraetTO());
+		return returnList;
 	}
 }

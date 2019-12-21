@@ -36,10 +36,10 @@ public class SystemMB {
 	
 	public void updateEmails(String msgSchulte, String msgKundeAbholbereit, String msgFIBU, String msgKunde) {
 
-		emailManager.editEmail(mailSchulte, mailSchulteEmail, msgSchulte);
-		emailManager.editEmail(mailFIBU, mailFIBUEmail, msgFIBU);
-		emailManager.editEmail(mailKundeAbholbereit, "" , msgKundeAbholbereit);
-		emailManager.editEmail(mailKunde,"" , msgKunde);
+		emailManager.editEmail(mailSchulte, mailSchulteEmail, "", msgSchulte);
+		emailManager.editEmail(mailFIBU, mailFIBUEmail, "", msgFIBU);
+		emailManager.editEmail(mailKundeAbholbereit, "" , "", msgKundeAbholbereit);
+		emailManager.editEmail(mailKunde,"" , "", msgKunde);
 		
 	}
 	

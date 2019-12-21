@@ -13,13 +13,24 @@ public class GeraetTO implements Serializable {
 	String kategorie;
 	double preis;
 	String geraetename;
+	int anzahl;
 	
+
+
 	public GeraetTO() {}
 	
 	public Geraet toGeraet()
 	{
-		Geraet geraet = new Geraet(this.getBeschreibung(), this.getKategorie(), this.getPreis(), this.getGeraetename());
+		Geraet geraet = new Geraet(this.getBeschreibung(), this.getKategorie(), this.getPreis(), this.getGeraetename(), this.getAnzahl());
 		return geraet;
+	}
+	
+	public int getAnzahl() {
+		return anzahl;
+	}
+
+	public void setAnzahl(int anzahl) {
+		this.anzahl = anzahl;
 	}
 	
 	public int getGeraeteID() {

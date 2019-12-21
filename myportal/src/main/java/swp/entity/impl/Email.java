@@ -19,20 +19,28 @@ public class Email implements Serializable {
 	@Column(unique = true)
 	private String name;
 	private String toEmail;
+	private String subject;
 	private String message;
 	
 	public Email() {}
-	public Email(String name, String toEmail, String message)
+	public Email(String name, String toEmail, String subject, String message)
 	{
 		this.name = name;
 		this.toEmail = toEmail;
+		this.subject = subject;
 		this.message = message;
 	}
 	
 	public EmailTO toEmailTO() {
-		return new EmailTO(this.name, this.toEmail, this.message);
+		return new EmailTO(this.name, this.toEmail, this.subject, this.message);
 	}
 	
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
 	public String getToEmail() {
 		return toEmail;
 	}

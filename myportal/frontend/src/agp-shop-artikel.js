@@ -1,7 +1,7 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
-import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 import '@vaadin/vaadin-button/src/vaadin-button.js';
+import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 
 class AgpShopArtikel extends PolymerElement {
 
@@ -25,9 +25,13 @@ class AgpShopArtikel extends PolymerElement {
   <label style="width:120px">Preis:</label>
   <label id="textPreis" style="flex-grow: 1; flex-shrink: 0;">Label</label>
  </vaadin-horizontal-layout>
- <vaadin-horizontal-layout style="width: 100%; height: 100%; justify-content: flex-start;" theme="margin">
+ <vaadin-horizontal-layout style="width: 100%; height: 20%; justify-content: flex-start;" theme="margin">
   <label style="width:120px">Beschreibung:</label>
   <label id="textBeschreibung" style="flex-grow: 1; flex-shrink: 0;">Label</label>
+ </vaadin-horizontal-layout>
+ <vaadin-horizontal-layout style="width: 100%; height: 20%; justify-content: flex-start;" theme="margin">
+  <label style="width: 120px;">Kategorie:</label>
+  <label id="textKategorie">Label</label>
  </vaadin-horizontal-layout>
  <vaadin-horizontal-layout style="width: 100%; height: 100%; justify-content: space-evenly;">
   <vaadin-button theme="primary" id="buttonWarenkorb" style="flex-shrink: 0; width 100%; align-self: center;">

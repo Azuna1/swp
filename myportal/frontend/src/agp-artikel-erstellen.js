@@ -27,7 +27,7 @@ class AgpArtikelErstellen extends PolymerElement {
     Speichern 
   </vaadin-button>
   <vaadin-button theme="Primary" id="buttonLoeschen">
-    Loeschen 
+   Löschen
   </vaadin-button>
  </vaadin-horizontal-layout>
 </vaadin-vertical-layout>

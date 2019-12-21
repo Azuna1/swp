@@ -5,9 +5,11 @@ import com.vaadin.flow.templatemodel.TemplateModel;
 import swp.portal.beans.GeraetMB;
 import swp.portal.beans.UserMB;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.Label;
@@ -30,7 +32,7 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 	private Button buttonWarenkorb;	
 
 	private int artikelID;
-	private String kategorie;
+//	private String kategorie;
 
 	@Id("textBeschreibung")
 	private Label textBeschreibung;
@@ -46,11 +48,17 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 	
 	private UserMB userMB;
 
+	@Id("textKategorie")
+	private Label textKategorie;
+
 	public AgpShopArtikel() {
         // You can initialise any data required for the connected UI components here.
 		buttonWarenkorb.addClickListener(e -> {
-			Notification.show(String.format("%d",this.getArtikelID()));	
-			userMB.addToWarenkorb(this.getArtikelID());
+			if (userMB.isAdmin()) {				
+				UI.getCurrent().navigate("ArtikelBearbeiten/" + this.getArtikelID());
+			}
+			else
+				userMB.addToWarenkorb(this.getArtikelID());
 		});
 		buttonDetail.addClickListener(e -> {
 			Notification.show(String.format("%d",this.getArtikelID()));
@@ -58,10 +66,18 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 		  
 	}
 	
+	
+	
+	
 	public void setUserMB(UserMB userMB) {
 		this.userMB = userMB;
 	}
 	
+	public void setAdmin() {
+		buttonWarenkorb.setText("Artikel Bearbeiten");
+		buttonDetail.setVisible(false);			
+	}
+
 	public String getName() {
 		return textName.getText();
 	}
@@ -72,7 +88,7 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 		return Double.parseDouble(this.textPreis.getText());
 	}
 	public void setPreis(double preis) {
-		this.textPreis.setText(String.format("%.2f",preis));
+		this.textPreis.setText(String.format("%.2f€",preis));
 	}
 	public String getBeschreibung() {
 		return textBeschreibung.getText();
@@ -87,14 +103,13 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 		this.artikelID = id;
 	}
 
-    public String getKategorie() {
-		return kategorie;
+
+	public String getKategorie() {
+		return textKategorie.getText();
 	}
 
-
-
 	public void setKategorie(String kategorie) {
-		this.kategorie = kategorie;
+		this.textKategorie.setText(kategorie);
 	}
 
 	/**

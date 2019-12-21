@@ -76,8 +76,10 @@ public class AgpArtikelErstellen extends PolymerTemplate<AgpArtikelErstellen.Agp
     	comboBoxAnzahl.setItems(col);
     	
     	buttonSpeichern.addClickListener(event -> {
-    		for (int i = 0; i < comboBoxAnzahl.getValue(); i++)
-    			geraetMB.createGeraet(textAreaArtikelbeschreibung.getValue(), comboBoxKategorie.getValue(), Double.valueOf(textFieldPreis.getValue()), textFieldArtikelname.getValue());
+//    		for (int i = 0; i < comboBoxAnzahl.getValue(); i++)
+//    			geraetMB.createGeraet(textAreaArtikelbeschreibung.getValue(), comboBoxKategorie.getValue(), Double.valueOf(textFieldPreis.getValue()), textFieldArtikelname.getValue());
+    		geraetMB.createGeraet(textAreaArtikelbeschreibung.getValue(), comboBoxKategorie.getValue(), Double.valueOf(textFieldPreis.getValue()), textFieldArtikelname.getValue(), comboBoxAnzahl.getValue());
+
     	});
     	
     	buttonLoeschen.addClickListener(event -> {

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
 import swp.entity.GeraetTO;
@@ -26,7 +27,10 @@ public class Geraet implements Serializable {
 	String kategorie;
 	double preis;
 	String geraetename;
+	int anzahl;
 	
+
+
 	public Geraet () {}
 	
 	public GeraetTO toGeraetTO()
@@ -37,16 +41,25 @@ public class Geraet implements Serializable {
 		geraetTO.setKategorie(this.getKategorie());
 		geraetTO.setPreis(this.getPreis());
 		geraetTO.setGeraetename(this.getGeraetename());
-		
+		geraetTO.setAnzahl(this.getAnzahlt());
 		return geraetTO;
 	}
 	
-	public Geraet(String beschreibung, String kategorie, double preis, String geraetename) {
+	public Geraet(String beschreibung, String kategorie, double preis, String geraetename, int anzahl) {
 		super();
 		this.beschreibung = beschreibung;
 		this.kategorie = kategorie;
 		this.preis = preis;
 		this.geraetename = geraetename;
+		this.anzahl = anzahl;
+	}
+	
+	public int getAnzahlt() {
+		return anzahl;
+	}
+
+	public void setAnzahl(int anzahlt) {
+		this.anzahl = anzahlt;
 	}
 	
 	public int getGeraeteID() {

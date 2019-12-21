@@ -1,5 +1,6 @@
 package swp.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -8,7 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Root;
 
 import org.hibernate.mapping.PrimaryKey;
 import org.slf4j.Logger;
@@ -19,7 +23,7 @@ public abstract class GenericDAO<T> {
 	//protected final static Logger logger = getLogger(GenericDAO.class);
 	
 	@PersistenceContext(unitName="swpDB")
-	private EntityManager entityManager;
+	protected EntityManager entityManager;
 	
 	private Class<T> entityClass;
 	
@@ -60,45 +64,65 @@ public abstract class GenericDAO<T> {
 		return entityManager.createQuery(cq).getResultList();
 	}
 	
-	@SuppressWarnings("unchecked")
-	protected T findOneResult (String namedQuery, Map<String, Object> parameters){
-		T result = null;
-		try {
-			Query query = entityManager.createNamedQuery(namedQuery);
-			if (parameters != null && !parameters.isEmpty()){
-				populateQueryParameters(query, parameters);
-			}
-			
-			result = (T) query.getSingleResult();
-					
-		} catch (Exception e){
-			System.out.println("Fehler bei der Query: "+e.getMessage());
-			e.printStackTrace();
-		}
-		
-		return result;
-	}
+
 	
-	@SuppressWarnings("unchecked")
-	protected List<T> findListResult(String namedQuery, Map<String, Object> parameters){
-		List<T> result = null;
-		try{
-			Query query = entityManager.createNamedQuery(namedQuery);
-			if (parameters != null && !parameters.isEmpty()){
-				populateQueryParameters(query,parameters);
-			}
-			result = (List<T>) query.getResultList();
-		} catch (Exception e){
-			System.out.println("Fehler bei der Query: "+e.getMessage());
-		}
-		return result;
-	}
+//	public List<T> findFiltered(Map<String,Object> params){
+//		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+//		CriteriaQuery<T> q = cb.createQuery(entityClass);
+//		Root<T> c = q.from(entityClass);
+//		q.select(q.from(entityClass));
+//		
+//		List<ParameterExpression<T>> list = new ArrayList<>();
+//		
+//		for (Map.Entry<String, Object> entry : params.entrySet()) {
+//			list.add(cb.parameter(entry.getValue().getClass(), entry.getKey()));
+//		}
+//		ParameterExpression<paramClass> p = cb.parameter(paramClass);
+//		q.where(cg.get(c.get(map), p ));
+//		return
+//		
+//	}
 	
-	private void populateQueryParameters(Query query, Map<String, Object> parameters){
-		for (Entry<String, Object> entry : parameters.entrySet()){
-			query.setParameter(entry.getKey(),  entry.getValue());
-		}
-	}
+//	deprecated
+//	@SuppressWarnings("unchecked")
+//	protected T findOneResult (String namedQuery, Map<String, Object> parameters){
+//		T result = null;
+//		try {
+//			Query query = entityManager.createNamedQuery(namedQuery);
+//			if (parameters != null && !parameters.isEmpty()){
+//				populateQueryParameters(query, parameters);
+//			}
+//			
+//			result = (T) query.getSingleResult();
+//					
+//		} catch (Exception e){
+//			System.out.println("Fehler bei der Query: "+e.getMessage());
+//			e.printStackTrace();
+//		}
+//		
+//		return result;
+//	}
+//	
+//	@SuppressWarnings("unchecked")
+//	protected List<T> findListResult(String namedQuery, Map<String, Object> parameters){
+//		List<T> result = null;
+//		try{
+//			Query query = entityManager.createNamedQuery(namedQuery);
+//			if (parameters != null && !parameters.isEmpty()){
+//				populateQueryParameters(query,parameters);
+//			}
+//			result = (List<T>) query.getResultList();
+//		} catch (Exception e){
+//			System.out.println("Fehler bei der Query: "+e.getMessage());
+//		}
+//		return result;
+//	}
+//	
+//	private void populateQueryParameters(Query query, Map<String, Object> parameters){
+//		for (Entry<String, Object> entry : parameters.entrySet()){
+//			query.setParameter(entry.getKey(),  entry.getValue());
+//		}
+//	}
 	
 
 	
