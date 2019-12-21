@@ -26,6 +26,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.renderer.NumberRenderer;
 import com.vaadin.flow.component.grid.ColumnTextAlign;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.button.Button;
 
 /**
  * A Designer generated component for the agp-bestellungen-verwalten-view template.
@@ -49,13 +50,25 @@ public class AgpBestellungenVerwaltenView extends PolymerTemplate<AgpBestellunge
 	SystemMB systemMB;
 	@Inject
 	UserMB userMB;
+	@Id("buttonBezahlt")
+	private Button buttonBezahlt;
+	@Id("buttonDetails")
+	private Button buttonDetails;
 	
 	public AgpBestellungenVerwaltenView() {
         // You can initialise any data required for the connected UI components here.
-		vaadinGrid.addSelectionListener(e -> {
-			UI.getCurrent().navigate("RechnungView/" + e.getFirstSelectedItem().get().getRechnungsID());
+
+		buttonDetails.addClickListener(e -> {
+			vaadinGrid.getSelectionModel().getFirstSelectedItem().ifPresent(item -> UI.getCurrent().navigate("RechnungView/" + item.getRechnungsID()) );
+			
 		});
-    }
+		buttonBezahlt.addClickListener(e -> {
+			vaadinGrid.getSelectionModel().getFirstSelectedItem().ifPresent(item -> {
+				systemMB.setRechnungBezahlt(item.getRechnungsID());
+				fillGrid();
+			});
+		});
+	}
 
 	
 	@PostConstruct
@@ -85,6 +98,8 @@ public class AgpBestellungenVerwaltenView extends PolymerTemplate<AgpBestellunge
 	
 	@Override
 	public void beforeEnter(BeforeEnterEvent event) {
+		if(!userMB.isAdmin())
+			buttonBezahlt.setVisible(false);
 		fillGrid();
 		
 	}

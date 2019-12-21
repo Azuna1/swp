@@ -71,6 +71,13 @@ public class SystemMB {
 		return col;
 	}
 
+	public void setRechnungBezahlt(int id)
+	{
+		RechnungTO rTO = rechnungsManager.getRechnung(id);
+		rTO.setIstBezahlt(!rTO.getIstBezahlt());
+		rechnungsManager.update(rTO);
+	}
+	
 	public void createKategorie(String name) {
 		kategorieManager.createKategorie(name);
 	}

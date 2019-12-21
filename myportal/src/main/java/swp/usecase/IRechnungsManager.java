@@ -13,4 +13,5 @@ public interface IRechnungsManager {
 	public List<RechnungTO> getAllFromUser(String matrikelNR);
 	public RechnungTO getRechnung(int id);
 	public void createRechnung(String matrikelNr, String name, String surname, List<GeraetTO> artikel);
+	public void update(RechnungTO rTO);
 }

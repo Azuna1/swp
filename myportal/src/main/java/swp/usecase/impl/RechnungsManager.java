@@ -54,4 +54,10 @@ public class RechnungsManager implements IRechnungsManager {
 		return returnList;
 	}
 
+	@Override
+	public void update(RechnungTO rTO) {
+		rechnungDAO.update(rTO.toRechnung());
+
+	}
+
 }

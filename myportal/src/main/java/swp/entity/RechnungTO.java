@@ -23,7 +23,7 @@ public class RechnungTO implements Serializable {
 		this.rechnungsdatum = new Date();
 	}
 
-	public Rechnung toRechnung(RechnungTO rTO) {
+	public Rechnung toRechnung() {
 		Rechnung r = new Rechnung();
 		r.setArtikel(artikel);
 		r.setEndbetrag(endbetrag);
