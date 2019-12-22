@@ -34,6 +34,7 @@ public class GeraetDAO extends GenericDAO<Geraet> {
 		aGeraet.setPreis(aGeraetTO.getPreis());
 		aGeraet.setGeraetename(aGeraetTO.getGeraetename());
 		aGeraet.setAnzahl(aGeraetTO.getAnzahl());
+		aGeraet.setImage(aGeraetTO.getImage());
 		return super.update(aGeraet);	
 	
 	}

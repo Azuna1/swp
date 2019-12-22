@@ -22,11 +22,12 @@ class AgpArtikelErstellen extends PolymerElement {
  <vaadin-combo-box id="comboBoxAnzahl" placeholder="Anzahl" style="width: 250px;"></vaadin-combo-box>
  <vaadin-text-field label="" placeholder="Preis" id="textFieldPreis" style="width: 250px;"></vaadin-text-field>
  <vaadin-text-area label="Artikelbeschreibung" id="textAreaArtikelbeschreibung" style="width: 250px;"></vaadin-text-area>
- <vaadin-horizontal-layout style="width: 250px; ; justify-content: space-evenly;">
-  <vaadin-button theme="Primary" id="buttonSpeichern">
+ <div id="uploadAnker"></div>
+ <vaadin-horizontal-layout style="width: 250px; ; justify-content: space-evenly;" id="vaadinHorizontalLayout">
+  <vaadin-button theme="primary" id="buttonSpeichern">
     Speichern 
   </vaadin-button>
-  <vaadin-button theme="Primary" id="buttonLoeschen">
+  <vaadin-button theme="primary" id="buttonLoeschen">
     Löschen 
   </vaadin-button>
  </vaadin-horizontal-layout>

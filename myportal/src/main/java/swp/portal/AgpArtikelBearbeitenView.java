@@ -7,18 +7,26 @@ import swp.portal.beans.GeraetMB;
 import swp.portal.beans.SystemMB;
 import swp.portal.beans.UserMB;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.annotation.PostConstruct;
+import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.upload.Upload;
+import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
@@ -27,6 +35,8 @@ import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.button.Button;
 import swp.portal.AgpMenu;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.dom.Element;
 
 /**
  * A Designer generated component for the agp-artikel-bearbeiten-view template.
@@ -55,6 +65,8 @@ public class AgpArtikelBearbeitenView extends PolymerTemplate<AgpArtikelBearbeit
 	private TextArea textAreaBeschreibung;
 	private Collection<Integer> col = new ArrayList<Integer>();
 	private int gTOId;
+	private Upload upload;
+	private byte[] imageBuffer;
 	
 	@Inject
 	GeraetMB geraetMB;
@@ -64,6 +76,9 @@ public class AgpArtikelBearbeitenView extends PolymerTemplate<AgpArtikelBearbeit
 	UserMB userMB;
 	@Id("agpMenu")
 	private AgpMenu agpMenu;
+	@Id("uploadAnker")
+	private Div uploadAnker;
+	
 	/**
      * Creates a new AgpArtikelBearbeitenView.
      */
@@ -75,7 +90,8 @@ public class AgpArtikelBearbeitenView extends PolymerTemplate<AgpArtikelBearbeit
     	buttonSpeichern.addClickListener(e -> {
     		if (gTOId != 0)
 				try {
-					geraetMB.editGeraet(gTOId, textAreaBeschreibung.getValue(),comboBoxKategorie.getValue(), NumberFormat.getInstance().parse(textFieldPreis.getValue()).doubleValue(), textFieldName.getValue(), comboBoxAnzahl.getValue());
+					geraetMB.editGeraet(gTOId, textAreaBeschreibung.getValue(),comboBoxKategorie.getValue(), NumberFormat.getInstance().parse(textFieldPreis.getValue()).doubleValue(), textFieldName.getValue(), comboBoxAnzahl.getValue(), this.imageBuffer);
+
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -88,6 +104,8 @@ public class AgpArtikelBearbeitenView extends PolymerTemplate<AgpArtikelBearbeit
     		UI.getCurrent().navigate("");
     	});
     	
+    	initUploaderImage();
+    	
     }
 
     /**
@@ -95,6 +113,27 @@ public class AgpArtikelBearbeitenView extends PolymerTemplate<AgpArtikelBearbeit
      */
     public interface AgpArtikelBearbeitenViewModel extends TemplateModel {
         // Add setters and getters for template properties here.
+    }
+    
+   
+    private void initUploaderImage() {
+        MemoryBuffer fileBuffer = new MemoryBuffer();
+        upload = new Upload(fileBuffer);
+        upload.setAcceptedFileTypes("image/jpeg","image/jpg", "image/png", "image/gif");
+
+        upload.addFinishedListener(event -> {            
+            try {
+                // The image can be jpg png or gif, but we store it always as png file in this example
+                BufferedImage inputImage = ImageIO.read(fileBuffer.getInputStream());
+                ByteArrayOutputStream pngContent = new ByteArrayOutputStream();
+                ImageIO.write(inputImage, "png", pngContent);         
+                this.imageBuffer = pngContent.toByteArray();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
+        uploadAnker.add(upload);
     }
 
 	@Override
@@ -119,6 +158,7 @@ public class AgpArtikelBearbeitenView extends PolymerTemplate<AgpArtikelBearbeit
 		this.comboBoxAnzahl.setValue(gTO.getAnzahl());
 		this.comboBoxKategorie.setItems(systemMB.getKategories());
 		this.comboBoxKategorie.setValue(gTO.getKategorie());
+		this.imageBuffer = gTO.getImage();
 		
 		
 	}

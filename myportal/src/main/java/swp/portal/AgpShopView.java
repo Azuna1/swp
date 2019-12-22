@@ -84,7 +84,7 @@ public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> i
 
 	}
 
-	// TODO filter by DB
+	
 	private void showFiltered(String name, String compare) {
 		if (compare == null || name == null)
 			return;

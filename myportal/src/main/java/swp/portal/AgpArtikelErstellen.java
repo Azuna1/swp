@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.annotation.PostConstruct;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
@@ -20,6 +21,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
@@ -32,6 +34,8 @@ import com.vaadin.flow.component.upload.receivers.MultiFileMemoryBuffer;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.dom.Element;
 
 /**
  * A Designer generated component for the agp-artikel-erstellen template.
@@ -72,7 +76,9 @@ public class AgpArtikelErstellen extends PolymerTemplate<AgpArtikelErstellen.Agp
 	
 	@Inject
 	SystemMB systemMB;
-    /**
+	@Id("uploadAnker")
+	private Div uploadAnker;
+	/**
      * Creates a new AgpArtikelErstellen.
      */
     public AgpArtikelErstellen() {
@@ -111,6 +117,7 @@ public class AgpArtikelErstellen extends PolymerTemplate<AgpArtikelErstellen.Agp
 		
 	}
     
+
     private void initUploaderImage() {
         MemoryBuffer fileBuffer = new MemoryBuffer();
         upload = new Upload(fileBuffer);
@@ -129,7 +136,7 @@ public class AgpArtikelErstellen extends PolymerTemplate<AgpArtikelErstellen.Agp
 
         });
 
-        vaadinVerticalLayout.add(upload);
+       uploadAnker.add(upload);
     }
     
     /**

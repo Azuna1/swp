@@ -20,12 +20,12 @@ public class GeraetMB {
 	IGeraeteManager geraeteManager;
 	
 
-	public void saveImage(int id ,byte[] byteArray) {
-		GeraetTO gTO = geraeteManager.getGeraet(id);
-		gTO.setImage(byteArray);
-		geraeteManager.editGeraet(gTO);
-		
-	}
+//	public void saveImage(int id ,byte[] byteArray) {
+//		GeraetTO gTO = geraeteManager.getGeraet(id);
+//		gTO.setImage(byteArray);
+//		geraeteManager.editGeraet(gTO);
+//		
+//	}
 	
 	public Image getImage(GeraetTO gTO) {
 		byte[] buffer = gTO.getImage();
@@ -57,7 +57,7 @@ public class GeraetMB {
 		return geraeteManager.getGeraet(id);
 	}
 	
-	public void editGeraet(int id, String beschreibung, String kategorie, double preis, String geraetename, int anzahl) {
+	public void editGeraet(int id, String beschreibung, String kategorie, double preis, String geraetename, int anzahl, byte[] imageBuffer) {
 		GeraetTO gTO = new GeraetTO();
 		gTO.setGeraeteID(id);
 		gTO.setBeschreibung(beschreibung);
@@ -65,6 +65,7 @@ public class GeraetMB {
 		gTO.setPreis(preis);
 		gTO.setGeraetename(geraetename);
 		gTO.setAnzahl(anzahl);
+		gTO.setImage(imageBuffer);
 		geraeteManager.editGeraet(gTO);
 	}
 	

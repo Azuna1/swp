@@ -16,7 +16,7 @@ class AgpSettingsView extends PolymerElement {
 <vaadin-horizontal-layout style="width: 100%; height: 10%; justify-content: center;">
  <agp-menu id="agpMenu" style="heitgh:10%; flex-shrink: 0;"></agp-menu>
 </vaadin-horizontal-layout>
-<vaadin-horizontal-layout style="width: 100%; height: 90%; justify-content: center;">
+<vaadin-horizontal-layout style="width: 100%; height: 90%; justify-content: center;min-height: 1400px;">
  <agp-settings id="agpSettings" style="width:100%;"></agp-settings>
 </vaadin-horizontal-layout>
 `;

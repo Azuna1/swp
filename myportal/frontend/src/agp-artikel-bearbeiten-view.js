@@ -21,13 +21,14 @@ class AgpArtikelBearbeitenView extends PolymerElement {
  <agp-menu style="height:10%;" id="agpMenu"></agp-menu>
 </vaadin-horizontal-layout>
 <vaadin-horizontal-layout style="width: 100%; height: 100%; justify-content: center;">
- <vaadin-vertical-layout>
+ <vaadin-vertical-layout style="align-items: center;">
   <vaadin-text-field label="" placeholder="Artikelname" id="textFieldName" style="width: 250px;"></vaadin-text-field>
   <vaadin-combo-box id="comboBoxKategorie" style="width: 250px;" placeholder="Kategorie"></vaadin-combo-box>
   <vaadin-combo-box id="comboBoxAnzahl" style="width: 250px;" placeholder="Anzahl"></vaadin-combo-box>
   <vaadin-text-field label="" placeholder="Preis" id="textFieldPreis" style="width: 250px;"></vaadin-text-field>
   <vaadin-text-area label="Artikelbeschreibung" placeholder="Add detailed explanation" id="textAreaBeschreibung" style="width: 250px;"></vaadin-text-area>
-  <vaadin-horizontal-layout style="width: 250px; height: 100%; justify-content: space-evenly;">
+  <div id="uploadAnker"></div>
+  <vaadin-horizontal-layout style="width: 250px; justify-content: space-evenly;">
    <vaadin-button theme="primary" id="buttonSpeichern">
      Speichern 
    </vaadin-button>
