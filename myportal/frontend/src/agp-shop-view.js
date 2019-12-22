@@ -19,7 +19,7 @@ class AgpShopView extends PolymerElement {
 <vaadin-horizontal-layout style="width: 100%; height: 10%; justify-content: center;">
  <agp-menu id="agpMenu" style="height:10%; flex-shrink: 0;"></agp-menu>
 </vaadin-horizontal-layout>
-<vaadin-horizontal-layout style="width: 100%; height: 5%; justify-content: space-evenly;">
+<vaadin-horizontal-layout style="width: 100%; height: 50px; justify-content: space-evenly; align-items: flex-start;">
  <vaadin-text-field placeholder="Suchen" id="textFieldSuchen">
   <iron-icon icon="lumo:search" slot="prefix"></iron-icon>
  </vaadin-text-field>

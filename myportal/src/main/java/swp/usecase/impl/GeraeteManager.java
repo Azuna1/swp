@@ -19,9 +19,9 @@ public class GeraeteManager implements IGeraeteManager {
 	GeraetDAO geraetDAO; 
 	
 	@Override
-	public void createGeraet(String beschreibung, String kategorie, double preis, String geraetename, int anzahl) 
+	public void createGeraet(String beschreibung, String kategorie, double preis, String geraetename, int anzahl, byte[] imageBuffer) 
 	{
-		Geraet aGeraet = new Geraet(beschreibung, kategorie, preis, geraetename, anzahl);		
+		Geraet aGeraet = new Geraet(beschreibung, kategorie, preis, geraetename, anzahl, imageBuffer);			
 		geraetDAO.save(aGeraet);		
 	}
 

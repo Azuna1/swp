@@ -9,7 +9,7 @@ import swp.entity.GeraetTO;
 
 @Local
 public interface IGeraeteManager {
-	public void createGeraet(String beschreibung, String kategorie, double preis, String geraetename, int anzahl);
+	public void createGeraet(String beschreibung, String kategorie, double preis, String geraetename, int anzahl, byte[] imageBuffer);
 	public boolean deleteGeraet(int geraetID);
 	public List<GeraetTO> getAllGeraete();
 	public List<GeraetTO> getFilteredGeraete(String name, String kategorie);	

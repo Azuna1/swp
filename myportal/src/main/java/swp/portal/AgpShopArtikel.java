@@ -12,10 +12,13 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
+import com.vaadin.flow.dom.Element;
 
 /**
  * A Designer generated component for the agp-shop-artikel template.
@@ -51,6 +54,9 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 	@Id("textKategorie")
 	private Label textKategorie;
 
+	@Id("imageContainer")
+	private Div imageContainer;
+
 	public AgpShopArtikel() {
         // You can initialise any data required for the connected UI components here.
 		buttonWarenkorb.addClickListener(e -> {
@@ -62,13 +68,20 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 			Notification.show("Artikel zum Warenkorb hinzugefügt!");
 		});
 		buttonDetail.addClickListener(e -> {
-			Notification.show(String.format("%d",this.getArtikelID()));
+			UI.getCurrent().navigate("ShopArtikel/" + this.getArtikelID());
+			return;
 		});
 		  
 	}
 	
 	
-	
+	public void createImage(Image image) {
+		image.setWidth("100px");
+		image.setHeight("100px");
+		image.getStyle().set("padding-top", "5px");
+		imageContainer.removeAll();
+		imageContainer.add(image);
+	}
 	
 	public void setUserMB(UserMB userMB) {
 		this.userMB = userMB;
@@ -95,7 +108,7 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 		return textBeschreibung.getText();
 	}
 	public void setBeschreibung(String text) {
-		this.textBeschreibung.setText(String.format("%.50s",text));
+		this.textBeschreibung.setText(String.format("%.60s",text));
 	}
 	public int getArtikelID() {
 		return this.artikelID;

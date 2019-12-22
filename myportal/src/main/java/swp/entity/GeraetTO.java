@@ -8,19 +8,20 @@ public class GeraetTO implements Serializable {
 
 	private static final long serialVersionUID = 3022L;
 
-	int geraeteID;
-	String beschreibung;
-	String kategorie;
-	double preis;
-	String geraetename;
-	int anzahl;
+	private int geraeteID;
+	private String beschreibung;
+	private String kategorie;
+	private double preis;
+	private String geraetename;
+	private int anzahl;
+	private byte[] image;
 
 	public GeraetTO() {
 	}
 
 	public Geraet toGeraet() {
 		Geraet geraet = new Geraet(this.getBeschreibung(), this.getKategorie(), this.getPreis(), this.getGeraetename(),
-				this.getAnzahl());
+				this.getAnzahl(), this.image);
 		return geraet;
 	}
 
@@ -70,6 +71,14 @@ public class GeraetTO implements Serializable {
 
 	public void setGeraetename(String geraetename) {
 		this.geraetename = geraetename;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
 }

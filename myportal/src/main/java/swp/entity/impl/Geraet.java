@@ -2,12 +2,17 @@ package swp.entity.impl;
 
 import java.io.Serializable;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
+
+import com.vaadin.flow.component.html.Image;
 
 import swp.entity.GeraetTO;
 
@@ -22,12 +27,15 @@ public class Geraet implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@SequenceGenerator(name="geraete_id", sequenceName="SEQ_GERAET_ID", allocationSize = 1)
-	int geraeteID;
-	String beschreibung;
-	String kategorie;
-	double preis;
-	String geraetename;
-	int anzahl;
+	private int geraeteID;
+	private String beschreibung;
+	private String kategorie;
+	private double preis;
+	private String geraetename;
+	private int anzahl;
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
+	private byte[] image;
 	
 
 
@@ -42,17 +50,21 @@ public class Geraet implements Serializable {
 		geraetTO.setPreis(this.getPreis());
 		geraetTO.setGeraetename(this.getGeraetename());
 		geraetTO.setAnzahl(this.getAnzahlt());
+		geraetTO.setImage(this.getImage());
 		return geraetTO;
 	}
 	
-	public Geraet(String beschreibung, String kategorie, double preis, String geraetename, int anzahl) {
+	public Geraet(String beschreibung, String kategorie, double preis, String geraetename, int anzahl, byte[] imageBuffer) {
 		super();
 		this.beschreibung = beschreibung;
 		this.kategorie = kategorie;
 		this.preis = preis;
 		this.geraetename = geraetename;
 		this.anzahl = anzahl;
+		this.image = imageBuffer;
 	}
+	
+
 	
 	public int getAnzahlt() {
 		return anzahl;
@@ -91,6 +103,14 @@ public class Geraet implements Serializable {
 	}
 	public void setGeraetename(String geraetename) {
 		this.geraetename = geraetename;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 	
 	

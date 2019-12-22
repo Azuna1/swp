@@ -6,9 +6,13 @@ import swp.portal.beans.GeraetMB;
 import swp.portal.beans.SystemMB;
 import swp.usecase.IGeraeteManager;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
 import com.vaadin.flow.component.Tag;
@@ -21,6 +25,10 @@ import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.upload.Upload;
+import com.vaadin.flow.component.upload.receivers.FileBuffer;
+import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
+import com.vaadin.flow.component.upload.receivers.MultiFileMemoryBuffer;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Route;
@@ -53,6 +61,9 @@ public class AgpArtikelErstellen extends PolymerTemplate<AgpArtikelErstellen.Agp
 	@Id("buttonLoeschen")
 	private Button buttonLoeschen;
 	
+	private Upload upload;
+	private byte[] imageBuffer;
+	
 	@Inject
 	GeraetMB geraetMB;
 	
@@ -78,7 +89,7 @@ public class AgpArtikelErstellen extends PolymerTemplate<AgpArtikelErstellen.Agp
     	buttonSpeichern.addClickListener(event -> {
 //    		for (int i = 0; i < comboBoxAnzahl.getValue(); i++)
 //    			geraetMB.createGeraet(textAreaArtikelbeschreibung.getValue(), comboBoxKategorie.getValue(), Double.valueOf(textFieldPreis.getValue()), textFieldArtikelname.getValue());
-    		geraetMB.createGeraet(textAreaArtikelbeschreibung.getValue(), comboBoxKategorie.getValue(), Double.valueOf(textFieldPreis.getValue()), textFieldArtikelname.getValue(), comboBoxAnzahl.getValue());
+    		geraetMB.createGeraet(textAreaArtikelbeschreibung.getValue(), comboBoxKategorie.getValue(), Double.valueOf(textFieldPreis.getValue()), textFieldArtikelname.getValue(), comboBoxAnzahl.getValue(), this.imageBuffer);
 
     	});
     	
@@ -90,7 +101,7 @@ public class AgpArtikelErstellen extends PolymerTemplate<AgpArtikelErstellen.Agp
     		comboBoxAnzahl.setValue(0);
     	});
     	
-    	
+    	initUploaderImage();
     }
 
     @Override
@@ -99,6 +110,27 @@ public class AgpArtikelErstellen extends PolymerTemplate<AgpArtikelErstellen.Agp
     	comboBoxKategorie.setItems(systemMB.getKategories());
 		
 	}
+    
+    private void initUploaderImage() {
+        MemoryBuffer fileBuffer = new MemoryBuffer();
+        upload = new Upload(fileBuffer);
+        upload.setAcceptedFileTypes("image/jpeg","image/jpg", "image/png", "image/gif");
+
+        upload.addFinishedListener(event -> {            
+            try {
+                // The image can be jpg png or gif, but we store it always as png file in this example
+                BufferedImage inputImage = ImageIO.read(fileBuffer.getInputStream());
+                ByteArrayOutputStream pngContent = new ByteArrayOutputStream();
+                ImageIO.write(inputImage, "png", pngContent);         
+                this.imageBuffer = pngContent.toByteArray();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
+
+        vaadinVerticalLayout.add(upload);
+    }
     
     /**
      * This model binds properties between AgpArtikelErstellen and agp-artikel-erstellen

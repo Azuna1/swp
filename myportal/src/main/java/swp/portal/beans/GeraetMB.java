@@ -1,10 +1,13 @@
 package swp.portal.beans;
 
 import java.util.List;
+import java.io.ByteArrayInputStream;
 
 import javax.inject.Inject;
 
 import com.vaadin.cdi.annotation.VaadinSessionScoped;
+import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.server.StreamResource;
 
 import swp.entity.GeraetTO;
 import swp.usecase.IGeraeteManager;
@@ -16,10 +19,31 @@ public class GeraetMB {
 	@Inject 
 	IGeraeteManager geraeteManager;
 	
+
+	public void saveImage(int id ,byte[] byteArray) {
+		GeraetTO gTO = geraeteManager.getGeraet(id);
+		gTO.setImage(byteArray);
+		geraeteManager.editGeraet(gTO);
+		
+	}
 	
-	public void createGeraet(String beschreibung, String kategorie, double preis, String geraetename, int anzahl) 
+	public Image getImage(GeraetTO gTO) {
+		byte[] buffer = gTO.getImage();
+		
+		if (buffer == null)
+			return new Image();	
+		
+		StreamResource sr = new StreamResource("artikelImage", () -> {
+			return new ByteArrayInputStream(buffer)	;	
+		});
+		sr.setContentType("image/png");
+		Image image = new Image(sr, "artikle-image");
+        return image;
+	}
+	
+	public void createGeraet(String beschreibung, String kategorie, double preis, String geraetename, int anzahl, byte[] imageBuffer) 
 	{		
-		geraeteManager.createGeraet( beschreibung,  kategorie,  preis, geraetename, anzahl);		
+		geraeteManager.createGeraet( beschreibung,  kategorie,  preis, geraetename, anzahl, imageBuffer);		
 	}
 	
 	public List<GeraetTO> getAllGeraete() {
@@ -47,5 +71,6 @@ public class GeraetMB {
 	public List<GeraetTO> getFilteredGeraete(String name, String kategorie) {
 		return geraeteManager.getFilteredGeraete(name, kategorie);
 	}
+
 
 }

@@ -1,13 +1,28 @@
 package swp.portal;
 
 import com.vaadin.flow.templatemodel.TemplateModel;
+
+import swp.entity.GeraetTO;
+import swp.entity.RechnungTO;
+import swp.portal.beans.GeraetMB;
+import swp.portal.beans.UserMB;
+
+import javax.inject.Inject;
+
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
+import com.vaadin.flow.router.BeforeEvent;
+import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.dom.Element;
 
 /**
  * A Designer generated component for the agp-shop-artikel-view template.
@@ -18,20 +33,67 @@ import com.vaadin.flow.router.Route;
 @Tag("agp-shop-artikel-view")
 @JsModule("./src/agp-shop-artikel-view.js")
 @Route("ShopArtikel")
-public class AgpShopArtikelView extends PolymerTemplate<AgpShopArtikelView.AgpShopArtikelViewModel> {
+public class AgpShopArtikelView extends PolymerTemplate<AgpShopArtikelView.AgpShopArtikelViewModel> implements HasUrlParameter<Integer>{
 
-	@Id("vaadinVerticalLayout")
-	private VerticalLayout vaadinVerticalLayout;
+	private int artikelID;
 	@Id("agpMenu")
-	private AgpMenu agpMenu;
-	@Id("agpShopArtikel")
-	private AgpShopArtikel agpShopArtikel;
-	
-    public AgpShopArtikelView() {
+	private AgpMenu agpMenu;	
+	@Id("textName")
+	private Label textName;
+	@Id("textPreis")
+	private Label textPreis;
+	@Id("textKategorie")
+	private Label textKategorie;
+	@Id("textBeschreibung")
+	private Label textBeschreibung;
+	@Id("buttonWarenkorb")
+	private Button buttonWarenkorb;
+	@Inject
+	UserMB userMB;
+	@Inject
+	GeraetMB geraetMB;
+	public AgpShopArtikelView() {
         // You can initialise any data required for the connected UI components here.
+    	
+		buttonWarenkorb.addClickListener(e -> {					
+			userMB.addToWarenkorb(this.getArtikelID());
+			Notification.show("Artikel zum Warenkorb hinzugefügt!");
+		});
     }
 
-    /**
+    
+    @Override
+	public void setParameter(BeforeEvent event, Integer parameter) {
+		if(!userMB.isLoggedIn() ) {
+			event.forwardTo("Login");
+			return;
+		}
+		
+		if (parameter == null )
+			event.forwardTo("");
+		
+		GeraetTO gTO = geraetMB.getGeraet(parameter);
+		if (gTO == null)
+			event.forwardTo("");
+		
+		this.setArtikelID(parameter);
+		textName.setText(gTO.getGeraetename());
+		textPreis.setText(String.format("%.2f€",gTO.getPreis()));
+		textKategorie.setText(gTO.getKategorie());
+		textBeschreibung.setText(gTO.getBeschreibung());
+		
+    }
+    
+    public int getArtikelID() {
+		return artikelID;
+	}
+
+
+	public void setArtikelID(int artikelID) {
+		this.artikelID = artikelID;
+	}
+
+	/**
      * This model binds properties between AgpShopArtikelView and agp-shop-artikel-view
      */
     public interface AgpShopArtikelViewModel extends TemplateModel {

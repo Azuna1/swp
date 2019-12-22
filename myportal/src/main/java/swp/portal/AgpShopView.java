@@ -120,6 +120,7 @@ public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> i
 			artikel.setPreis(gTO.getPreis());
 			artikel.setKategorie(gTO.getKategorie());
 			artikel.setUserMB(userMB);
+			artikel.createImage(geraetMB.getImage(gTO));
 
 			x.add(artikel);
 			i++;

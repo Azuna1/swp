@@ -38,6 +38,9 @@ public class SystemMB {
 	@Inject
 	IGeraeteManager geraeteManager;
 
+	
+		
+	
 	public EmailTO getEmailIT() {
 		return emailManager.getEmail("emailIT");
 	}
