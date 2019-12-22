@@ -3,6 +3,7 @@ package swp.portal;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -132,7 +133,11 @@ public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> i
 	public void beforeEnter(BeforeEnterEvent event) {
 		if (!userMB.isLoggedIn())
 			return;
-		comboBoxFilter.setItems(systemMB.getKategories());
+		
+		Collection<String> filter = systemMB.getKategories();
+		filter.add("");
+		comboBoxFilter.setItems(filter);
+
 		deleteAll();
 		showFiltered("", "");
 

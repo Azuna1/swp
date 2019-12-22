@@ -8,6 +8,7 @@ import swp.portal.beans.SystemMB;
 import swp.portal.beans.UserMB;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Locale;
 
 import javax.annotation.PostConstruct;
@@ -65,8 +66,12 @@ public class AgpBestellungenVerwaltenView extends PolymerTemplate<AgpBestellunge
 		buttonBezahlt.addClickListener(e -> {
 			vaadinGrid.getSelectionModel().getFirstSelectedItem().ifPresent(item -> {
 				systemMB.setRechnungBezahlt(item.getRechnungsID());
-				fillGrid();
+				fillGrid("");
 			});
+		});
+		
+		textFieldSearch.addValueChangeListener(e -> {
+			fillGrid(textFieldSearch.getValue());
 		});
 	}
 
@@ -82,14 +87,23 @@ public class AgpBestellungenVerwaltenView extends PolymerTemplate<AgpBestellunge
 		vaadinGrid.addColumn(new NumberRenderer<>(RechnungTO::getEndbetrag, "€ %(,.2f",Locale.GERMAN, "€ 0.00")).setHeader("Preis").setTextAlign(ColumnTextAlign.END);		
 	}
 	
-	private void fillGrid() {
+	private void fillGrid(String filter ) {
 		ArrayList<RechnungTO> list = new ArrayList<>();
 		if(userMB.isAdmin())
 			 list = (ArrayList<RechnungTO>) systemMB.getRechnungen();
 		else			
 			 list = (ArrayList<RechnungTO>) systemMB.getRechnungenForUser(userMB.getMatrikelNr());
 		
-		System.out.println("list: " + list.size());
+		Iterator<RechnungTO> itr = list.iterator();
+		while (itr.hasNext()) {
+			RechnungTO rTO = itr.next();
+			if(!String.valueOf(rTO.getRechnungsID()).contains(filter) &&
+					!rTO.getRechnungsdatum().toGMTString().contains(filter) &&
+					!rTO.getName().contains(filter) &&
+					!rTO.getSurname().contains(filter) &&
+					!String.valueOf(rTO.getIstBezahlt()).contains(filter));
+				itr.remove();
+		}
 		vaadinGrid.setItems(list);	
 
 		
@@ -100,7 +114,7 @@ public class AgpBestellungenVerwaltenView extends PolymerTemplate<AgpBestellunge
 	public void beforeEnter(BeforeEnterEvent event) {
 		if(!userMB.isAdmin())
 			buttonBezahlt.setVisible(false);
-		fillGrid();
+		fillGrid("");
 		
 	}
 	
