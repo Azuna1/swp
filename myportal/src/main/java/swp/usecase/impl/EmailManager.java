@@ -62,9 +62,7 @@ public class EmailManager implements IEmailManager{
 		
 	}
 
-	@Override
-	public boolean sendEmail(String name) {
-		Email mail = emailDAO.find(name);
+	private boolean sendEmail(Email mail) {
 		String absenderEmail ="sendmeamailswp2019@gmail.com";
 		String absenderName ="AltegrätePortal";
 		
@@ -96,7 +94,19 @@ public class EmailManager implements IEmailManager{
 			return false;
 		}
 		
-		
+	}
+	
+	@Override
+	public boolean sendEmail(String name, String toEmail) {
+		Email mail = emailDAO.find(name);
+		mail.setToEmail(toEmail);
+		return sendEmail(mail);		
+	}
+	
+	@Override
+	public boolean sendEmail(String name) {
+		Email mail = emailDAO.find(name);
+		return sendEmail(mail);		
 	}
 	
 	
@@ -124,7 +134,7 @@ public class EmailManager implements IEmailManager{
 		}
 	};
 	
-	this.mailSession = Session.getDefaultInstance(props, auth);
+	this.mailSession = Session.getInstance(props, auth);
 	System.out.println("Login erfolgreich!!!");
 	
 	}

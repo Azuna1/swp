@@ -16,6 +16,7 @@ public class RechnungTO implements Serializable {
 	private String name;
 	private String surname;
 	private double endbetrag = 0;
+	private String email;
 	private ArrayList<String> artikel = new ArrayList<>();
 
 	public RechnungTO() {
@@ -33,6 +34,7 @@ public class RechnungTO implements Serializable {
 		r.setRechnungsdatum(rechnungsdatum);
 		r.setRechnungsID(rechnungsID);
 		r.setSurname(surname);
+		r.setEmail(email);
 
 		return r;
 	}
@@ -104,6 +106,14 @@ public class RechnungTO implements Serializable {
 
 	public double getEndbetrag() {
 		return endbetrag;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

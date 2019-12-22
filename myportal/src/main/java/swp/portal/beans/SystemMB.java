@@ -85,11 +85,12 @@ public class SystemMB {
 		return col;
 	}
 
-	public void setRechnungBezahlt(int id)
+	public boolean setRechnungBezahlt(int id)
 	{
 		RechnungTO rTO = rechnungsManager.getRechnung(id);
 		rTO.setIstBezahlt(!rTO.getIstBezahlt());
 		rechnungsManager.update(rTO);
+		return rTO.getIstBezahlt();
 	}
 	
 	public void createKategorie(String name) {
@@ -112,7 +113,7 @@ public class SystemMB {
 		return rechnungsManager.getAllFromUser(matrikelNR);
 	}
 
-	public void createRechnung(String matrikelNr, String name, String surname, List<GeraetTO> artikel, HashMap<Integer, Integer> warenkorb) {
+	public void createRechnung(String matrikelNr, String name, String surname, String email, List<GeraetTO> artikel, HashMap<Integer, Integer> warenkorb) {
 
 		
 		for (Map.Entry<Integer, Integer> entry : warenkorb.entrySet()) {
@@ -121,7 +122,18 @@ public class SystemMB {
 			geraeteManager.editGeraet(gTO);
 		}
 		
-		rechnungsManager.createRechnung(matrikelNr, name, surname, artikel);
+		rechnungsManager.createRechnung(matrikelNr, name, surname, email, artikel);
+		
+	}
+	
+	public void sendEmailsKauf(String toEmail) {
+		emailManager.sendEmail("emailKundeEingang", toEmail); 
+		emailManager.sendEmail("emailIT");
+		emailManager.sendEmail("emailFIBU");		
+	}
+	
+	public void sendEmailAbholbereit(String toEmail) {
+		emailManager.sendEmail("emailKundeAbholung", toEmail);
 	}
 	
 	public void delAdmin(String name) {		

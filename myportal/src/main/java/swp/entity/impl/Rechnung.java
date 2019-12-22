@@ -28,7 +28,9 @@ public class Rechnung implements Serializable {
 	private String name;
 	private String surname;
 	private double endbetrag = 0;
-	
+	private String email;
+
+
 	@ElementCollection
 	private List<String> artikel = new ArrayList<>();
 
@@ -42,6 +44,7 @@ public class Rechnung implements Serializable {
 		rechnungTO.setRechnungsID(rechnungsID);
 		rechnungTO.setRechnungsdatum(rechnungsdatum);
 		rechnungTO.setArtikel(new ArrayList<String>(artikel));
+		rechnungTO.setEmail(email);
 
 		return rechnungTO;
 	}
@@ -50,12 +53,13 @@ public class Rechnung implements Serializable {
 
 	}
 
-	public Rechnung(String matrikelNr, String name, String surname) {
+	public Rechnung(String matrikelNr, String name, String surname, String email) {
 		this.matrikelNr = matrikelNr;
 		this.name = name;
 		this.surname = surname;
 		this.rechnungsdatum = new Date();
 		this.istBezahlt = false;
+		this.email = email;
 	}
 
 	public void addArtikel(String name, Double price) {
@@ -126,5 +130,13 @@ public class Rechnung implements Serializable {
 	public double getEndbetrag() {
 		return endbetrag;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 }

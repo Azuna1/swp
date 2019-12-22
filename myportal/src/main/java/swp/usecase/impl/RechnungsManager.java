@@ -37,8 +37,8 @@ public class RechnungsManager implements IRechnungsManager {
 	}
 
 	@Override
-	public void createRechnung(String matrikelNr, String name, String surname, List<GeraetTO> artikel) {
-		Rechnung aRechnung = new Rechnung(matrikelNr, name, surname);		
+	public void createRechnung(String matrikelNr, String name, String surname, String email, List<GeraetTO> artikel) {
+		Rechnung aRechnung = new Rechnung(matrikelNr, name, surname, email);		
 		
 		artikel.forEach(e -> {			
 			aRechnung.addArtikel(e.getGeraetename(), e.getPreis());

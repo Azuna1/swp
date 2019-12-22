@@ -11,4 +11,5 @@ public interface IEmailManager {
 	public void editEmail(String name, String toEmail, String subject, String message);
 	public EmailTO getEmail(String name);
 	public boolean sendEmail(String name);
+	public boolean sendEmail(String name, String toEmail);
 }

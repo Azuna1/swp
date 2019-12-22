@@ -28,7 +28,7 @@ class AgpBestellungenVerwaltenView extends PolymerElement {
     <iron-icon icon="lumo:search" slot="prefix"></iron-icon>
    </vaadin-text-field>
   </vaadin-horizontal-layout>
-  <vaadin-grid style="border: 1px solid;" id="vaadinGrid"></vaadin-grid>
+  <vaadin-grid style="border: 1px solid;" id="vaadinGrid" multi-sort></vaadin-grid>
   <vaadin-horizontal-layout style="align-self: flex-end;">
    <vaadin-button id="buttonBezahlt">
     <iron-icon icon="lumo:checkmark" slot="prefix"></iron-icon>Als Bezahlt Markieren 

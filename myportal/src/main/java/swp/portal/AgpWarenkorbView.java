@@ -83,10 +83,12 @@ public class AgpWarenkorbView extends PolymerTemplate<AgpWarenkorbView.AgpWarenk
 				}
 			}
 			
-			systemMB.createRechnung(userMB.getMatrikelNr(), userMB.getName(), userMB.getSurname(), userMB.getWarenkorb(), warenkorb);		
+			systemMB.createRechnung(userMB.getMatrikelNr(), userMB.getName(), userMB.getSurname(), userMB.getEmail(), userMB.getWarenkorb(), warenkorb);	
+			systemMB.sendEmailsKauf(userMB.getEmail());
 			userMB.emptyWarenkorb();
 			fillGrid();
 			UI.getCurrent().navigate("BestellungenVerwalten");
+			
 
 		});
 		
@@ -95,8 +97,8 @@ public class AgpWarenkorbView extends PolymerTemplate<AgpWarenkorbView.AgpWarenk
 	@PostConstruct
 	private void prepare()
 	{
-		vaadinGrid.addColumn(GeraetTO::getGeraetename).setHeader("Name");
-		vaadinGrid.addColumn(new NumberRenderer<>(GeraetTO::getPreis, "€ %(,.2f",Locale.GERMAN, "€ 0.00")).setHeader("Preis").setTextAlign(ColumnTextAlign.END);		
+		vaadinGrid.addColumn(GeraetTO::getGeraetename).setHeader("Name").setSortable(true);
+		vaadinGrid.addColumn(new NumberRenderer<>(GeraetTO::getPreis, "€ %(,.2f",Locale.GERMAN, "€ 0.00")).setHeader("Preis").setTextAlign(ColumnTextAlign.END).setSortable(true);		
 	}
 	
 	private void fillGrid() {

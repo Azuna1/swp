@@ -32,7 +32,7 @@ class AgpRechnungView extends PolymerElement {
  </vaadin-horizontal-layout>
  <vaadin-horizontal-layout style="width: 80%; height: 70%;">
   <vaadin-vertical-layout style="width: 100%; height: 100%;">
-   <vaadin-grid id="vaadinGrid"></vaadin-grid>
+   <vaadin-grid id="vaadinGrid" multi-sort column-reordering-allowed></vaadin-grid>
    <vaadin-horizontal-layout style="justify-content: space-between; align-self: stretch;">
     <label style="font-weight: bold; width: 100px;">Bruto:</label>
     <label id="textBruto" style="align-self: flex-end;">Label</label>
