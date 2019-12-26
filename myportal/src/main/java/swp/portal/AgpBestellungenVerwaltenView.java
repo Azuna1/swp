@@ -27,6 +27,8 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.renderer.NumberRenderer;
 import com.vaadin.flow.component.grid.ColumnTextAlign;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.button.Button;
 
@@ -91,14 +93,25 @@ public class AgpBestellungenVerwaltenView extends
 		vaadinGrid.addColumn(RechnungTO::getRechnungsdatum).setHeader("Datum").setSortable(true);
 		vaadinGrid.addColumn(RechnungTO::getName).setHeader("Vorname").setSortable(true);
 		vaadinGrid.addColumn(RechnungTO::getSurname).setHeader("Nachname").setSortable(true);
-		vaadinGrid.addColumn(RechnungTO::getIstBezahlt).setHeader("Bezahlt").setSortable(true);
+//		vaadinGrid.addColumn(RechnungTO::getIstBezahlt).setHeader("Bezahlt").setSortable(true);
+		vaadinGrid.addComponentColumn((item) -> {
+			Icon icon;
+			if(item.getIstBezahlt()){ // change this to your own getter for the boolean value
+				icon = VaadinIcon.CHECK.create();
+				icon.setColor("green");
+			} else {
+				icon = VaadinIcon.CLOSE.create();
+				icon.setColor("red");
+			}
+			return icon;
+		}).setFlexGrow(0).setWidth("100px").setHeader("Bezahlt").setSortable(true).setTextAlign(ColumnTextAlign.CENTER);
+		
 		vaadinGrid.addColumn(new NumberRenderer<>(RechnungTO::getEndbetrag, "€ %(,.2f", Locale.GERMAN, "€ 0.00"))
 				.setHeader("Preis").setTextAlign(ColumnTextAlign.END);
 	}
 
 	private void fillGrid(String filter) {
-		if (!userMB.isLoggedIn())
-			return;
+		
 //
 //		ArrayList<RechnungTO> list = new ArrayList<>();
 //		if (userMB.isAdmin())
@@ -121,12 +134,15 @@ public class AgpBestellungenVerwaltenView extends
 			}
 		}
 		vaadinGrid.setItems(sortList);
+//		vaadinGrid.recalculateColumnWidths();
 //		System.out.println("list size after: " + list.size());
 
 	}
 
 	@Override
 	public void beforeEnter(BeforeEnterEvent event) {
+		if (!userMB.isLoggedIn())
+			return;
 		if (!userMB.isAdmin())
 			buttonBezahlt.setVisible(false);
 		
