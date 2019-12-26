@@ -58,6 +58,8 @@ public class AgpBestellungenVerwaltenView extends
 	private Button buttonBezahlt;
 	@Id("buttonDetails")
 	private Button buttonDetails;
+	
+	private ArrayList<RechnungTO> list = new ArrayList<>();
 
 	public AgpBestellungenVerwaltenView() {
 		// You can initialise any data required for the connected UI components here.
@@ -97,17 +99,19 @@ public class AgpBestellungenVerwaltenView extends
 	private void fillGrid(String filter) {
 		if (!userMB.isLoggedIn())
 			return;
+//
+//		ArrayList<RechnungTO> list = new ArrayList<>();
+//		if (userMB.isAdmin())
+//			list = (ArrayList<RechnungTO>) systemMB.getRechnungen();
+//		else
+//			list = (ArrayList<RechnungTO>) systemMB.getRechnungenForUser(userMB.getMatrikelNr());
 
-		ArrayList<RechnungTO> list = new ArrayList<>();
-		if (userMB.isAdmin())
-			list = (ArrayList<RechnungTO>) systemMB.getRechnungen();
-		else
-			list = (ArrayList<RechnungTO>) systemMB.getRechnungenForUser(userMB.getMatrikelNr());
-
-		System.out.println("list size before: " + list.size());
+//		System.out.println("list size before: " + list.size());
+		
+		ArrayList<RechnungTO> sortList = new ArrayList<>(list);
 		if (!filter.contentEquals("")) {
 
-			Iterator<RechnungTO> itr = list.iterator();
+			Iterator<RechnungTO> itr = sortList.iterator();
 			while (itr.hasNext()) {
 				RechnungTO rTO = itr.next();
 				if (!String.valueOf(rTO.getRechnungsID()).contains(filter)
@@ -116,8 +120,8 @@ public class AgpBestellungenVerwaltenView extends
 				itr.remove();
 			}
 		}
-		vaadinGrid.setItems(list);
-		System.out.println("list size after: " + list.size());
+		vaadinGrid.setItems(sortList);
+//		System.out.println("list size after: " + list.size());
 
 	}
 
@@ -125,6 +129,12 @@ public class AgpBestellungenVerwaltenView extends
 	public void beforeEnter(BeforeEnterEvent event) {
 		if (!userMB.isAdmin())
 			buttonBezahlt.setVisible(false);
+		
+		if (userMB.isAdmin())
+			list = (ArrayList<RechnungTO>) systemMB.getRechnungen();
+		else
+			list = (ArrayList<RechnungTO>) systemMB.getRechnungenForUser(userMB.getMatrikelNr());
+		
 		fillGrid("");
 
 	}
