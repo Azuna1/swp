@@ -14,6 +14,7 @@ import com.vaadin.flow.component.contextmenu.SubMenu;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.menubar.MenuBar;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.BeforeEnterEvent;
@@ -37,6 +38,7 @@ public class AgpMenu extends PolymerTemplate<AgpMenu.AgpMenuModel> implements Be
 
 	MenuItem artikelErstellen;	
 	MenuItem settings;
+	MenuItem warenkorb;
 
 	/**
 	 * Creates a new AgpMenu.
@@ -45,7 +47,8 @@ public class AgpMenu extends PolymerTemplate<AgpMenu.AgpMenuModel> implements Be
 
 		vaadinMenuBar.setOpenOnHover(true);
 		MenuItem shop = vaadinMenuBar.addItem("Shop", e -> UI.getCurrent().navigate(""));
-		MenuItem warenkorb = vaadinMenuBar.addItem("Warenkorb", e -> UI.getCurrent().navigate("Warenkorb"));
+		warenkorb = vaadinMenuBar.addItem("Warenkorb", e -> UI.getCurrent().navigate("Warenkorb"));
+		warenkorb.setId("warenkorb_menu");
 		MenuItem bestellungenVerwalten = vaadinMenuBar.addItem("Bestellungen Verwalten",
 				e -> UI.getCurrent().navigate("BestellungenVerwalten"));
 		//MenuItem kasse = vaadinMenuBar.addItem("Kasse", e -> UI.getCurrent().navigate("Kasse"));
@@ -72,6 +75,7 @@ public class AgpMenu extends PolymerTemplate<AgpMenu.AgpMenuModel> implements Be
 		if (userMB.isAdmin()) {
 			artikelErstellen.setVisible(true);			
 			settings.setVisible(true);
+			warenkorb.setVisible(false);
 		}
 	}
 
@@ -81,6 +85,8 @@ public class AgpMenu extends PolymerTemplate<AgpMenu.AgpMenuModel> implements Be
 			event.forwardTo("Login");
 			return;
 		}
+		
+		warenkorb.setText(String.format("Warenkorb(%d)",userMB.countWarenkorb()));
 		
 	}
 	

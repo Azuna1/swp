@@ -14,6 +14,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.BeforeEvent;
@@ -33,6 +34,7 @@ import com.vaadin.flow.dom.Element;
 @Tag("agp-shop-artikel-view")
 @JsModule("./src/agp-shop-artikel-view.js")
 @Route("ShopArtikel")
+@Push
 public class AgpShopArtikelView extends PolymerTemplate<AgpShopArtikelView.AgpShopArtikelViewModel> implements HasUrlParameter<Integer>{
 
 	private int artikelID;
@@ -56,7 +58,11 @@ public class AgpShopArtikelView extends PolymerTemplate<AgpShopArtikelView.AgpSh
         // You can initialise any data required for the connected UI components here.
     	
 		buttonWarenkorb.addClickListener(e -> {					
-			userMB.addToWarenkorb(this.getArtikelID());
+			userMB.addToWarenkorb(this.getArtikelID());			
+			UI.getCurrent().access(() -> {
+				agpMenu.warenkorb.setText(String.format("Warenkorb(%d)",userMB.countWarenkorb()));
+			});				
+
 			Notification.show("Artikel zum Warenkorb hinzugefügt!");
 		});
     }

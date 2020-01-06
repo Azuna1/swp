@@ -16,6 +16,7 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.textfield.TextField;
@@ -38,6 +39,7 @@ import swp.portal.beans.UserMB;
 @Tag("agp-shop-view")
 @JsModule("./src/agp-shop-view.js")
 @Route("")
+@Push
 public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> implements BeforeEnterObserver {
 
 	@Id("agpMenu")
@@ -121,6 +123,7 @@ public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> i
 			artikel.setPreis(gTO.getPreis());
 			artikel.setKategorie(gTO.getKategorie());
 			artikel.setUserMB(userMB);
+			artikel.setAgpMenu(this.agpMenu);
 			artikel.createImage(geraetMB.getImage(gTO));
 
 			x.add(artikel);

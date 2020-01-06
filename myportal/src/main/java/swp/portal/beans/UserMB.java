@@ -104,5 +104,9 @@ public class UserMB {
 		
 	}
 	
+	public int countWarenkorb() {
+		return warenkorb.size();
+	}
+	
 
 }
