@@ -9,11 +9,9 @@ import com.vaadin.cdi.annotation.VaadinSessionScoped;
 
 import swp.entity.GeraetTO;
 
-
-
 @VaadinSessionScoped
 public class UserMB {
-	
+
 	private boolean isAdmin = false;
 	private boolean isLoggedIn = false;
 	private String username;
@@ -22,28 +20,28 @@ public class UserMB {
 	private String matrikelNr;
 	private String email;
 	private ArrayList<Integer> warenkorb = new ArrayList<>();
-	
+
 	@Inject
 	GeraetMB geraetMB;
-	
-	public List<GeraetTO> getWarenkorb()
-	{
+
+	public List<GeraetTO> getWarenkorb() {
 		ArrayList<GeraetTO> list = new ArrayList<>();
-		for(int i : warenkorb) {
+		for (int i : warenkorb) {
 			GeraetTO gTO = geraetMB.getGeraet(i);
-			if(gTO != null)
+			if (gTO != null)
 				list.add(gTO);
 		}
 		return list;
 	}
+
 	public void addToWarenkorb(int id) {
 		warenkorb.add(id);
 	}
-	
+
 	public void removeFromWarenkorb(Integer id) {
 		warenkorb.remove(id);
 	}
-	
+
 	public boolean isAdmin() {
 		return isAdmin;
 	}
@@ -58,7 +56,7 @@ public class UserMB {
 
 	public void setLoggedIn(boolean isLoggedIn) {
 		this.isLoggedIn = isLoggedIn;
-		if( !isLoggedIn )
+		if (!isLoggedIn)
 			this.isAdmin = false;
 	}
 
@@ -93,20 +91,22 @@ public class UserMB {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	public void emptyWarenkorb() {
 		this.warenkorb.clear();
-		
+
 	}
-	
+
 	public int countWarenkorb() {
 		return warenkorb.size();
 	}
-	
 
 }

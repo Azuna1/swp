@@ -45,7 +45,7 @@ public class AgpLogin extends PolymerTemplate<AgpLogin.AgpLoginModel> {
 	 */
 	public AgpLogin() {
 		// You can initialise any data required for the connected UI components here.
-		vaadinLoginForm.addLoginListener(e -> login(e));		
+		vaadinLoginForm.addLoginListener(e -> login(e));
 	}
 
 	/**
@@ -56,12 +56,12 @@ public class AgpLogin extends PolymerTemplate<AgpLogin.AgpLoginModel> {
 	}
 
 	public void login(LoginEvent event) {
-		//TODO
+		// TODO
 		// just for easier testing
-		
-		//testuser2:gJalvqQlCOhi
-		
-		//Notification.show("User: " + event.getUsername() + " tried to login");
+
+		// testuser2:gJalvqQlCOhi
+
+		// Notification.show("User: " + event.getUsername() + " tried to login");
 		// String principalName = "cn=testuser2, ou=People, dc=recodesystems, dc=com";
 		String principalName = "cn=" + event.getUsername() + ", ou=People, dc=recodesystems, dc=com";
 
@@ -71,9 +71,9 @@ public class AgpLogin extends PolymerTemplate<AgpLogin.AgpLoginModel> {
 		env.put(Context.SECURITY_AUTHENTICATION, "simple");
 		env.put(Context.SECURITY_PRINCIPAL, principalName);
 		env.put(Context.SECURITY_CREDENTIALS, event.getPassword());
-		
-		//TODO
-				// just for easier testing
+
+		// TODO
+		// just for easier testing
 //		userMB.setLoggedIn(true);
 //		userMB.setAdmin(true);	
 //		UI.getCurrent().navigate("");
@@ -84,29 +84,30 @@ public class AgpLogin extends PolymerTemplate<AgpLogin.AgpLoginModel> {
 			new InitialLdapContext(env, null);
 
 			userMB.setLoggedIn(true);
-			
-			//TODO
-			// this is just cause we dont have access to the original LDAP and its structure yet
+
+			// TODO
+			// this is just cause we dont have access to the original LDAP and its structure
+			// yet
 			if (event.getUsername().contentEquals("testuser2")) {
-				userMB.setAdmin(true);				
+				userMB.setAdmin(true);
 			}
 			userMB.setEmail("sendmeamailswp2019@gmail.com");
-			userMB.setMatrikelNr(String.format("%d",new Random().nextInt()));
-			userMB.setName(String.format("Name%d",new Random().nextInt()));
-			userMB.setSurname(String.format("Surname%d",new Random().nextInt()));
+			userMB.setMatrikelNr(String.format("%d", new Random().nextInt()));
+			userMB.setName(String.format("Name%d", new Random().nextInt()));
+			userMB.setSurname(String.format("Surname%d", new Random().nextInt()));
 			userMB.setUsername(event.getUsername());
 
 			// Auth succeeded
 			System.out.println("Login succeeded!");
 			UI.getCurrent().navigate("");
-			
+
 		} catch (AuthenticationException er) {
 			System.out.println("Login failed!");
 			vaadinLoginForm.setEnabled(true);
 			Notification.show("User: " + event.getUsername() + " failed to login");
 		} catch (NamingException e) {
 
-			// Connection failed			
+			// Connection failed
 			e.printStackTrace();
 			vaadinLoginForm.setEnabled(true);
 		}

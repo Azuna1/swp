@@ -60,7 +60,7 @@ public class AgpBestellungenVerwaltenView extends
 	private Button buttonBezahlt;
 	@Id("buttonDetails")
 	private Button buttonDetails;
-	
+
 	private ArrayList<RechnungTO> list = new ArrayList<>();
 
 	public AgpBestellungenVerwaltenView() {
@@ -76,9 +76,9 @@ public class AgpBestellungenVerwaltenView extends
 				if (systemMB.setRechnungBezahlt(item.getRechnungsID())) {
 					systemMB.sendEmailAbholbereit(item.getEmail());
 					Notification.show("Benachrichtigungsemails wurden verschickt!");
-				}				
+				}
 				fillGrid("");
-				
+
 			});
 		});
 
@@ -96,7 +96,7 @@ public class AgpBestellungenVerwaltenView extends
 //		vaadinGrid.addColumn(RechnungTO::getIstBezahlt).setHeader("Bezahlt").setSortable(true);
 		vaadinGrid.addComponentColumn((item) -> {
 			Icon icon;
-			if(item.getIstBezahlt()){ // change this to your own getter for the boolean value
+			if (item.getIstBezahlt()) { // change this to your own getter for the boolean value
 				icon = VaadinIcon.CHECK.create();
 				icon.setColor("green");
 			} else {
@@ -105,13 +105,13 @@ public class AgpBestellungenVerwaltenView extends
 			}
 			return icon;
 		}).setFlexGrow(0).setWidth("100px").setHeader("Bezahlt").setSortable(true).setTextAlign(ColumnTextAlign.CENTER);
-		
+
 		vaadinGrid.addColumn(new NumberRenderer<>(RechnungTO::getEndbetrag, "€ %(,.2f", Locale.GERMAN, "€ 0.00"))
 				.setHeader("Preis").setTextAlign(ColumnTextAlign.END);
 	}
 
 	private void fillGrid(String filter) {
-		
+
 //
 //		ArrayList<RechnungTO> list = new ArrayList<>();
 //		if (userMB.isAdmin())
@@ -120,7 +120,7 @@ public class AgpBestellungenVerwaltenView extends
 //			list = (ArrayList<RechnungTO>) systemMB.getRechnungenForUser(userMB.getMatrikelNr());
 
 //		System.out.println("list size before: " + list.size());
-		
+
 		ArrayList<RechnungTO> sortList = new ArrayList<>(list);
 		if (!filter.contentEquals("")) {
 
@@ -129,8 +129,8 @@ public class AgpBestellungenVerwaltenView extends
 				RechnungTO rTO = itr.next();
 				if (!String.valueOf(rTO.getRechnungsID()).contains(filter)
 						&& !rTO.getRechnungsdatum().toGMTString().contains(filter) && !rTO.getName().contains(filter)
-						&& !rTO.getSurname().contains(filter) && !String.valueOf(rTO.getIstBezahlt()).contains(filter))					
-				itr.remove();
+						&& !rTO.getSurname().contains(filter) && !String.valueOf(rTO.getIstBezahlt()).contains(filter))
+					itr.remove();
 			}
 		}
 		vaadinGrid.setItems(sortList);
@@ -145,12 +145,12 @@ public class AgpBestellungenVerwaltenView extends
 			return;
 		if (!userMB.isAdmin())
 			buttonBezahlt.setVisible(false);
-		
+
 		if (userMB.isAdmin())
 			list = (ArrayList<RechnungTO>) systemMB.getRechnungen();
 		else
 			list = (ArrayList<RechnungTO>) systemMB.getRechnungenForUser(userMB.getMatrikelNr());
-		
+
 		fillGrid("");
 
 	}

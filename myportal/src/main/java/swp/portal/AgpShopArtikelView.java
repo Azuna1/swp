@@ -28,18 +28,19 @@ import com.vaadin.flow.dom.Element;
 /**
  * A Designer generated component for the agp-shop-artikel-view template.
  *
- * Designer will add and remove fields with @Id mappings but
- * does not overwrite or otherwise change this file.
+ * Designer will add and remove fields with @Id mappings but does not overwrite
+ * or otherwise change this file.
  */
 @Tag("agp-shop-artikel-view")
 @JsModule("./src/agp-shop-artikel-view.js")
 @Route("ShopArtikel")
 @Push
-public class AgpShopArtikelView extends PolymerTemplate<AgpShopArtikelView.AgpShopArtikelViewModel> implements HasUrlParameter<Integer>{
+public class AgpShopArtikelView extends PolymerTemplate<AgpShopArtikelView.AgpShopArtikelViewModel>
+		implements HasUrlParameter<Integer> {
 
 	private int artikelID;
 	@Id("agpMenu")
-	private AgpMenu agpMenu;	
+	private AgpMenu agpMenu;
 	@Id("textName")
 	private Label textName;
 	@Id("textPreis")
@@ -54,55 +55,55 @@ public class AgpShopArtikelView extends PolymerTemplate<AgpShopArtikelView.AgpSh
 	UserMB userMB;
 	@Inject
 	GeraetMB geraetMB;
+
 	public AgpShopArtikelView() {
-        // You can initialise any data required for the connected UI components here.
-    	
-		buttonWarenkorb.addClickListener(e -> {					
-			userMB.addToWarenkorb(this.getArtikelID());			
+		// You can initialise any data required for the connected UI components here.
+
+		buttonWarenkorb.addClickListener(e -> {
+			userMB.addToWarenkorb(this.getArtikelID());
 			UI.getCurrent().access(() -> {
-				agpMenu.warenkorb.setText(String.format("Warenkorb(%d)",userMB.countWarenkorb()));
-			});				
+				agpMenu.warenkorb.setText(String.format("Warenkorb(%d)", userMB.countWarenkorb()));
+			});
 
 			Notification.show("Artikel zum Warenkorb hinzugefügt!");
 		});
-    }
+	}
 
-    
-    @Override
+	@Override
 	public void setParameter(BeforeEvent event, Integer parameter) {
-		if(!userMB.isLoggedIn() ) {
+		if (!userMB.isLoggedIn()) {
 			event.forwardTo("Login");
 			return;
 		}
-		
-		if (parameter == null )
+
+		if (parameter == null)
 			event.forwardTo("");
-		
+
 		GeraetTO gTO = geraetMB.getGeraet(parameter);
 		if (gTO == null)
 			event.forwardTo("");
-		
+
 		this.setArtikelID(parameter);
 		textName.setText(gTO.getGeraetename());
-		textPreis.setText(String.format("%.2f€",gTO.getPreis()));
+		textPreis.setText(String.format("%.2f€", gTO.getPreis()));
 		textKategorie.setText(gTO.getKategorie());
 		textBeschreibung.setText(gTO.getBeschreibung());
-		
-    }
-    
-    public int getArtikelID() {
-		return artikelID;
+
 	}
 
+	public int getArtikelID() {
+		return artikelID;
+	}
 
 	public void setArtikelID(int artikelID) {
 		this.artikelID = artikelID;
 	}
 
 	/**
-     * This model binds properties between AgpShopArtikelView and agp-shop-artikel-view
-     */
-    public interface AgpShopArtikelViewModel extends TemplateModel {
-        // Add setters and getters for template properties here.
-    }
+	 * This model binds properties between AgpShopArtikelView and
+	 * agp-shop-artikel-view
+	 */
+	public interface AgpShopArtikelViewModel extends TemplateModel {
+		// Add setters and getters for template properties here.
+	}
 }

@@ -30,7 +30,6 @@ public class Rechnung implements Serializable {
 	private double endbetrag = 0;
 	private String email;
 
-
 	@ElementCollection
 	private List<String> artikel = new ArrayList<>();
 
@@ -63,7 +62,7 @@ public class Rechnung implements Serializable {
 	}
 
 	public void addArtikel(String name, Double price) {
-		artikel.add(String.format("%s für (%.2f€)", name , price));
+		artikel.add(String.format("%s für (%.2f€)", name, price));
 		this.endbetrag += price;
 	}
 
@@ -130,7 +129,7 @@ public class Rechnung implements Serializable {
 	public double getEndbetrag() {
 		return endbetrag;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -138,5 +137,5 @@ public class Rechnung implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 }

@@ -36,7 +36,7 @@ public class AgpMenu extends PolymerTemplate<AgpMenu.AgpMenuModel> implements Be
 	@Inject
 	private UserMB userMB;
 
-	MenuItem artikelErstellen;	
+	MenuItem artikelErstellen;
 	MenuItem settings;
 	MenuItem warenkorb;
 
@@ -51,11 +51,12 @@ public class AgpMenu extends PolymerTemplate<AgpMenu.AgpMenuModel> implements Be
 		warenkorb.setId("warenkorb_menu");
 		MenuItem bestellungenVerwalten = vaadinMenuBar.addItem("Bestellungen Verwalten",
 				e -> UI.getCurrent().navigate("BestellungenVerwalten"));
-		//MenuItem kasse = vaadinMenuBar.addItem("Kasse", e -> UI.getCurrent().navigate("Kasse"));
+		// MenuItem kasse = vaadinMenuBar.addItem("Kasse", e ->
+		// UI.getCurrent().navigate("Kasse"));
 
 		artikelErstellen = vaadinMenuBar.addItem("Artikel Erstellen",
 				e -> UI.getCurrent().navigate("ArtikelErstellen"));
-		artikelErstellen.setVisible(false);		
+		artikelErstellen.setVisible(false);
 		settings = vaadinMenuBar.addItem("Settings", e -> UI.getCurrent().navigate("Settings"));
 		settings.setVisible(false);
 
@@ -66,14 +67,13 @@ public class AgpMenu extends PolymerTemplate<AgpMenu.AgpMenuModel> implements Be
 		});
 
 	}
-	
 
 	@PostConstruct
 	public void showAdminMenu() {
-		if(!userMB.isLoggedIn())
+		if (!userMB.isLoggedIn())
 			UI.getCurrent().navigate("");
 		if (userMB.isAdmin()) {
-			artikelErstellen.setVisible(true);			
+			artikelErstellen.setVisible(true);
 			settings.setVisible(true);
 			warenkorb.setVisible(false);
 		}
@@ -81,15 +81,15 @@ public class AgpMenu extends PolymerTemplate<AgpMenu.AgpMenuModel> implements Be
 
 	@Override
 	public void beforeEnter(BeforeEnterEvent event) {
-		if(!userMB.isLoggedIn()) {
+		if (!userMB.isLoggedIn()) {
 			event.forwardTo("Login");
 			return;
 		}
-		
-		warenkorb.setText(String.format("Warenkorb(%d)",userMB.countWarenkorb()));
-		
+
+		warenkorb.setText(String.format("Warenkorb(%d)", userMB.countWarenkorb()));
+
 	}
-	
+
 	/**
 	 * This model binds properties between AgpMenu and agp-menu
 	 */
@@ -97,7 +97,5 @@ public class AgpMenu extends PolymerTemplate<AgpMenu.AgpMenuModel> implements Be
 		// Add setters and getters for template properties here.
 
 	}
-
-
 
 }

@@ -5,12 +5,10 @@ import javax.ejb.Stateless;
 import swp.entity.impl.Email;
 
 @Stateless
-public class EmailDAO extends GenericDAO<Email>{
-	
+public class EmailDAO extends GenericDAO<Email> {
+
 	public EmailDAO() {
 		super(Email.class);
 	}
-	
-	
 
 }

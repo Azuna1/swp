@@ -10,7 +10,7 @@ import swp.entity.KategorieTO;
 
 @Entity
 public class Kategorie implements Serializable {
-	
+
 	/**
 	 * 
 	 */
@@ -19,17 +19,17 @@ public class Kategorie implements Serializable {
 	@Column(unique = true)
 	private String name;
 
-	public Kategorie() {}
-	
-	public Kategorie(String name)
-	{
+	public Kategorie() {
+	}
+
+	public Kategorie(String name) {
 		this.name = name;
 	}
-	
+
 	public KategorieTO toKategorieTO() {
 		return new KategorieTO(this.name);
 	}
-	
+
 	public String getName() {
 		return name;
 	}

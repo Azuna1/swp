@@ -25,15 +25,16 @@ import com.vaadin.flow.component.grid.Grid.Column;
 /**
  * A Designer generated component for the agp-rechnung-view template.
  *
- * Designer will add and remove fields with @Id mappings but
- * does not overwrite or otherwise change this file.
+ * Designer will add and remove fields with @Id mappings but does not overwrite
+ * or otherwise change this file.
  */
 @Route("RechnungView")
 @Tag("agp-rechnung-view")
 @JsModule("./src/agp-rechnung-view.js")
-public class AgpRechnungView extends PolymerTemplate<AgpRechnungView.AgpRechnungViewModel> implements HasUrlParameter<Integer> {
+public class AgpRechnungView extends PolymerTemplate<AgpRechnungView.AgpRechnungViewModel>
+		implements HasUrlParameter<Integer> {
 
-    @Id("agpMenu")
+	@Id("agpMenu")
 	private AgpMenu agpMenu;
 	@Id("textBruto")
 	private Label textBruto;
@@ -49,52 +50,52 @@ public class AgpRechnungView extends PolymerTemplate<AgpRechnungView.AgpRechnung
 	private Label textDatum;
 	@Id("textRechnungsNr")
 	private Label textRechnungsNr;
-	
-	@Inject 
+
+	@Inject
 	UserMB userMB;
 	@Inject
 	SystemMB systemMB;
+
 	/**
-     * Creates a new AgpRechnungView.
-     */
-    public AgpRechnungView() {
-        // You can initialise any data required for the connected UI components here.
-    }
-
-    /**
-     * This model binds properties between AgpRechnungView and agp-rechnung-view
-     */
-    public interface AgpRechnungViewModel extends TemplateModel {
-        // Add setters and getters for template properties here.
-    }
-
-    @PostConstruct
-	private void prepare()
-	{
-    	vaadinGrid.addColumn(item -> item.toString()).setHeader("Artikel");
-    	
+	 * Creates a new AgpRechnungView.
+	 */
+	public AgpRechnungView() {
+		// You can initialise any data required for the connected UI components here.
 	}
-    
+
+	/**
+	 * This model binds properties between AgpRechnungView and agp-rechnung-view
+	 */
+	public interface AgpRechnungViewModel extends TemplateModel {
+		// Add setters and getters for template properties here.
+	}
+
+	@PostConstruct
+	private void prepare() {
+		vaadinGrid.addColumn(item -> item.toString()).setHeader("Artikel");
+
+	}
+
 	@Override
 	public void setParameter(BeforeEvent event, Integer parameter) {
-		if(!userMB.isLoggedIn() ) {
+		if (!userMB.isLoggedIn()) {
 			event.forwardTo("Login");
 			return;
 		}
-		
-		if (parameter == null )
+
+		if (parameter == null)
 			event.forwardTo("");
-		
+
 		RechnungTO rTO = systemMB.getRechnung(parameter);
 		if (rTO == null)
 			event.forwardTo("");
 		vaadinGrid.setItems(rTO.getArtikel());
-		textBruto.setText(String.format("%.2f€",rTO.getEndbetrag()/1.19));
-		textSteuern.setText(String.format("%.2f€",rTO.getEndbetrag()/1.19*0.19));
-		textSumme.setText(String.format("%.2f€",rTO.getEndbetrag()));
+		textBruto.setText(String.format("%.2f€", rTO.getEndbetrag() / 1.19));
+		textSteuern.setText(String.format("%.2f€", rTO.getEndbetrag() / 1.19 * 0.19));
+		textSumme.setText(String.format("%.2f€", rTO.getEndbetrag()));
 		textKunde.setText(rTO.getName() + " " + rTO.getSurname());
 		textDatum.setText(rTO.getRechnungsdatum().toGMTString());
-		textRechnungsNr.setText(String.format("%d",rTO.getRechnungsID()));
-		
+		textRechnungsNr.setText(String.format("%d", rTO.getRechnungsID()));
+
 	}
 }

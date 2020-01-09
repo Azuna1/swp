@@ -38,44 +38,39 @@ public class SystemMB {
 	@Inject
 	IGeraeteManager geraeteManager;
 
-	
-		
-	
 	public EmailTO getEmailIT() {
 		return emailManager.getEmail("emailIT");
 	}
+
 	public EmailTO getEmailFIBU() {
-		return emailManager.getEmail("emailFIBU");		
+		return emailManager.getEmail("emailFIBU");
 	}
-	
+
 	public EmailTO getEmailKundeAbholung() {
 		return emailManager.getEmail("emailKundeAbholung");
 	}
-	
+
 	public EmailTO getEmailKundeEingang() {
 		return emailManager.getEmail("emailKundeEingang");
 	}
-	
-	public void saveEmailIT(String toEmail,	String subject , String message) {
+
+	public void saveEmailIT(String toEmail, String subject, String message) {
 		emailManager.editEmail("emailIT", toEmail, subject, message);
 	}
-	public void saveEmailFIBU(String toEmail,	String subject , String message) {
+
+	public void saveEmailFIBU(String toEmail, String subject, String message) {
 		emailManager.editEmail("emailFIBU", toEmail, subject, message);
 	}
-	public void saveEmailKundeAbholung(	String subject , String message) {
+
+	public void saveEmailKundeAbholung(String subject, String message) {
 		emailManager.editEmail("emailKundeAbholung", "", subject, message);
 	}
-	public void saveEmailKundeEingang(String subject , String message) {
+
+	public void saveEmailKundeEingang(String subject, String message) {
 		emailManager.editEmail("emailKundeEingang", "", subject, message);
 	}
-	
-	
+
 //	"sendmeamailswp2019@gmail.com"
-	
-
-	
-
-	
 
 	public Collection<String> getKategories() {
 		Collection<String> col = new ArrayList<String>();
@@ -85,14 +80,13 @@ public class SystemMB {
 		return col;
 	}
 
-	public boolean setRechnungBezahlt(int id)
-	{
+	public boolean setRechnungBezahlt(int id) {
 		RechnungTO rTO = rechnungsManager.getRechnung(id);
 		rTO.setIstBezahlt(!rTO.getIstBezahlt());
 		rechnungsManager.update(rTO);
 		return rTO.getIstBezahlt();
 	}
-	
+
 	public void createKategorie(String name) {
 		kategorieManager.createKategorie(name);
 	}
@@ -104,7 +98,7 @@ public class SystemMB {
 	public RechnungTO getRechnung(int id) {
 		return rechnungsManager.getRechnung(id);
 	}
-	
+
 	public List<RechnungTO> getRechnungen() {
 		return rechnungsManager.getAll();
 	}
@@ -113,38 +107,38 @@ public class SystemMB {
 		return rechnungsManager.getAllFromUser(matrikelNR);
 	}
 
-	public void createRechnung(String matrikelNr, String name, String surname, String email, List<GeraetTO> artikel, HashMap<Integer, Integer> warenkorb) {
+	public void createRechnung(String matrikelNr, String name, String surname, String email, List<GeraetTO> artikel,
+			HashMap<Integer, Integer> warenkorb) {
 
-		
 		for (Map.Entry<Integer, Integer> entry : warenkorb.entrySet()) {
 			GeraetTO gTO = geraeteManager.getGeraet(entry.getKey());
 			gTO.setAnzahl(gTO.getAnzahl() - entry.getValue());
 			geraeteManager.editGeraet(gTO);
 		}
-		
+
 		rechnungsManager.createRechnung(matrikelNr, name, surname, email, artikel);
-		
+
 	}
-	
+
 	public void sendEmailsKauf(String toEmail) {
-		emailManager.sendEmail("emailKundeEingang", toEmail); 
+		emailManager.sendEmail("emailKundeEingang", toEmail);
 		emailManager.sendEmail("emailIT");
-		emailManager.sendEmail("emailFIBU");		
+		emailManager.sendEmail("emailFIBU");
 	}
-	
+
 	public void sendEmailAbholbereit(String toEmail) {
 		emailManager.sendEmail("emailKundeAbholung", toEmail);
 	}
-	
-	public void delAdmin(String name) {		
-			userManager.deleteUser(name);
+
+	public void delAdmin(String name) {
+		userManager.deleteUser(name);
 	}
-	
+
 	public void addAdmin(String name) {
 		if (!userManager.existUser(name))
 			userManager.createUser(name);
 	}
-	
+
 	public Collection<String> getAdmins() {
 		Collection<String> col = new ArrayList<String>();
 		for (UserTO userTO : userManager.getAll()) {

@@ -23,16 +23,15 @@ import com.vaadin.flow.dom.Element;
 /**
  * A Designer generated component for the agp-shop-artikel template.
  *
- * Designer will add and remove fields with @Id mappings but
- * does not overwrite or otherwise change this file.
+ * Designer will add and remove fields with @Id mappings but does not overwrite
+ * or otherwise change this file.
  */
 @Tag("agp-shop-artikel")
 @JsModule("./src/agp-shop-artikel.js")
 public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtikelModel> {
-	
-		
+
 	@Id("buttonWarenkorb")
-	private Button buttonWarenkorb;	
+	private Button buttonWarenkorb;
 
 	private int artikelID;
 	private AgpMenu agpMenu;
@@ -49,7 +48,7 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 
 	@Id("buttonDetail")
 	private Button buttonDetail;
-	
+
 	private UserMB userMB;
 
 	@Id("textKategorie")
@@ -59,15 +58,15 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 	private Div imageContainer;
 
 	public AgpShopArtikel() {
-        // You can initialise any data required for the connected UI components here.
+		// You can initialise any data required for the connected UI components here.
 		buttonWarenkorb.addClickListener(e -> {
-			if (userMB.isAdmin()) {				
+			if (userMB.isAdmin()) {
 				UI.getCurrent().navigate("ArtikelBearbeiten/" + this.getArtikelID());
 				return;
-			}			
+			}
 			userMB.addToWarenkorb(this.getArtikelID());
 			UI.getCurrent().access(() -> {
-				agpMenu.warenkorb.setText(String.format("Warenkorb(%d)",userMB.countWarenkorb()));
+				agpMenu.warenkorb.setText(String.format("Warenkorb(%d)", userMB.countWarenkorb()));
 			});
 			Notification.show("Artikel zum Warenkorb hinzugefügt!");
 		});
@@ -75,10 +74,9 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 			UI.getCurrent().navigate("ShopArtikel/" + this.getArtikelID());
 			return;
 		});
-		  
+
 	}
-	
-	
+
 	public void createImage(Image image) {
 		image.setWidth("100px");
 		image.setHeight("100px");
@@ -86,46 +84,51 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 		imageContainer.removeAll();
 		imageContainer.add(image);
 	}
-	
+
 	public void setUserMB(UserMB userMB) {
 		this.userMB = userMB;
 	}
-	
+
 	public void setAgpMenu(AgpMenu agpMenu) {
 		this.agpMenu = agpMenu;
 	}
 
-
 	public void setAdmin() {
 		buttonWarenkorb.setText("Artikel Bearbeiten");
-		buttonDetail.setVisible(false);			
+		buttonDetail.setVisible(false);
 	}
 
 	public String getName() {
 		return textName.getText();
 	}
+
 	public void setName(String name) {
 		this.textName.setText(name);
 	}
+
 	public double getPreis() {
 		return Double.parseDouble(this.textPreis.getText());
 	}
+
 	public void setPreis(double preis) {
-		this.textPreis.setText(String.format("%.2f€",preis));
+		this.textPreis.setText(String.format("%.2f€", preis));
 	}
+
 	public String getBeschreibung() {
 		return textBeschreibung.getText();
 	}
+
 	public void setBeschreibung(String text) {
-		this.textBeschreibung.setText(String.format("%.60s",text));
+		this.textBeschreibung.setText(String.format("%.60s", text));
 	}
+
 	public int getArtikelID() {
 		return this.artikelID;
 	}
+
 	public void setArtikelID(int id) {
 		this.artikelID = id;
 	}
-
 
 	public String getKategorie() {
 		return textKategorie.getText();
@@ -136,10 +139,10 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 	}
 
 	/**
-     * This model binds properties between AgpShopArtikel and agp-shop-artikel
-     */
-    public interface AgpShopArtikelModel extends TemplateModel {
-        // Add setters and getters for template properties here.
-    	
-    }
+	 * This model binds properties between AgpShopArtikel and agp-shop-artikel
+	 */
+	public interface AgpShopArtikelModel extends TemplateModel {
+		// Add setters and getters for template properties here.
+
+	}
 }

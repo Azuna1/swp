@@ -40,13 +40,13 @@ import com.vaadin.flow.dom.Element;
 /**
  * A Designer generated component for the agp-artikel-erstellen template.
  *
- * Designer will add and remove fields with @Id mappings but
- * does not overwrite or otherwise change this file.
+ * Designer will add and remove fields with @Id mappings but does not overwrite
+ * or otherwise change this file.
  */
 @Tag("agp-artikel-erstellen")
 @JsModule("./src/agp-artikel-erstellen.js")
-public class AgpArtikelErstellen extends PolymerTemplate<AgpArtikelErstellen.AgpArtikelErstellenModel> implements BeforeEnterObserver {
-
+public class AgpArtikelErstellen extends PolymerTemplate<AgpArtikelErstellen.AgpArtikelErstellenModel>
+		implements BeforeEnterObserver {
 
 	@Id("vaadinVerticalLayout")
 	private VerticalLayout vaadinVerticalLayout;
@@ -64,85 +64,89 @@ public class AgpArtikelErstellen extends PolymerTemplate<AgpArtikelErstellen.Agp
 	private Button buttonSpeichern;
 	@Id("buttonLoeschen")
 	private Button buttonLoeschen;
-	
+
 	private Upload upload;
 	private byte[] imageBuffer;
-	
+
 	@Inject
 	GeraetMB geraetMB;
-	
+
 	@Inject
 	IGeraeteManager geraetManager;
-	
+
 	@Inject
 	SystemMB systemMB;
 	@Id("uploadAnker")
 	private Div uploadAnker;
+
 	/**
-     * Creates a new AgpArtikelErstellen.
-     */
-    public AgpArtikelErstellen() {
-        // You can initialise any data required for the connected UI components here.
+	 * Creates a new AgpArtikelErstellen.
+	 */
+	public AgpArtikelErstellen() {
+		// You can initialise any data required for the connected UI components here.
 //    	buttonSpeichern.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 //    	buttonLoeschen.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-    	
-    	Collection<Integer> col = new ArrayList<Integer>();
-    	for (int i = 0; i <= 100; i++)
-    		col.add(i);
-    	
-    	comboBoxAnzahl.setItems(col);
-    	
-    	buttonSpeichern.addClickListener(event -> {
+
+		Collection<Integer> col = new ArrayList<Integer>();
+		for (int i = 0; i <= 100; i++)
+			col.add(i);
+
+		comboBoxAnzahl.setItems(col);
+
+		buttonSpeichern.addClickListener(event -> {
 //    		for (int i = 0; i < comboBoxAnzahl.getValue(); i++)
 //    			geraetMB.createGeraet(textAreaArtikelbeschreibung.getValue(), comboBoxKategorie.getValue(), Double.valueOf(textFieldPreis.getValue()), textFieldArtikelname.getValue());
-    		geraetMB.createGeraet(textAreaArtikelbeschreibung.getValue(), comboBoxKategorie.getValue(), Double.valueOf(textFieldPreis.getValue()), textFieldArtikelname.getValue(), comboBoxAnzahl.getValue(), this.imageBuffer);
+			geraetMB.createGeraet(textAreaArtikelbeschreibung.getValue(), comboBoxKategorie.getValue(),
+					Double.valueOf(textFieldPreis.getValue()), textFieldArtikelname.getValue(),
+					comboBoxAnzahl.getValue(), this.imageBuffer);
 
-    	});
-    	
-    	buttonLoeschen.addClickListener(event -> {
-    		textAreaArtikelbeschreibung.setValue("");
-    		comboBoxKategorie.setValue("");
-    		textFieldPreis.setValue("");
-    		textFieldArtikelname.setValue("");
-    		comboBoxAnzahl.setValue(0);
-    	});
-    	
-    	initUploaderImage();
-    }
+		});
 
-    @Override
-	public void beforeEnter(BeforeEnterEvent event) {
-		//TODO kategorien füllen
-    	comboBoxKategorie.setItems(systemMB.getKategories());
-		
+		buttonLoeschen.addClickListener(event -> {
+			textAreaArtikelbeschreibung.setValue("");
+			comboBoxKategorie.setValue("");
+			textFieldPreis.setValue("");
+			textFieldArtikelname.setValue("");
+			comboBoxAnzahl.setValue(0);
+		});
+
+		initUploaderImage();
 	}
-    
 
-    private void initUploaderImage() {
-        MemoryBuffer fileBuffer = new MemoryBuffer();
-        upload = new Upload(fileBuffer);
-        upload.setAcceptedFileTypes("image/jpeg","image/jpg", "image/png", "image/gif");
+	@Override
+	public void beforeEnter(BeforeEnterEvent event) {
+		// TODO kategorien füllen
+		comboBoxKategorie.setItems(systemMB.getKategories());
 
-        upload.addFinishedListener(event -> {            
-            try {
-                // The image can be jpg png or gif, but we store it always as png file in this example
-                BufferedImage inputImage = ImageIO.read(fileBuffer.getInputStream());
-                ByteArrayOutputStream pngContent = new ByteArrayOutputStream();
-                ImageIO.write(inputImage, "png", pngContent);         
-                this.imageBuffer = pngContent.toByteArray();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+	}
 
-        });
+	private void initUploaderImage() {
+		MemoryBuffer fileBuffer = new MemoryBuffer();
+		upload = new Upload(fileBuffer);
+		upload.setAcceptedFileTypes("image/jpeg", "image/jpg", "image/png", "image/gif");
 
-       uploadAnker.add(upload);
-    }
-    
-    /**
-     * This model binds properties between AgpArtikelErstellen and agp-artikel-erstellen
-     */
-    public interface AgpArtikelErstellenModel extends TemplateModel {
-        // Add setters and getters for template properties here.
-    }
+		upload.addFinishedListener(event -> {
+			try {
+				// The image can be jpg png or gif, but we store it always as png file in this
+				// example
+				BufferedImage inputImage = ImageIO.read(fileBuffer.getInputStream());
+				ByteArrayOutputStream pngContent = new ByteArrayOutputStream();
+				ImageIO.write(inputImage, "png", pngContent);
+				this.imageBuffer = pngContent.toByteArray();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		});
+
+		uploadAnker.add(upload);
+	}
+
+	/**
+	 * This model binds properties between AgpArtikelErstellen and
+	 * agp-artikel-erstellen
+	 */
+	public interface AgpArtikelErstellenModel extends TemplateModel {
+		// Add setters and getters for template properties here.
+	}
 }

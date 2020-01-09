@@ -10,8 +10,12 @@ import swp.entity.RechnungTO;
 @Local
 public interface IRechnungsManager {
 	public List<RechnungTO> getAll();
+
 	public List<RechnungTO> getAllFromUser(String matrikelNR);
+
 	public RechnungTO getRechnung(int id);
+
 	public void createRechnung(String matrikelNr, String name, String surname, String email, List<GeraetTO> artikel);
+
 	public void update(RechnungTO rTO);
 }

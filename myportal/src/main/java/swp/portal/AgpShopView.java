@@ -87,7 +87,6 @@ public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> i
 
 	}
 
-	
 	private void showFiltered(String name, String compare) {
 		if (compare == null || name == null)
 			return;
@@ -136,7 +135,7 @@ public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> i
 	public void beforeEnter(BeforeEnterEvent event) {
 		if (!userMB.isLoggedIn())
 			return;
-		
+
 		Collection<String> filter = systemMB.getKategories();
 		filter.add("");
 		comboBoxFilter.setItems(filter);

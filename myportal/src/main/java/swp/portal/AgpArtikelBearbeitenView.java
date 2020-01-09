@@ -41,15 +41,16 @@ import com.vaadin.flow.dom.Element;
 /**
  * A Designer generated component for the agp-artikel-bearbeiten-view template.
  *
- * Designer will add and remove fields with @Id mappings but
- * does not overwrite or otherwise change this file.
+ * Designer will add and remove fields with @Id mappings but does not overwrite
+ * or otherwise change this file.
  */
 @Route("ArtikelBearbeiten")
 @Tag("agp-artikel-bearbeiten-view")
 @JsModule("./src/agp-artikel-bearbeiten-view.js")
-public class AgpArtikelBearbeitenView extends PolymerTemplate<AgpArtikelBearbeitenView.AgpArtikelBearbeitenViewModel> implements HasUrlParameter<Integer> {
+public class AgpArtikelBearbeitenView extends PolymerTemplate<AgpArtikelBearbeitenView.AgpArtikelBearbeitenViewModel>
+		implements HasUrlParameter<Integer> {
 
-    @Id("buttonSpeichern")
+	@Id("buttonSpeichern")
 	private Button buttonSpeichern;
 	@Id("buttonLoeschen")
 	private Button buttonLoeschen;
@@ -67,7 +68,7 @@ public class AgpArtikelBearbeitenView extends PolymerTemplate<AgpArtikelBearbeit
 	private int gTOId;
 	private Upload upload;
 	private byte[] imageBuffer;
-	
+
 	@Inject
 	GeraetMB geraetMB;
 	@Inject
@@ -78,88 +79,90 @@ public class AgpArtikelBearbeitenView extends PolymerTemplate<AgpArtikelBearbeit
 	private AgpMenu agpMenu;
 	@Id("uploadAnker")
 	private Div uploadAnker;
-	
+
 	/**
-     * Creates a new AgpArtikelBearbeitenView.
-     */
-    public AgpArtikelBearbeitenView() {
-        // You can initialise any data required for the connected UI components here.
-    	
-    	for (int i = 0; i <= 100; i++)
-    		col.add(i);
-    	buttonSpeichern.addClickListener(e -> {
-    		if (gTOId != 0)
+	 * Creates a new AgpArtikelBearbeitenView.
+	 */
+	public AgpArtikelBearbeitenView() {
+		// You can initialise any data required for the connected UI components here.
+
+		for (int i = 0; i <= 100; i++)
+			col.add(i);
+		buttonSpeichern.addClickListener(e -> {
+			if (gTOId != 0)
 				try {
-					geraetMB.editGeraet(gTOId, textAreaBeschreibung.getValue(),comboBoxKategorie.getValue(), NumberFormat.getInstance().parse(textFieldPreis.getValue()).doubleValue(), textFieldName.getValue(), comboBoxAnzahl.getValue(), this.imageBuffer);
+					geraetMB.editGeraet(gTOId, textAreaBeschreibung.getValue(), comboBoxKategorie.getValue(),
+							NumberFormat.getInstance().parse(textFieldPreis.getValue()).doubleValue(),
+							textFieldName.getValue(), comboBoxAnzahl.getValue(), this.imageBuffer);
 
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-    		UI.getCurrent().navigate("");
-    	});
-    	buttonLoeschen.addClickListener(e -> {
-    		if (gTOId != 0)
-    			geraetMB.deleteGeraet(gTOId);
-    		UI.getCurrent().navigate("");
-    	});
-    	
-    	initUploaderImage();
-    	
-    }
+			UI.getCurrent().navigate("");
+		});
+		buttonLoeschen.addClickListener(e -> {
+			if (gTOId != 0)
+				geraetMB.deleteGeraet(gTOId);
+			UI.getCurrent().navigate("");
+		});
 
-    /**
-     * This model binds properties between AgpArtikelBearbeitenView and agp-artikel-bearbeiten-view
-     */
-    public interface AgpArtikelBearbeitenViewModel extends TemplateModel {
-        // Add setters and getters for template properties here.
-    }
-    
-   
-    private void initUploaderImage() {
-        MemoryBuffer fileBuffer = new MemoryBuffer();
-        upload = new Upload(fileBuffer);
-        upload.setAcceptedFileTypes("image/jpeg","image/jpg", "image/png", "image/gif");
+		initUploaderImage();
 
-        upload.addFinishedListener(event -> {            
-            try {
-                // The image can be jpg png or gif, but we store it always as png file in this example
-                BufferedImage inputImage = ImageIO.read(fileBuffer.getInputStream());
-                ByteArrayOutputStream pngContent = new ByteArrayOutputStream();
-                ImageIO.write(inputImage, "png", pngContent);         
-                this.imageBuffer = pngContent.toByteArray();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+	}
 
-        });
-        uploadAnker.add(upload);
-    }
+	/**
+	 * This model binds properties between AgpArtikelBearbeitenView and
+	 * agp-artikel-bearbeiten-view
+	 */
+	public interface AgpArtikelBearbeitenViewModel extends TemplateModel {
+		// Add setters and getters for template properties here.
+	}
+
+	private void initUploaderImage() {
+		MemoryBuffer fileBuffer = new MemoryBuffer();
+		upload = new Upload(fileBuffer);
+		upload.setAcceptedFileTypes("image/jpeg", "image/jpg", "image/png", "image/gif");
+
+		upload.addFinishedListener(event -> {
+			try {
+				// The image can be jpg png or gif, but we store it always as png file in this
+				// example
+				BufferedImage inputImage = ImageIO.read(fileBuffer.getInputStream());
+				ByteArrayOutputStream pngContent = new ByteArrayOutputStream();
+				ImageIO.write(inputImage, "png", pngContent);
+				this.imageBuffer = pngContent.toByteArray();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		});
+		uploadAnker.add(upload);
+	}
 
 	@Override
 	public void setParameter(BeforeEvent event, Integer parameter) {
-		if(!userMB.isLoggedIn() || !userMB.isAdmin()) {
+		if (!userMB.isLoggedIn() || !userMB.isAdmin()) {
 			event.forwardTo("Login");
 			return;
 		}
-		
-		if (parameter == null )
+
+		if (parameter == null)
 			event.forwardTo("");
-		
+
 		GeraetTO gTO = geraetMB.getGeraet(parameter);
-		if (gTO == null )
+		if (gTO == null)
 			event.forwardTo("");
-		
+
 		gTOId = parameter;
 		this.textFieldName.setValue(gTO.getGeraetename());
-		this.textFieldPreis.setValue(String.format("%.2f",gTO.getPreis()));
+		this.textFieldPreis.setValue(String.format("%.2f", gTO.getPreis()));
 		this.textAreaBeschreibung.setValue(gTO.getBeschreibung());
 		this.comboBoxAnzahl.setItems(col);
 		this.comboBoxAnzahl.setValue(gTO.getAnzahl());
 		this.comboBoxKategorie.setItems(systemMB.getKategories());
 		this.comboBoxKategorie.setValue(gTO.getKategorie());
 		this.imageBuffer = gTO.getImage();
-		
-		
+
 	}
 }

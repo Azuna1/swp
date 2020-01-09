@@ -20,52 +20,52 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 public abstract class GenericDAO<T> {
 
-	//protected final static Logger logger = getLogger(GenericDAO.class);
-	
-	@PersistenceContext(unitName="swpDB")
+	// protected final static Logger logger = getLogger(GenericDAO.class);
+
+	@PersistenceContext(unitName = "swpDB")
 	protected EntityManager entityManager;
-	
+
 	private Class<T> entityClass;
-	
-	public GenericDAO(){}
-	
-	public GenericDAO(Class<T> entityClass){
+
+	public GenericDAO() {
+	}
+
+	public GenericDAO(Class<T> entityClass) {
 		this.entityClass = entityClass;
-	}	
-	
+	}
+
 	public void save(T entity) {
-		System.out.println("em = " + entityManager == null);;
-		entityManager.persist(entity);		
+		System.out.println("em = " + entityManager == null);
+		;
+		entityManager.persist(entity);
 	}
-	
+
 	public T update(T entity) {
-		 return entityManager.merge(entity);
+		return entityManager.merge(entity);
 	}
-	
-	public boolean delete(Object id){
+
+	public boolean delete(Object id) {
 		T entityToBeRemoved = entityManager.getReference(entityClass, id);
 		try {
 			entityManager.remove(entityToBeRemoved);
 			return true;
-		} catch (Exception e){
+		} catch (Exception e) {
 			System.out.println("Fehler beim Löschen der Id: " + id.toString());
 			return false;
 		}
 	}
-	
+
 	public T find(Object entityId) {
 		return entityManager.find(entityClass, entityId);
 	}
-	
-	@SuppressWarnings({"unchecked","rawtypes"})
-	public List<T> findAll(){
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<T> findAll() {
 		CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
 		cq.select(cq.from(entityClass));
 		return entityManager.createQuery(cq).getResultList();
 	}
-	
 
-	
 //	public List<T> findFiltered(Map<String,Object> params){
 //		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 //		CriteriaQuery<T> q = cb.createQuery(entityClass);
@@ -82,7 +82,7 @@ public abstract class GenericDAO<T> {
 //		return
 //		
 //	}
-	
+
 //	deprecated
 //	@SuppressWarnings("unchecked")
 //	protected T findOneResult (String namedQuery, Map<String, Object> parameters){
@@ -123,7 +123,5 @@ public abstract class GenericDAO<T> {
 //			query.setParameter(entry.getKey(),  entry.getValue());
 //		}
 //	}
-	
 
-	
 }

@@ -9,6 +9,8 @@ import swp.entity.KategorieTO;
 @Local
 public interface IKategorieManager {
 	public void createKategorie(String name);
+
 	public List<KategorieTO> getKategorien();
+
 	public void deleteKategorie(String name);
 }

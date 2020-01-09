@@ -16,27 +16,27 @@ import swp.usecase.IUserManager;
 @Stateless
 public class UserManager implements IUserManager {
 
-	@Inject 
+	@Inject
 	UserDAO userDAO;
-	
+
 	@Override
 	public void createUser(String name) {
 		User user = new User(name);
 		userDAO.save(user);
-		
+
 	}
 
 	@Override
 	public boolean existUser(String name) {
 		// TODO Auto-generated method stub
-		
+
 		return userDAO.find(name) != null;
 	}
 
 	@Override
 	public void deleteUser(String name) {
 		userDAO.delete(name);
-		
+
 	}
 
 	@Override
@@ -47,6 +47,5 @@ public class UserManager implements IUserManager {
 			returnList.add(aUser.toUserTO());
 		return returnList;
 	}
-	
 
 }

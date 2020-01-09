@@ -18,15 +18,14 @@ import swp.entity.GeraetTO;
 
 @Entity
 public class Geraet implements Serializable {
-	
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@SequenceGenerator(name="geraete_id", sequenceName="SEQ_GERAET_ID", allocationSize = 1)
+	@SequenceGenerator(name = "geraete_id", sequenceName = "SEQ_GERAET_ID", allocationSize = 1)
 	private int geraeteID;
 	private String beschreibung;
 	private String kategorie;
@@ -36,13 +35,11 @@ public class Geraet implements Serializable {
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] image;
-	
 
+	public Geraet() {
+	}
 
-	public Geraet () {}
-	
-	public GeraetTO toGeraetTO()
-	{
+	public GeraetTO toGeraetTO() {
 		GeraetTO geraetTO = new GeraetTO();
 		geraetTO.setGeraeteID(this.getGeraeteID());
 		geraetTO.setBeschreibung(this.getBeschreibung());
@@ -53,8 +50,9 @@ public class Geraet implements Serializable {
 		geraetTO.setImage(this.getImage());
 		return geraetTO;
 	}
-	
-	public Geraet(String beschreibung, String kategorie, double preis, String geraetename, int anzahl, byte[] imageBuffer) {
+
+	public Geraet(String beschreibung, String kategorie, double preis, String geraetename, int anzahl,
+			byte[] imageBuffer) {
 		super();
 		this.beschreibung = beschreibung;
 		this.kategorie = kategorie;
@@ -63,9 +61,7 @@ public class Geraet implements Serializable {
 		this.anzahl = anzahl;
 		this.image = imageBuffer;
 	}
-	
 
-	
 	public int getAnzahlt() {
 		return anzahl;
 	}
@@ -73,34 +69,43 @@ public class Geraet implements Serializable {
 	public void setAnzahl(int anzahlt) {
 		this.anzahl = anzahlt;
 	}
-	
+
 	public int getGeraeteID() {
 		return geraeteID;
 	}
+
 	public void setGeraeteID(int geraeteID) {
 		this.geraeteID = geraeteID;
 	}
+
 	public String getBeschreibung() {
 		return beschreibung;
 	}
+
 	public void setBeschreibung(String beschreibung) {
 		this.beschreibung = beschreibung;
 	}
+
 	public String getKategorie() {
 		return kategorie;
 	}
+
 	public void setKategorie(String kategorie) {
 		this.kategorie = kategorie;
 	}
+
 	public double getPreis() {
 		return preis;
 	}
+
 	public void setPreis(double preis) {
 		this.preis = preis;
 	}
+
 	public String getGeraetename() {
 		return geraetename;
 	}
+
 	public void setGeraetename(String geraetename) {
 		this.geraetename = geraetename;
 	}
@@ -112,6 +117,5 @@ public class Geraet implements Serializable {
 	public void setImage(byte[] image) {
 		this.image = image;
 	}
-	
-	
+
 }

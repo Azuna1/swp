@@ -40,7 +40,7 @@ public class RechnungTO implements Serializable {
 	}
 
 	public void addArtikel(String name, Double price) {
-		artikel.add(String.format("%s für (%.2f€)", name , price));
+		artikel.add(String.format("%s für (%.2f€)", name, price));
 		endbetrag += price;
 	}
 

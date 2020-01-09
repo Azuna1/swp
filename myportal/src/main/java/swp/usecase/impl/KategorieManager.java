@@ -16,12 +16,12 @@ public class KategorieManager implements IKategorieManager {
 
 	@Inject
 	KategorieDAO kategorieDAO;
-	
+
 	@Override
 	public void createKategorie(String name) {
 		Kategorie kat = new Kategorie(name);
 		kategorieDAO.save(kat);
-		
+
 	}
 
 	@Override
@@ -29,18 +29,17 @@ public class KategorieManager implements IKategorieManager {
 		// TODO Auto-generated method stub
 		List<Kategorie> kats = kategorieDAO.findAll();
 		List<KategorieTO> katTOs = new ArrayList<KategorieTO>();
-		
+
 		for (Kategorie kat : kats)
 			katTOs.add(kat.toKategorieTO());
-		
+
 		return katTOs;
 	}
 
 	@Override
 	public void deleteKategorie(String name) {
 		kategorieDAO.delete(name);
-		
+
 	}
-	
 
 }
