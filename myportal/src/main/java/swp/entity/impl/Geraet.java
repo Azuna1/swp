@@ -3,6 +3,7 @@ package swp.entity.impl;
 import java.io.Serializable;
 
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,6 +28,7 @@ public class Geraet implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@SequenceGenerator(name = "geraete_id", sequenceName = "SEQ_GERAET_ID", allocationSize = 1)
 	private int geraeteID;
+	@Column(columnDefinition = "TEXT")
 	private String beschreibung;
 	private String kategorie;
 	private double preis;

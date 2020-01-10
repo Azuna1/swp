@@ -11,7 +11,7 @@ class AgpLogin extends PolymerElement {
                     height: 100%;
                 }
             </style>
-<vaadin-login-form id="vaadinLoginForm" no-forgot-password></vaadin-login-form>
+<vaadin-login-form id="vaadinLoginForm" no-forgot-password style="width:370px;"></vaadin-login-form>
 `;
     }
 

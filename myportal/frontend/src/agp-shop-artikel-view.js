@@ -36,7 +36,9 @@ class AgpShopArtikelView extends PolymerElement {
      <label id="textKategorie">Label</label>
      <label id="textBeschreibung" style="max-width:500px;">Labela adsa das dad asdasd aasd asd asd asd asd asd asd asd asd a asd assd ads asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd a asd ads asd </label>
     </vaadin-vertical-layout>
-    <img style="padding-left:15px;" src="https://interactive-examples.mdn.mozilla.net/media/examples/grapefruit-slice-332-332.jpg">
+    <div id="imageContainer">
+     <img style="padding-left:15px;" src="https://interactive-examples.mdn.mozilla.net/media/examples/grapefruit-slice-332-332.jpg" id="img">
+    </div>
    </vaadin-horizontal-layout>
   </vaadin-vertical-layout>
  </vaadin-horizontal-layout>

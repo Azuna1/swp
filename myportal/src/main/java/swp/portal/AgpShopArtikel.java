@@ -103,6 +103,8 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 	}
 
 	public void setName(String name) {
+		if (name.length() > 13)
+			name = String.format("%.10s", name) + "...";
 		this.textName.setText(name);
 	}
 
@@ -119,7 +121,9 @@ public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtike
 	}
 
 	public void setBeschreibung(String text) {
-		this.textBeschreibung.setText(String.format("%.60s", text));
+		if (text.length() > 53)
+			text = String.format("%.50s", text) + "...";
+		this.textBeschreibung.setText(text);
 	}
 
 	public int getArtikelID() {

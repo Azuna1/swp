@@ -24,6 +24,8 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.dom.Element;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Image;
 
 /**
  * A Designer generated component for the agp-shop-artikel-view template.
@@ -51,11 +53,14 @@ public class AgpShopArtikelView extends PolymerTemplate<AgpShopArtikelView.AgpSh
 	private Label textBeschreibung;
 	@Id("buttonWarenkorb")
 	private Button buttonWarenkorb;
+	@Id("imageContainer")
+	private Div imageContainer;
 	@Inject
 	UserMB userMB;
 	@Inject
 	GeraetMB geraetMB;
 
+	
 	public AgpShopArtikelView() {
 		// You can initialise any data required for the connected UI components here.
 
@@ -88,7 +93,16 @@ public class AgpShopArtikelView extends PolymerTemplate<AgpShopArtikelView.AgpSh
 		textPreis.setText(String.format("%.2f€", gTO.getPreis()));
 		textKategorie.setText(gTO.getKategorie());
 		textBeschreibung.setText(gTO.getBeschreibung());
+		createImage(geraetMB.getImage(gTO));
 
+	}
+	
+	public void createImage(Image image) {
+		image.setWidth("350px");
+		image.setHeight("350px");
+		image.getStyle().set("padding-top", "5px");
+		imageContainer.removeAll();
+		imageContainer.add(image);
 	}
 
 	public int getArtikelID() {
