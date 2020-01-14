@@ -1,26 +1,22 @@
 package swp.portal;
 
-import com.vaadin.flow.templatemodel.TemplateModel;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.templatemodel.TemplateModel;
 
 import swp.entity.RechnungTO;
-import swp.portal.AgpMenu;
 import swp.portal.beans.SystemMB;
 import swp.portal.beans.UserMB;
-
-import com.vaadin.flow.component.polymertemplate.Id;
-import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.grid.Grid.Column;
 
 /**
  * A Designer generated component for the agp-rechnung-view template.
@@ -33,7 +29,7 @@ import com.vaadin.flow.component.grid.Grid.Column;
 @JsModule("./src/agp-rechnung-view.js")
 public class AgpRechnungView extends PolymerTemplate<AgpRechnungView.AgpRechnungViewModel>
 		implements HasUrlParameter<Integer> {
-
+	private static final long serialVersionUID = 0xDEADBEEF;
 	@Id("agpMenu")
 	private AgpMenu agpMenu;
 	@Id("textBruto")
@@ -76,6 +72,7 @@ public class AgpRechnungView extends PolymerTemplate<AgpRechnungView.AgpRechnung
 
 	}
 
+	@SuppressWarnings("deprecation") //GMT is just to handy
 	@Override
 	public void setParameter(BeforeEvent event, Integer parameter) {
 		if (!userMB.isLoggedIn()) {

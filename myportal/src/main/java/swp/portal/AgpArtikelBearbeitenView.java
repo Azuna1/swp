@@ -1,12 +1,5 @@
 package swp.portal;
 
-import com.vaadin.flow.templatemodel.TemplateModel;
-
-import swp.entity.GeraetTO;
-import swp.portal.beans.GeraetMB;
-import swp.portal.beans.SystemMB;
-import swp.portal.beans.UserMB;
-
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -15,28 +8,30 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.annotation.PostConstruct;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.component.polymertemplate.Id;
-import com.vaadin.flow.component.combobox.ComboBox;
-import com.vaadin.flow.component.textfield.TextArea;
-import com.vaadin.flow.component.button.Button;
-import swp.portal.AgpMenu;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.dom.Element;
+import com.vaadin.flow.templatemodel.TemplateModel;
+
+import swp.entity.GeraetTO;
+import swp.portal.beans.GeraetMB;
+import swp.portal.beans.SystemMB;
+import swp.portal.beans.UserMB;
 
 /**
  * A Designer generated component for the agp-artikel-bearbeiten-view template.
@@ -50,6 +45,7 @@ import com.vaadin.flow.dom.Element;
 public class AgpArtikelBearbeitenView extends PolymerTemplate<AgpArtikelBearbeitenView.AgpArtikelBearbeitenViewModel>
 		implements HasUrlParameter<Integer> {
 
+	private static final long serialVersionUID = 0xDEADBEEF;
 	@Id("buttonSpeichern")
 	private Button buttonSpeichern;
 	@Id("buttonLoeschen")

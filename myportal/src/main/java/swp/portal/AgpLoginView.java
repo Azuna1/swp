@@ -1,12 +1,11 @@
 package swp.portal;
 
-import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.templatemodel.TemplateModel;
 
 /**
  * A Designer generated component for the agp-login-view template.
@@ -18,7 +17,7 @@ import com.vaadin.flow.router.Route;
 @JsModule("./src/agp-login-view.js")
 @Route("Login")
 public class AgpLoginView extends PolymerTemplate<AgpLoginView.AgpLoginViewModel> {
-
+	private static final long serialVersionUID = 0xDEADBEEF;
 	@Id("agpLogin")
 	private AgpLogin agpLogin;
 

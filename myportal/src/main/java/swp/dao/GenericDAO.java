@@ -1,22 +1,10 @@
 package swp.dao;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
-import javax.persistence.criteria.Root;
-
-import org.hibernate.mapping.PrimaryKey;
-import org.slf4j.Logger;
-import static org.slf4j.LoggerFactory.getLogger;
 
 public abstract class GenericDAO<T> {
 

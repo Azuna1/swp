@@ -10,10 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
-
-import com.vaadin.flow.component.html.Image;
 
 import swp.entity.GeraetTO;
 

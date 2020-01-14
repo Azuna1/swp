@@ -7,7 +7,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import swp.dao.GeraetDAO;
-import swp.entity.EmailTO;
 import swp.entity.GeraetTO;
 import swp.entity.impl.Geraet;
 import swp.usecase.IGeraeteManager;

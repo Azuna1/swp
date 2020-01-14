@@ -1,13 +1,5 @@
 package swp.portal;
 
-import com.vaadin.flow.templatemodel.TemplateModel;
-
-import swp.entity.EmailTO;
-import swp.portal.beans.SystemMB;
-import swp.portal.beans.UserMB;
-
-import java.util.Collection;
-
 import javax.inject.Inject;
 
 import com.vaadin.flow.component.Tag;
@@ -15,15 +7,17 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
-import com.vaadin.flow.router.Route;
+import com.vaadin.flow.templatemodel.TemplateModel;
+
+import swp.entity.EmailTO;
+import swp.portal.beans.SystemMB;
+import swp.portal.beans.UserMB;
 
 /**
  * A Designer generated component for the agp-settings template.
@@ -34,7 +28,7 @@ import com.vaadin.flow.router.Route;
 @Tag("agp-settings")
 @JsModule("./src/agp-settings.js")
 public class AgpSettings extends PolymerTemplate<AgpSettings.AgpSettingsModel> implements BeforeEnterObserver {
-
+	private static final long serialVersionUID = 0xDEADBEEF;
 	@Id("textAreaEingegangen")
 	private TextArea textAreaEingegangen;
 	@Id("textAreaAbholen")

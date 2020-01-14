@@ -1,24 +1,16 @@
 package swp.portal;
 
-import com.vaadin.flow.templatemodel.TemplateModel;
-
-import swp.portal.beans.GeraetMB;
-import swp.portal.beans.SystemMB;
-import swp.usecase.IGeraeteManager;
-
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.annotation.PostConstruct;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.Div;
@@ -28,14 +20,14 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.upload.Upload;
-import com.vaadin.flow.component.upload.receivers.FileBuffer;
 import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
-import com.vaadin.flow.component.upload.receivers.MultiFileMemoryBuffer;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
-import com.vaadin.flow.router.Route;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.dom.Element;
+import com.vaadin.flow.templatemodel.TemplateModel;
+
+import swp.portal.beans.GeraetMB;
+import swp.portal.beans.SystemMB;
+import swp.usecase.IGeraeteManager;
 
 /**
  * A Designer generated component for the agp-artikel-erstellen template.
@@ -48,6 +40,7 @@ import com.vaadin.flow.dom.Element;
 public class AgpArtikelErstellen extends PolymerTemplate<AgpArtikelErstellen.AgpArtikelErstellenModel>
 		implements BeforeEnterObserver {
 
+	private static final long serialVersionUID = 0xDEADBEEF;
 	@Id("vaadinVerticalLayout")
 	private VerticalLayout vaadinVerticalLayout;
 	@Id("textFieldArtikelname")

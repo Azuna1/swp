@@ -1,13 +1,5 @@
 package swp.portal;
 
-import com.vaadin.flow.templatemodel.TemplateModel;
-
-import swp.portal.beans.GeraetMB;
-import swp.portal.beans.UserMB;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -18,7 +10,9 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
-import com.vaadin.flow.dom.Element;
+import com.vaadin.flow.templatemodel.TemplateModel;
+
+import swp.portal.beans.UserMB;
 
 /**
  * A Designer generated component for the agp-shop-artikel template.
@@ -29,7 +23,7 @@ import com.vaadin.flow.dom.Element;
 @Tag("agp-shop-artikel")
 @JsModule("./src/agp-shop-artikel.js")
 public class AgpShopArtikel extends PolymerTemplate<AgpShopArtikel.AgpShopArtikelModel> {
-
+	private static final long serialVersionUID = 0xDEADBEEF;
 	@Id("buttonWarenkorb")
 	private Button buttonWarenkorb;
 

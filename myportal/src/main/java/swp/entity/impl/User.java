@@ -8,7 +8,10 @@ import javax.persistence.Id;
 
 import swp.entity.UserTO;
 
-@Entity
+// warning / error shown  (The given name of the entity User is empty) is a bug with eclipse and JPA / Hibernate
+// https://stackoverflow.com/questions/17675964/the-given-name-of-the-entity-classname-is-empty/21979815
+// https://issues.redhat.com/browse/JBJPA-40
+@Entity 
 public class User implements Serializable {
 
 	/**

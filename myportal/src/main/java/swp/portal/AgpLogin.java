@@ -1,9 +1,5 @@
 package swp.portal;
 
-import com.vaadin.flow.templatemodel.TemplateModel;
-
-import swp.portal.beans.UserMB;
-
 import java.util.Hashtable;
 import java.util.Random;
 
@@ -16,13 +12,15 @@ import javax.naming.ldap.InitialLdapContext;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.login.AbstractLogin.LoginEvent;
 import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.login.LoginI18n;
-import com.vaadin.flow.component.login.AbstractLogin.LoginEvent;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
-import com.vaadin.flow.router.Route;
+import com.vaadin.flow.templatemodel.TemplateModel;
+
+import swp.portal.beans.UserMB;
 
 /**
  * A Designer generated component for the agp-login template.
@@ -33,7 +31,7 @@ import com.vaadin.flow.router.Route;
 @Tag("agp-login")
 @JsModule("./src/agp-login.js")
 public class AgpLogin extends PolymerTemplate<AgpLogin.AgpLoginModel> {
-
+	private static final long serialVersionUID = 0xDEADBEEF;
 	@Id("vaadinLoginForm")
 	private LoginForm vaadinLoginForm;
 

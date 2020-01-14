@@ -1,19 +1,13 @@
 package swp.portal;
 
-import com.vaadin.flow.templatemodel.TemplateModel;
-
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.JsModule;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.Push;
@@ -23,9 +17,9 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.templatemodel.TemplateModel;
 
 import swp.entity.GeraetTO;
-import swp.portal.AgpMenu;
 import swp.portal.beans.GeraetMB;
 import swp.portal.beans.SystemMB;
 import swp.portal.beans.UserMB;
@@ -41,7 +35,7 @@ import swp.portal.beans.UserMB;
 @Route("")
 @Push
 public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> implements BeforeEnterObserver {
-
+	private static final long serialVersionUID = 0xDEADBEEF;
 	@Id("agpMenu")
 	private AgpMenu agpMenu;
 	@Id("textFieldSuchen")
@@ -102,7 +96,10 @@ public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> i
 		x.getStyle().set("width", "100%");
 		x.getStyle().set("theme", "spacing");
 		layoutArtikel.add(x);
-
+		
+		if (compare.contentEquals("Alles"))
+			compare = "";
+		
 		for (GeraetTO gTO : geraetMB.getFilteredGeraete(name, compare)) {
 			if (i == 3) {
 				x = new HorizontalLayout();
@@ -137,11 +134,11 @@ public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> i
 			return;
 
 		Collection<String> filter = systemMB.getKategories();
-		filter.add("");
+		filter.add("Alles");
 		comboBoxFilter.setItems(filter);
 
 		deleteAll();
-		showFiltered("", "");
+		showFiltered("", "Alles");
 
 		if (userMB.isAdmin()) {
 			artikelList.forEach(a -> a.setAdmin());

@@ -1,24 +1,21 @@
 package swp.portal;
 
-import com.vaadin.flow.templatemodel.TemplateModel;
-
-import swp.portal.beans.UserMB;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.contextmenu.MenuItem;
-import com.vaadin.flow.component.contextmenu.SubMenu;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.menubar.MenuBar;
 import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
+import com.vaadin.flow.templatemodel.TemplateModel;
+
+import swp.portal.beans.UserMB;
 
 /**
  * A Designer generated component for the agp-menu template.
@@ -29,7 +26,7 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 @Tag("agp-menu")
 @JsModule("./src/agp-menu.js")
 public class AgpMenu extends PolymerTemplate<AgpMenu.AgpMenuModel> implements BeforeEnterObserver {
-
+	private static final long serialVersionUID = 0xDEADBEEF;
 	@Id("vaadinMenuBar")
 	private MenuBar vaadinMenuBar;
 
@@ -46,13 +43,11 @@ public class AgpMenu extends PolymerTemplate<AgpMenu.AgpMenuModel> implements Be
 	public AgpMenu() {
 
 		vaadinMenuBar.setOpenOnHover(true);
-		MenuItem shop = vaadinMenuBar.addItem("Shop", e -> UI.getCurrent().navigate(""));
+		vaadinMenuBar.addItem("Shop", e -> UI.getCurrent().navigate(""));
 		warenkorb = vaadinMenuBar.addItem("Warenkorb", e -> UI.getCurrent().navigate("Warenkorb"));
 		warenkorb.setId("warenkorb_menu");
-		MenuItem bestellungenVerwalten = vaadinMenuBar.addItem("Bestellungen Verwalten",
+		vaadinMenuBar.addItem("Bestellungen Verwalten",
 				e -> UI.getCurrent().navigate("BestellungenVerwalten"));
-		// MenuItem kasse = vaadinMenuBar.addItem("Kasse", e ->
-		// UI.getCurrent().navigate("Kasse"));
 
 		artikelErstellen = vaadinMenuBar.addItem("Artikel Erstellen",
 				e -> UI.getCurrent().navigate("ArtikelErstellen"));
@@ -60,7 +55,7 @@ public class AgpMenu extends PolymerTemplate<AgpMenu.AgpMenuModel> implements Be
 		settings = vaadinMenuBar.addItem("Settings", e -> UI.getCurrent().navigate("Settings"));
 		settings.setVisible(false);
 
-		MenuItem logout = vaadinMenuBar.addItem("Logout", e -> {
+		vaadinMenuBar.addItem("Logout", e -> {
 			userMB.setLoggedIn(false);
 			UI.getCurrent().navigate("Login");
 			Notification.show("User logged out!");

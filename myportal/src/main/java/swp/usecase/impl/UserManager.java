@@ -7,9 +7,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import swp.dao.UserDAO;
-import swp.entity.RechnungTO;
 import swp.entity.UserTO;
-import swp.entity.impl.Rechnung;
 import swp.entity.impl.User;
 import swp.usecase.IUserManager;
 

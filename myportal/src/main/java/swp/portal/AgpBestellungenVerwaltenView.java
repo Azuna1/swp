@@ -1,12 +1,5 @@
 package swp.portal;
 
-import com.vaadin.flow.templatemodel.TemplateModel;
-
-import swp.entity.GeraetTO;
-import swp.entity.RechnungTO;
-import swp.portal.beans.SystemMB;
-import swp.portal.beans.UserMB;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Locale;
@@ -16,21 +9,25 @@ import javax.inject.Inject;
 
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.JsModule;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.polymertemplate.Id;
-import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
-import com.vaadin.flow.router.BeforeEnterEvent;
-import com.vaadin.flow.router.BeforeEnterObserver;
-import com.vaadin.flow.router.Route;
-import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.data.renderer.NumberRenderer;
 import com.vaadin.flow.component.grid.ColumnTextAlign;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.polymertemplate.Id;
+import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
+import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.renderer.NumberRenderer;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterObserver;
+import com.vaadin.flow.router.Route;
+import com.vaadin.flow.templatemodel.TemplateModel;
+
+import swp.entity.RechnungTO;
+import swp.portal.beans.SystemMB;
+import swp.portal.beans.UserMB;
 
 /**
  * A Designer generated component for the agp-bestellungen-verwalten-view
@@ -45,6 +42,7 @@ import com.vaadin.flow.component.button.Button;
 public class AgpBestellungenVerwaltenView extends
 		PolymerTemplate<AgpBestellungenVerwaltenView.AgpBestellungenVerwaltenViewModel> implements BeforeEnterObserver {
 
+	private static final long serialVersionUID = 0xDEADBEEF;
 	@Id("agpMenu")
 	private AgpMenu agpMenu;
 	@Id("textFieldSearch")
@@ -110,6 +108,7 @@ public class AgpBestellungenVerwaltenView extends
 				.setHeader("Preis").setTextAlign(ColumnTextAlign.END);
 	}
 
+	@SuppressWarnings("deprecation") //GMT is just to handy
 	private void fillGrid(String filter) {
 
 //

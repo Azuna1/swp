@@ -1,7 +1,7 @@
 package swp.portal.beans;
 
-import java.util.List;
 import java.io.ByteArrayInputStream;
+import java.util.List;
 
 import javax.inject.Inject;
 

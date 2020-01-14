@@ -9,9 +9,6 @@ import java.util.Map;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
-import com.vaadin.cdi.annotation.VaadinServiceEnabled;
-import com.vaadin.cdi.annotation.VaadinServiceScoped;
-
 import swp.entity.EmailTO;
 import swp.entity.GeraetTO;
 import swp.entity.KategorieTO;
@@ -22,7 +19,6 @@ import swp.usecase.IGeraeteManager;
 import swp.usecase.IKategorieManager;
 import swp.usecase.IRechnungsManager;
 import swp.usecase.IUserManager;
-import swp.usecase.impl.GeraeteManager;
 
 @ApplicationScoped
 public class SystemMB {

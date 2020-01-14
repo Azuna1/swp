@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import swp.dao.RechnungDAO;
 import swp.entity.GeraetTO;
 import swp.entity.RechnungTO;
-import swp.entity.impl.Geraet;
 import swp.entity.impl.Rechnung;
 import swp.usecase.IRechnungsManager;
 
