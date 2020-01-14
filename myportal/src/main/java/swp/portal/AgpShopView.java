@@ -45,7 +45,7 @@ public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> i
 	@Id("layoutArtikel")
 	private VerticalLayout layoutArtikel;
 	private ArrayList<AgpShopArtikel> artikelList = new ArrayList<>();
-	private ArrayList<HorizontalLayout> layoutList = new ArrayList<>();
+
 
 	@Inject
 	GeraetMB geraetMB;
@@ -71,12 +71,8 @@ public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> i
 	}
 
 	private void deleteAll() {
-
-		for (HorizontalLayout layout : layoutList) {
-			layout.removeAll();
-		}
-
-		layoutList.clear();
+		
+		layoutArtikel.removeAll();
 		artikelList.clear();
 
 	}
@@ -91,7 +87,7 @@ public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> i
 		deleteAll();
 
 		x = new HorizontalLayout();
-		layoutList.add(x);
+
 		x.getStyle().set("justify-content", "center");
 		x.getStyle().set("width", "100%");
 		x.getStyle().set("theme", "spacing");
@@ -103,7 +99,7 @@ public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> i
 		for (GeraetTO gTO : geraetMB.getFilteredGeraete(name, compare)) {
 			if (i == 3) {
 				x = new HorizontalLayout();
-				layoutList.add(x);
+
 				x.getStyle().set("justify-content", "center");
 				x.getStyle().set("width", "100%");
 				x.getStyle().set("theme", "spacing");
@@ -135,7 +131,9 @@ public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> i
 
 		Collection<String> filter = systemMB.getKategories();
 		filter.add("Alles");
+		
 		comboBoxFilter.setItems(filter);
+		comboBoxFilter.setValue("Alles");
 
 		deleteAll();
 		showFiltered("", "Alles");

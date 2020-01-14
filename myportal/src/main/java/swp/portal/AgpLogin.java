@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.inject.Inject;
 import javax.naming.AuthenticationException;
+import javax.naming.CommunicationException;
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.naming.ldap.InitialLdapContext;
@@ -116,6 +117,8 @@ public class AgpLogin extends PolymerTemplate<AgpLogin.AgpLoginModel> {
 			System.out.println("Login failed!");
 			vaadinLoginForm.setEnabled(true);
 			Notification.show("User: " + event.getUsername() + " failed to login");
+		} catch (CommunicationException err) {
+			Notification.show("Unable to contact Server! " + err.getRootCause().getMessage());
 		} catch (NamingException e) {
 
 			// Connection failed
