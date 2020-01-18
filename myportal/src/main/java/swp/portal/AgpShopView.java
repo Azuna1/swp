@@ -117,6 +117,8 @@ public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> i
 			artikel.setUserMB(userMB);
 			artikel.setAgpMenu(this.agpMenu);
 			artikel.createImage(geraetMB.getImage(gTO));
+			if(userMB.isAdmin())
+				artikel.setAdmin();
 
 			x.add(artikel);
 			i++;
@@ -138,9 +140,9 @@ public class AgpShopView extends PolymerTemplate<AgpShopView.AgpShopViewModel> i
 		deleteAll();
 		showFiltered("", "Alles");
 
-		if (userMB.isAdmin()) {
-			artikelList.forEach(a -> a.setAdmin());
-		}
+//		if (userMB.isAdmin()) {
+//			artikelList.forEach(a -> a.setAdmin());
+//		}
 
 	}
 
